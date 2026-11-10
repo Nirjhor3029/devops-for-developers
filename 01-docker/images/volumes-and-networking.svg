@@ -1,0 +1,51 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 12px; fill: #374151; }
+    .netline { stroke: #2563eb; stroke-width: 2; fill: none; }
+    .vline { stroke: #d97706; stroke-width: 2; fill: none; stroke-dasharray: 5,4; }
+  </style>
+  <rect width="760" height="320" fill="#ffffff"/>
+
+  <!-- network box -->
+  <rect x="60" y="40" width="420" height="160" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="80" y="62" class="label" fill="#1d4ed8">custom network: "mynet"</text>
+
+  <!-- app container -->
+  <rect x="90" y="90" width="150" height="80" rx="8" class="box" fill="#60a5fa"/>
+  <text x="105" y="125" class="title" fill="#ffffff">app</text>
+  <text x="105" y="145" class="label" fill="#eff6ff">connects to "db"</text>
+
+  <!-- db container -->
+  <rect x="340" y="90" width="150" height="80" rx="8" class="box" fill="#34d399"/>
+  <text x="355" y="125" class="title" fill="#ffffff">db</text>
+  <text x="355" y="145" class="label" fill="#ecfdf5">reachable by name</text>
+
+  <!-- connecting line between app and db, inside network -->
+  <path d="M240 130 L340 130" class="netline" marker-end="url(#arrow)"/>
+  <text x="245" y="118" class="label" fill="#1d4ed8">http://db:3306</text>
+
+  <!-- volume -->
+  <g transform="translate(620,100)">
+    <ellipse cx="40" cy="10" rx="40" ry="12" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <path d="M0 10 L0 55 A40 12 0 0 0 80 55 L80 10" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <ellipse cx="40" cy="55" rx="40" ry="12" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <text x="40" y="38" class="label" text-anchor="middle" fill="#78350f">db-data</text>
+  </g>
+  <path d="M490 150 L625 140" class="vline" marker-end="url(#arrow2)"/>
+  <text x="500" y="195" class="label" fill="#78350f">named volume — survives even if</text>
+  <text x="500" y="211" class="label" fill="#78350f">the "db" container is removed</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <text x="60" y="250" class="label" fill="#4b5563">Containers on the SAME custom network can reach each other using their container name as a hostname.</text>
+  <text x="60" y="270" class="label" fill="#4b5563">A named volume lives outside any single container, so data in it survives container removal/recreation.</text>
+</svg>
