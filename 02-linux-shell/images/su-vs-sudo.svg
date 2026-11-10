@@ -1,0 +1,35 @@
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 15px; fill: #ffffff; font-weight: 700; }
+    .sub { font-size: 12px; fill: #f3f4f6; }
+    .label { font-size: 12px; fill: #374151; }
+    .arrow { stroke: #2563eb; stroke-width: 2; fill: none; }
+  </style>
+  <rect width="760" height="280" fill="#ffffff"/>
+
+  <text x="40" y="30" class="label" font-weight="700" font-size="14">su root</text>
+  <rect x="40" y="45" width="300" height="50" rx="8" class="box" fill="#60a5fa"/>
+  <text x="55" y="75" class="title">you (dev)</text>
+  <path d="M190 95 L190 125" class="arrow" marker-end="url(#a1)"/>
+  <text x="200" y="115" class="label">enter ROOT's password</text>
+  <rect x="40" y="130" width="300" height="50" rx="8" class="box" fill="#f87171"/>
+  <text x="55" y="160" class="title">root — stays root until "exit"</text>
+  <text x="40" y="205" class="label">Every command you type now runs as root, for as long as this session lasts.</text>
+
+  <text x="420" y="30" class="label" font-weight="700" font-size="14">sudo some-command</text>
+  <rect x="420" y="45" width="300" height="50" rx="8" class="box" fill="#60a5fa"/>
+  <text x="435" y="75" class="title">you (dev)</text>
+  <path d="M570 95 L570 125" class="arrow" marker-end="url(#a1)"/>
+  <text x="580" y="115" class="label">enter YOUR OWN password</text>
+  <rect x="420" y="130" width="300" height="50" rx="8" class="box" fill="#34d399"/>
+  <text x="435" y="160" class="title">root — for ONE command only</text>
+  <path d="M570 180 L570 210" class="arrow" marker-end="url(#a1)"/>
+  <text x="580" y="200" class="label" font-size="11">then back to...</text>
+  <rect x="420" y="215" width="300" height="40" rx="8" class="box" fill="#60a5fa"/>
+  <text x="435" y="240" class="title" font-size="13">you (dev) again</text>
+
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+  </defs>
+</svg>
