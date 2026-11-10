@@ -1,64 +1,66 @@
-# Chapter 1 — Docker ki, ar keno lage?
+# Chapter 1 — What is Docker, and why does it matter?
 
 > **Course:** Docker (Zero to Hero) · **Chapter:** 1 of 8
-> Website e porte chaile: [learn.bazardev.com/docker/01-what-is-docker](https://learn.bazardev.com/docker/01-what-is-docker)
+> Read on the website: [learn.bazardev.com/docker/01-what-is-docker](https://learn.bazardev.com/docker/01-what-is-docker)
+>
+> 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/docker/01-what-is-docker?lang=bn)
 
-Ei chapter porar age kichu install korte hobe na. Eita pure concept — কিন্তু এই concept clear না হলে পরের সব chapter confusing lagbe। Tai ektu dhorjo niye poro, example gulo mon diye bojho.
+Nothing to install for this chapter — it's pure concept. But get this right, because every later chapter builds on it.
 
-## 1. Problem ta ki, Docker er age
+## 1. The problem Docker solves
 
-Ei situation ta onek developer er sathe hoyeche:
+Every developer has lived through this:
 
-- Tumi nijer laptop e app banailo, shob kichu perfect kaj kortese.
-- Server e deploy korar por — **error**. "Works on my machine" কিন্তু server e chalena।
-- Karon: tomar laptop e PHP 8.3, server e PHP 8.1. Tomar laptop e ekta library install kora, server e nai. Tomar OS Ubuntu, teammate er Windows.
+- You build something on your laptop. It works perfectly.
+- You deploy it to a server — and it **breaks**. "It works on my machine", but not here.
+- The reason: your laptop has PHP 8.3, the server has PHP 8.1. A library is installed locally but missing on the server. Your OS is Ubuntu, your teammate's is Windows.
 
-Eita k bola hoy **"it works on my machine" problem** — software development er shobcheye common ar frustrating problem.
+This is the classic **"works on my machine" problem** — one of the most common and most frustrating issues in software development.
 
-Age er solution gulo:
-- **Virtual Machine (VM)** — pura ekta virtual computer banano, full OS shoho. Kaj kore, কিন্তু onek heavy — ekta VM e 2-4 GB RAM lage, boot hote minutes lage, ar ekta server e 5-6 ta VM চালালে resource শেষ হয়ে যায়।
-- **Detailed setup document** — "ei ei step follow koro server setup korte" — but manual, error-prone, ar time e update na hole outdated hoye jay.
+The old solutions:
+- **Virtual Machines (VMs)** — spin up a whole virtual computer, full OS included. It works, but it's heavy: a single VM can need 2-4 GB of RAM, takes minutes to boot, and running 5-6 VMs on one server eats all the resources.
+- **A detailed setup document** — "follow these steps to set up the server." Manual, error-prone, and goes stale the moment someone forgets to update it.
 
-Docker ei problem ta solve kore onno bhabe — **lightweight, fast, ar guaranteed consistent**।
+Docker solves this problem differently — **lightweight, fast, and guaranteed to be consistent.**
 
-## 2. Container ki (concept)
+## 2. What is a container (the concept)
 
-**Container** holo ekta hocche app ke "package" kora — code, dependencies (library, runtime version), configuration — shob kichu ekta box er moddhe bondi kore deya, jate shei box jekhanei (laptop, server, cloud) chalano hok, **exactly same behavior** dekhay।
+A **container** packages an application — its code, dependencies (libraries, runtime versions), and configuration — into a single box, so that wherever that box runs (laptop, server, cloud), it behaves **exactly the same way**.
 
-Simple analogy: **shipping container**। Age jokhon jahaj e maal pathano hoto, har jinis er shape-size alada hoto, loading-unloading onek shomoy lagto. Tarpor ekta standard-size **shipping container** ashlo — jei jinis e thak (cloth, electronics, food), shob same-size box e bhore deya hoy। Jahaj, truck, train — jekono vehicle ekই box handle korte pare, karon box er shape fixed। Docker container o tai kore software er jonno — **jekono jinis hok, ekই "box" e package hoy, tai jekhanei run koro, same way kaj kore।**
+A simple analogy: the **shipping container**. Before standardized shipping containers, cargo of every shape and size had to be loaded and unloaded by hand — slow and inefficient. Then came the standard-size shipping container: whatever is inside — cloth, electronics, food — it all goes into the same-shaped box. Any ship, truck, or train can handle that same box, because the shape is fixed. A Docker container does the same thing for software — **whatever it is, it gets packaged into the same kind of "box," so it runs the same way everywhere.**
 
-### VM vs Container — ki different?
+### VM vs Container — what's actually different?
 
 | | Virtual Machine | Container |
 |---|---|---|
-| Full OS lage? | Haa, prottekta VM e full guest OS | Na, host machine er OS kernel share kore |
-| Boot time | Minutes | Seconds (kখনো কখনো < 1 second) |
-| Size | GBs (full OS + app) | MBs (shudhu app + dependencies) |
-| Isolation level | Strong (hardware-level virtualization) | Process-level (lightweight, but kম isolated than VM) |
-| Ekta server e koyta chalano jay | Kom (5-10 ta, resource heavy) | Onek (shundor kore 100+ container o chalano jay) |
+| Needs a full OS? | Yes, every VM runs a full guest OS | No, it shares the host machine's OS kernel |
+| Boot time | Minutes | Seconds (sometimes under 1 second) |
+| Size | GBs (full OS + app) | MBs (just the app + dependencies) |
+| Isolation level | Strong (hardware-level virtualization) | Process-level (lightweight, but less isolated than a VM) |
+| How many fit on one server | Few (5-10, resource heavy) | Many (100+ containers comfortably) |
 
-**Important bhul dharona:** Container mane "mini VM" na। Container asholey host machine er **ekই OS kernel** use kore — শুধু process gulo ke ekta isolated "bubble" e rakhe (nijer filesystem, network, process list dekhe, kintu kernel share kore)। Ei jonno e container eto lightweight ar fast.
+**Common misconception:** a container is not a "mini VM." A container actually shares the host machine's **same OS kernel** — it just wraps processes in an isolated "bubble" (its own filesystem, network, process list) while sharing the kernel underneath. That's exactly why containers are so lightweight and fast.
 
-## 3. Docker ta ashole ki?
+## 3. What is Docker, specifically?
 
-"Container" holo ekta **general concept** (Linux kernel er feature — namespaces + cgroups diye banano) — eita Docker invent kore nai। কিন্তু container ta **easily use korar jonno tool** banaise Docker — ar eita eto shundor bhabe korese je "container" mane ekhon shobai "Docker" bojhe।
+"Container" is a **general concept** — built on Linux kernel features (namespaces + cgroups) that Docker did not invent. But Docker built the tool that made containers genuinely easy to use — so well, in fact, that "container" and "Docker" are now almost synonymous in everyday conversation.
 
-Docker asholey kayekta part niye gothito:
+Docker is made up of a few parts:
 
-- **Docker Engine** — background e running ekta service (`dockerd`), যেটা actually container banay/chalay/bondho kore।
-- **Docker CLI** — tumi terminal e `docker run`, `docker build` command dile, eita client hishebe Engine ke bole "eita koro"।
-- **Docker Image** — ekta read-only "blueprint" / "snapshot" — tomar app + dependencies + OS files er ekta package। (Bistarito 3rd chapter e।)
-- **Docker Container** — ekta image ke "run" korle jei live, running instance ta pao, oitai container। (Same image theke multiple container run kora jay।)
-- **Docker Hub** — online ekta registry (jemon GitHub, kintu code er bodole images er jonno) — jekhan theke readymade image download (`pull`) kora jay, ar nijer image upload (`push`) o kora jay।
+- **Docker Engine** — a background service (`dockerd`) that actually creates, runs, and stops containers.
+- **Docker CLI** — when you type `docker run` or `docker build` in your terminal, the CLI acts as a client telling the Engine what to do.
+- **Docker Image** — a read-only "blueprint" / snapshot: your app plus its dependencies plus the OS files it needs. (Covered in depth in Chapter 3.)
+- **Docker Container** — the live, running instance you get when you "run" an image. (You can run multiple containers from the same image.)
+- **Docker Hub** — an online registry (like GitHub, but for images) where you can download (`pull`) ready-made images, and upload (`push`) your own.
 
-### Easy bhabe bolte gele:
+### The simplest way to put it:
 
-> **Image = recipe (likhito instructions + ingredients)**
-> **Container = oi recipe diye banano, plate e deya ready khabar**
+> **Image = a recipe (instructions + ingredients)**
+> **Container = the actual plate of food made from that recipe**
 
-Ekই recipe (image) diye jotobar e khabar (container) banao, taste shomoy ekই hobe — predictable, consistent।
+Cook from the same recipe (image) as many times as you want, and the result (container) tastes the same every time — predictable and consistent.
 
-## 4. Docker er architecture — kivabe kaj kore
+## 4. Docker's architecture — how it actually works
 
 ```
  ┌──────────────┐        commands       ┌───────────────────┐
@@ -75,75 +77,75 @@ Ekই recipe (image) diye jotobar e khabar (container) banao, taste shomoy ekই
                             ▲
                             │ pull / push
                      ┌─────────────┐
-                     │ Docker Hub   │  (registry — internet e images er store)
+                     │ Docker Hub   │  (registry — images stored online)
                      └─────────────┘
 ```
 
-Flow ta eki rokom:
-1. Tumi CLI e command dao (jemon `docker run nginx`)।
-2. CLI eita Daemon ke pathay।
-3. Daemon check kore image ta local e ache naki — na thakle Docker Hub theke **pull** kore niye ashe।
-4. Image theke ekta **container** start hoy — eita ekta running process, isolated bhabe।
+The flow is always the same:
+1. You give the CLI a command (e.g. `docker run nginx`).
+2. The CLI forwards it to the Daemon.
+3. The Daemon checks whether the image already exists locally — if not, it **pulls** it from Docker Hub.
+4. A **container** starts from that image — a running, isolated process.
 
-## 5. Keno companies/developers Docker use kore
+## 5. Why companies and developers actually use Docker
 
-- **Consistency** — "works on my machine" problem shesh। Dev, staging, production — sob jaygay ekই container chalay, tai behavior same.
-- **Fast setup** — notun teammate join korleo, `docker compose up` dile shob service (app, database, cache) ekshathe up hoye jay — manual install documentation lagena.
-- **Microservices friendly** — ekta boro app ke chotto chotto service e vag kore, prottekta nijer container e run korano shohoj (payment service, auth service, notification service — alada alada container).
-- **CI/CD er jonno perfect** — automated testing/deployment pipeline e, container use kore guarantee deya jay je test ar production environment ekই.
-- **Resource efficient** — VM er theke onek kom resource e beshi service chalano jay, tai hosting cost o kome.
-- **Easy rollback** — notun version e problem hole, purono image er container e firey jawa onek shohoj.
+- **Consistency** — no more "works on my machine." Dev, staging, and production all run the same container, so behavior is identical everywhere.
+- **Fast onboarding** — a new teammate joins, runs `docker compose up`, and every service (app, database, cache) comes up together — no manual setup documentation needed.
+- **Microservices-friendly** — splitting a large app into smaller services (payment service, auth service, notification service) and running each in its own container is straightforward.
+- **Built for CI/CD** — automated testing and deployment pipelines can guarantee the test environment and the production environment are exactly the same.
+- **Resource efficient** — far more services fit on the same hardware compared to VMs, which lowers hosting costs.
+- **Easy rollback** — if a new version has a problem, going back to the container built from the previous image is simple.
 
-## 6. Ei course e ami ja shikhbo (roadmap preview)
+## 6. What's ahead in this course (roadmap preview)
 
 | Chapter | Topic |
 |---|---|
-| 1 | Docker ki, ar keno lage ✅ (eita) |
-| 2 | Install + first container run kora |
-| 3 | Images vs Containers — commands hands-on |
-| 4 | Dockerfile — nijer image lekha |
-| 5 | Volumes & Networking — data persist kora, container-to-container communication |
-| 6 | Docker Compose — multi-container app (Laravel + MySQL + Redis) ekshathe chalano |
+| 1 | What is Docker, and why does it matter? ✅ (this one) |
+| 2 | Install Docker + run your first container |
+| 3 | Images vs Containers — hands-on commands |
+| 4 | Dockerfile — writing your own image |
+| 5 | Volumes & Networking — persisting data, container-to-container communication |
+| 6 | Docker Compose — running a multi-container app (Laravel + MySQL + Redis) together |
 | 7 | Best practices + debugging |
-| 8 | Real project — nijer Laravel app ke Dockerize kora (end to end) |
+| 8 | Real project — Dockerizing your own Laravel app, end to end |
 
-## 7. Key Takeaways
+## 7. Key takeaways
 
-- Container = app + dependencies + config, ekta portable "box" e package kora।
-- VM full OS virtualize kore (heavy), container OS kernel share kore (light, fast)।
-- Docker = container banano/chalano/manage korar jonno sobcheye popular tool (Engine + CLI + Image + Container + Hub)।
-- Image = blueprint (static), Container = running instance (live)।
-- Main benefit: **consistency** — jekhanei chalao, same behavior।
+- A container packages an app + its dependencies + its config into one portable "box."
+- A VM virtualizes a full OS (heavy); a container shares the host's OS kernel (light, fast).
+- Docker is the most popular tool for building/running/managing containers (Engine + CLI + Image + Container + Hub).
+- An image is the static blueprint; a container is the live, running instance.
+- The core benefit: **consistency** — run it anywhere, get the same behavior.
 
-## 8. Nijeke test koro (exam prep)
+## 8. Test yourself (exam prep)
 
-Ei question gulo nijeke jiggesh koro — answer na parle, upore oi section ta re-read koro।
+Ask yourself these — if you can't answer, re-read the relevant section above.
 
 <details>
-<summary><strong>Q1. VM ar Container er mul difference ki?</strong></summary>
+<summary><strong>Q1. What's the core difference between a VM and a container?</strong></summary>
 
-VM pura ekta separate guest OS virtualize kore (heavy, slow boot), container host OS er kernel share kore shudhu process-level isolation kore (light, fast boot)।
+A VM virtualizes an entire separate guest OS (heavy, slow to boot). A container shares the host OS's kernel and only isolates at the process level (lightweight, fast to boot).
 </details>
 
 <details>
-<summary><strong>Q2. Image ar Container er difference ki?</strong></summary>
+<summary><strong>Q2. What's the difference between an image and a container?</strong></summary>
 
-Image holo static blueprint/snapshot (recipe), Container holo oi image theke start kora running instance (ready khabar)। Ekই image theke multiple container run kora jay।
+An image is a static blueprint/snapshot (the recipe). A container is the running instance started from that image (the cooked dish). You can run multiple containers from the same image.
 </details>
 
 <details>
-<summary><strong>Q3. Docker Hub ta ashole ki?</strong></summary>
+<summary><strong>Q3. What exactly is Docker Hub?</strong></summary>
 
-Eita ekta online registry (GitHub er moto, kintu image er jonno) — jekhan theke readymade image pull kora jay, ar nijer banano image push kore rakha jay।
+An online registry (like GitHub, but for images) where you can pull ready-made images, and push your own images to share or reuse.
 </details>
 
 <details>
-<summary><strong>Q4. "Works on my machine" problem Docker kivabe solve kore?</strong></summary>
+<summary><strong>Q4. How does Docker solve the "works on my machine" problem?</strong></summary>
 
-Karon Docker container e app er sathe dependencies/config shob kichu ekই package e thake — tai dev, staging, production jekhanei chalano hok, exactly ekই environment paoa jay, OS/library version mismatch er shomvabona thake na।
+Because a Docker container bundles the app together with all its dependencies and configuration, running it in dev, staging, or production gives you the exact same environment every time — no OS or library version mismatches.
 </details>
 
-## 9. Free resources (English — chaile dekho, must na)
+## 9. Free resources
 
 - Official docs: [Docker Get Started guide](https://docs.docker.com/get-started/)
 - YouTube: **"Docker Tutorial for Beginners [FULL COURSE in 3 Hours]"** — channel: *TechWorld with Nana*
@@ -151,4 +153,4 @@ Karon Docker container e app er sathe dependencies/config shob kichu ekই packa
 
 ---
 
-**Next:** [Chapter 2 — Install + First Container →](../01-docker/02-install-and-first-container.md) *(coming soon)*
+**Next:** [Chapter 2 — Install Docker + Your First Container →](../01-docker/02-install-and-first-container.md) *(coming soon)*
