@@ -1,0 +1,52 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: monospace; font-size: 26px; fill: #111827; font-weight: 700; }
+    .label { font-size: 13px; fill: #374151; font-weight: 700; }
+    .sub { font-size: 11px; fill: #6b7280; }
+    .bracket { stroke: #1f2937; stroke-width: 1.5; fill: none; }
+  </style>
+  <rect width="760" height="320" fill="#ffffff"/>
+
+  <!-- the permission string, char by char -->
+  <text x="40"  y="70" class="mono">-</text>
+  <text x="70"  y="70" class="mono" fill="#2563eb">r</text>
+  <text x="95"  y="70" class="mono" fill="#2563eb">w</text>
+  <text x="120" y="70" class="mono" fill="#2563eb">x</text>
+  <text x="155" y="70" class="mono" fill="#059669">r</text>
+  <text x="180" y="70" class="mono" fill="#9ca3af">-</text>
+  <text x="205" y="70" class="mono" fill="#059669">x</text>
+  <text x="240" y="70" class="mono" fill="#d97706">r</text>
+  <text x="265" y="70" class="mono" fill="#9ca3af">-</text>
+  <text x="290" y="70" class="mono" fill="#9ca3af">-</text>
+
+  <!-- file type label -->
+  <text x="35" y="100" class="sub">type</text>
+
+  <!-- owner bracket -->
+  <path d="M65 90 L65 100 L135 100 L135 90" class="bracket"/>
+  <text x="65" y="118" class="label" fill="#2563eb">owner: rwx (7)</text>
+
+  <!-- group bracket -->
+  <path d="M150 90 L150 100 L220 100 L220 90" class="bracket"/>
+  <text x="150" y="118" class="label" fill="#059669">group: r-x (5)</text>
+
+  <!-- others bracket -->
+  <path d="M235 90 L235 100 L300 100 L300 90" class="bracket"/>
+  <text x="235" y="118" class="label" fill="#d97706">others: r-- (4)</text>
+
+  <text x="40" y="150" class="sub" font-size="13" fill="#111827">chmod 754 file   →   -rwxr-xr--</text>
+
+  <!-- octal math table -->
+  <rect x="420" y="40" width="300" height="140" rx="8" fill="#f3f4f6" stroke="#d1d5db"/>
+  <text x="440" y="65" class="label">Each letter = a number:</text>
+  <text x="440" y="95" class="sub" font-size="14">r = 4   (read)</text>
+  <text x="440" y="120" class="sub" font-size="14">w = 2   (write)</text>
+  <text x="440" y="145" class="sub" font-size="14">x = 1   (execute)</text>
+  <text x="440" y="170" class="sub" font-size="14">Add them up per scope: rwx = 4+2+1 = 7</text>
+
+  <!-- common patterns -->
+  <text x="40" y="220" class="label" font-size="14">Common patterns:</text>
+  <text x="40" y="245" class="sub" font-size="13">644 (rw-r--r--) — normal files: owner can edit, everyone else can only read</text>
+  <text x="40" y="267" class="sub" font-size="13">755 (rwxr-xr-x) — folders &amp; scripts: owner can edit, everyone can read/enter/run</text>
+  <text x="40" y="289" class="sub" font-size="13" fill="#b91c1c">777 (rwxrwxrwx) — avoid: anyone, including attackers, can write and execute</text>
+</svg>
