@@ -1,0 +1,33 @@
+<svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 14px; fill: #ffffff; font-weight: 700; }
+    .label { font-size: 12px; fill: #374151; }
+    .arrow { stroke: #2563eb; stroke-width: 2; fill: none; }
+  </style>
+  <rect width="760" height="260" fill="#ffffff"/>
+
+  <text x="40" y="30" class="label" font-weight="700" font-size="14">kill PID   (sends SIGTERM)</text>
+  <rect x="40" y="45" width="180" height="50" rx="8" class="box" fill="#60a5fa"/>
+  <text x="55" y="75" class="title">process running</text>
+  <path d="M220 70 L280 70" class="arrow" marker-end="url(#a1)"/>
+  <rect x="290" y="45" width="200" height="50" rx="8" class="box" fill="#34d399"/>
+  <text x="300" y="68" class="title" font-size="12">"please finish up and exit"</text>
+  <text x="300" y="84" class="title" font-size="11">(saves data, closes files first)</text>
+  <path d="M490 70 L550 70" class="arrow" marker-end="url(#a1)"/>
+  <rect x="560" y="45" width="150" height="50" rx="8" class="box" fill="#9ca3af"/>
+  <text x="580" y="75" class="title">exits cleanly</text>
+
+  <text x="40" y="150" class="label" font-weight="700" font-size="14">kill -9 PID   (sends SIGKILL)</text>
+  <rect x="40" y="165" width="180" height="50" rx="8" class="box" fill="#60a5fa"/>
+  <text x="55" y="195" class="title">process running</text>
+  <path d="M220 190 L550 190" class="arrow" marker-end="url(#a2)" stroke="#dc2626"/>
+  <text x="250" y="180" class="label" fill="#dc2626">terminated INSTANTLY — no warning, no cleanup</text>
+  <rect x="560" y="165" width="150" height="50" rx="8" class="box" fill="#f87171"/>
+  <text x="580" y="195" class="title">gone</text>
+
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#dc2626"/></marker>
+  </defs>
+</svg>
