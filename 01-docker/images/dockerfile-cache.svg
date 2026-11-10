@@ -1,0 +1,35 @@
+<svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; rx: 6; }
+    .cmd { font-size: 12px; fill: #ffffff; font-weight: 600; font-family: monospace; }
+    .head { font-size: 14px; fill: #111827; font-weight: 700; }
+    .note { font-size: 11px; fill: #4b5563; }
+  </style>
+  <rect width="760" height="360" fill="#ffffff"/>
+
+  <text x="40" y="30" class="head">First build</text>
+  <rect x="40" y="45" width="300" height="42" class="box" fill="#34d399"/>
+  <text x="52" y="70" class="cmd">FROM node:20</text>
+  <rect x="40" y="92" width="300" height="42" class="box" fill="#34d399"/>
+  <text x="52" y="117" class="cmd">COPY package.json .</text>
+  <rect x="40" y="139" width="300" height="42" class="box" fill="#34d399"/>
+  <text x="52" y="164" class="cmd">RUN npm install</text>
+  <rect x="40" y="186" width="300" height="42" class="box" fill="#34d399"/>
+  <text x="52" y="211" class="cmd">COPY . .</text>
+  <text x="40" y="250" class="note">All 4 layers run and get cached.</text>
+
+  <text x="420" y="30" class="head">Rebuild after editing app code only</text>
+  <rect x="420" y="45" width="300" height="42" class="box" fill="#9ca3af"/>
+  <text x="432" y="70" class="cmd">FROM node:20</text>
+  <rect x="420" y="92" width="300" height="42" class="box" fill="#9ca3af"/>
+  <text x="432" y="117" class="cmd">COPY package.json .</text>
+  <rect x="420" y="139" width="300" height="42" class="box" fill="#9ca3af"/>
+  <text x="432" y="164" class="cmd">RUN npm install</text>
+  <rect x="420" y="186" width="300" height="42" class="box" fill="#f87171"/>
+  <text x="432" y="211" class="cmd">COPY . .</text>
+  <text x="420" y="250" class="note">Gray = reused from cache (instant).</text>
+  <text x="420" y="266" class="note">Red = changed, re-run on this build only.</text>
+
+  <text x="40" y="320" class="note">This is why package.json is copied and installed BEFORE the rest of the app code —</text>
+  <text x="40" y="336" class="note">editing a source file won't force a slow "npm install" to run again on every rebuild.</text>
+</svg>
