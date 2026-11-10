@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .main { fill: #2563eb; stroke: #1f2937; stroke-width: 1; }
+    .feat { fill: #34d399; stroke: #1f2937; stroke-width: 1; }
+    .merge { fill: #f59e0b; stroke: #1f2937; stroke-width: 1; }
+    .line { stroke: #9ca3af; stroke-width: 2; fill: none; }
+    .label { font-size: 12px; fill: #374151; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+  </style>
+  <rect width="800" height="380" fill="#ffffff"/>
+
+  <!-- Before -->
+  <text x="30" y="30" class="heading">Before — main and feature diverged</text>
+  <line x1="30" y1="70" x2="300" y2="70" class="line"/>
+  <circle cx="60" cy="70" r="6" class="main"/>
+  <circle cx="300" cy="70" r="6" class="main"/>
+  <text x="25" y="55" class="label" fill="#2563eb">main</text>
+
+  <path d="M60 70 C 90 100, 90 110, 110 110" class="line" stroke="#34d399"/>
+  <circle cx="140" cy="110" r="6" class="feat"/>
+  <circle cx="220" cy="110" r="6" class="feat"/>
+  <text x="90" y="128" class="label" fill="#059669">feature</text>
+
+  <!-- After merge -->
+  <text x="30" y="170" class="heading">git merge feature  →  a new merge commit joins both</text>
+  <line x1="30" y1="210" x2="420" y2="210" class="line"/>
+  <circle cx="60" cy="210" r="6" class="main"/>
+  <circle cx="300" cy="210" r="6" class="main"/>
+  <circle cx="420" cy="210" r="7" class="merge"/>
+  <text x="400" y="195" class="label" fill="#b45309">merge commit</text>
+
+  <path d="M60 210 C 90 240, 90 250, 110 250" class="line" stroke="#34d399"/>
+  <circle cx="140" cy="250" r="6" class="feat"/>
+  <circle cx="220" cy="250" r="6" class="feat"/>
+  <path d="M240 250 C 300 250, 360 230, 420 210" class="line" stroke="#34d399"/>
+  <text x="40" y="280" class="label">History shows exactly what happened: two branches existed, then joined. Nothing rewritten.</text>
+
+  <!-- After rebase -->
+  <text x="30" y="320" class="heading">git rebase main  →  feature's commits replayed on top, as if written after</text>
+  <line x1="30" y1="350" x2="500" y2="350" class="line"/>
+  <circle cx="60" cy="350" r="6" class="main"/>
+  <circle cx="300" cy="350" r="6" class="main"/>
+  <circle cx="380" cy="350" r="6" class="feat"/>
+  <circle cx="460" cy="350" r="6" class="feat"/>
+  <text x="480" y="368" class="label">— one straight line, no merge commit —</text>
+</svg>
