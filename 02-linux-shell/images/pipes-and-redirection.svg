@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 13px; fill: #ffffff; font-weight: 700; font-family: monospace; }
+    .label { font-size: 12px; fill: #374151; }
+    .arrow { stroke: #2563eb; stroke-width: 2; fill: none; }
+  </style>
+  <rect width="800" height="260" fill="#ffffff"/>
+
+  <text x="40" y="30" class="label" font-size="14" font-weight="700">cat app.log | grep "ERROR" | wc -l</text>
+
+  <rect x="40" y="60" width="150" height="55" rx="8" class="box" fill="#60a5fa"/>
+  <text x="55" y="92" class="title">cat app.log</text>
+
+  <path d="M190 87 L240 87" class="arrow" marker-end="url(#a1)"/>
+  <text x="195" y="75" class="label" font-size="11">every line of the file</text>
+
+  <rect x="250" y="60" width="150" height="55" rx="8" class="box" fill="#34d399"/>
+  <text x="265" y="92" class="title" font-size="12">grep "ERROR"</text>
+
+  <path d="M400 87 L450 87" class="arrow" marker-end="url(#a1)"/>
+  <text x="405" y="75" class="label" font-size="11">only matching lines</text>
+
+  <rect x="460" y="60" width="150" height="55" rx="8" class="box" fill="#a78bfa"/>
+  <text x="475" y="92" class="title">wc -l</text>
+
+  <path d="M610 87 L660 87" class="arrow" marker-end="url(#a1)"/>
+
+  <rect x="670" y="60" width="100" height="55" rx="8" class="box" fill="#f59e0b"/>
+  <text x="690" y="92" class="title" font-size="12">a number</text>
+
+  <text x="40" y="160" class="label" font-size="13">Each "|" (pipe) takes the OUTPUT of the command on its left</text>
+  <text x="40" y="180" class="label" font-size="13">and feeds it in as the INPUT of the command on its right.</text>
+
+  <text x="40" y="220" class="label" font-size="13" fill="#b91c1c">cmd &gt; file    → overwrites file with cmd's output</text>
+  <text x="40" y="240" class="label" font-size="13" fill="#047857">cmd &gt;&gt; file   → appends cmd's output to the end of file</text>
+
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+  </defs>
+</svg>
