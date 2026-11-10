@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .commit { fill: #2563eb; stroke: #1f2937; stroke-width: 1; }
+    .commit2 { fill: #34d399; stroke: #1f2937; stroke-width: 1; }
+    .line { stroke: #9ca3af; stroke-width: 2; fill: none; }
+    .label { font-size: 12px; fill: #374151; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+  </style>
+  <rect width="800" height="340" fill="#ffffff"/>
+
+  <!-- Trunk-based -->
+  <text x="30" y="30" class="heading">Trunk-based (most teams, this course's default)</text>
+  <line x1="30" y1="70" x2="380" y2="70" class="line"/>
+  <text x="30" y="60" class="label" fill="#2563eb">main</text>
+  <circle cx="60" cy="70" r="6" class="commit"/>
+  <circle cx="140" cy="70" r="6" class="commit"/>
+  <circle cx="260" cy="70" r="6" class="commit"/>
+  <circle cx="360" cy="70" r="6" class="commit"/>
+
+  <path d="M140 70 C 160 100, 160 110, 180 110" class="line" stroke="#34d399"/>
+  <circle cx="200" cy="110" r="6" class="commit2"/>
+  <path d="M220 110 C 240 110, 250 90, 260 70" class="line" stroke="#34d399"/>
+  <text x="170" y="128" class="label" fill="#059669">feature/login (short-lived)</text>
+
+  <path d="M260 70 C 280 100, 280 110, 300 110" class="line" stroke="#34d399"/>
+  <circle cx="320" cy="110" r="6" class="commit2"/>
+  <path d="M340 110 C 350 100, 355 85, 360 70" class="line" stroke="#34d399"/>
+  <text x="290" y="128" class="label" fill="#059669">fix/bug (short-lived)</text>
+
+  <text x="30" y="160" class="label">Branches live days, merge back fast, main is always deployable.</text>
+
+  <!-- Git Flow -->
+  <text x="30" y="200" class="heading">Git Flow (release-cycle based, heavier)</text>
+  <line x1="30" y1="240" x2="700" y2="240" class="line"/>
+  <text x="30" y="230" class="label" fill="#2563eb">main</text>
+  <circle cx="60" cy="240" r="6" class="commit"/>
+  <circle cx="700" cy="240" r="6" class="commit"/>
+
+  <line x1="90" y1="280" x2="640" y2="280" class="line" stroke="#f59e0b"/>
+  <text x="30" y="283" class="label" fill="#b45309">develop</text>
+  <circle cx="120" cy="280" r="6" fill="#f59e0b" stroke="#1f2937"/>
+  <circle cx="300" cy="280" r="6" fill="#f59e0b" stroke="#1f2937"/>
+  <circle cx="500" cy="280" r="6" fill="#f59e0b" stroke="#1f2937"/>
+
+  <path d="M120 280 C140 300,160 300,180 300" class="line" stroke="#a78bfa"/>
+  <circle cx="200" cy="300" r="6" fill="#a78bfa" stroke="#1f2937"/>
+  <path d="M220 300 C240 300,260 290,300 280" class="line" stroke="#a78bfa"/>
+  <text x="150" y="318" class="label" fill="#7c3aed">feature/*</text>
+
+  <path d="M500 280 C 550 260, 600 250, 640 240" class="line" stroke="#f59e0b"/>
+  <text x="520" y="260" class="label" fill="#b45309">release/*</text>
+
+  <path d="M700 240 C 680 260, 680 275, 660 280" class="line" stroke="#dc2626"/>
+  <text x="560" y="300" class="label" fill="#b91c1c">hotfix/* (branches straight off main)</text>
+</svg>
