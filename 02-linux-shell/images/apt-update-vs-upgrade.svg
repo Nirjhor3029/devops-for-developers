@@ -1,0 +1,36 @@
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 14px; fill: #ffffff; font-weight: 700; }
+    .sub { font-size: 11px; fill: #f3f4f6; }
+    .label { font-size: 12px; fill: #374151; }
+    .arrow { stroke: #2563eb; stroke-width: 2; fill: none; }
+  </style>
+  <rect width="760" height="280" fill="#ffffff"/>
+
+  <text x="40" y="30" class="label" font-weight="700" font-size="14">apt update</text>
+  <rect x="40" y="45" width="220" height="60" rx="8" class="box" fill="#9ca3af"/>
+  <text x="55" y="70" class="title" font-size="12">your local package LIST</text>
+  <text x="55" y="88" class="sub">("what versions exist, out there")</text>
+  <path d="M270 75 L330 75" class="arrow" marker-end="url(#a1)"/>
+  <rect x="340" y="45" width="220" height="60" rx="8" class="box" fill="#2563eb"/>
+  <text x="355" y="70" class="title" font-size="12">refreshed from the repository</text>
+  <text x="355" y="88" class="sub">(nothing on disk is installed/changed)</text>
+
+  <text x="40" y="150" class="label" font-weight="700" font-size="14">apt upgrade</text>
+  <rect x="40" y="165" width="220" height="60" rx="8" class="box" fill="#34d399"/>
+  <text x="55" y="190" class="title" font-size="12">software ACTUALLY installed</text>
+  <text x="55" y="208" class="sub">on this machine right now</text>
+  <path d="M270 195 L330 195" class="arrow" marker-end="url(#a2)"/>
+  <rect x="340" y="165" width="220" height="60" rx="8" class="box" fill="#059669"/>
+  <text x="355" y="190" class="title" font-size="12">actually downloaded &amp; installed</text>
+  <text x="355" y="208" class="sub">using the list from "update"</text>
+
+  <text x="40" y="255" class="label" font-size="13">Run "update" first (refresh the list), THEN "upgrade" (install using that fresh list).</text>
+  <text x="40" y="272" class="label" font-size="13">Skipping "update" means "upgrade" is working from a stale, possibly outdated list.</text>
+
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#059669"/></marker>
+  </defs>
+</svg>
