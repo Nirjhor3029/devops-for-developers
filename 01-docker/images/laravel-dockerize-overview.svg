@@ -1,0 +1,70 @@
+<svg viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 14px; fill: #ffffff; font-weight: 700; }
+    .sub { font-size: 11px; fill: #f3f4f6; }
+    .label { font-size: 12px; fill: #374151; }
+    .line { stroke: #2563eb; stroke-width: 2; fill: none; }
+    .vline { stroke: #d97706; stroke-width: 2; stroke-dasharray: 5,4; fill: none; }
+  </style>
+  <rect width="820" height="400" fill="#ffffff"/>
+
+  <!-- browser -->
+  <rect x="20" y="170" width="120" height="60" rx="8" fill="#e5e7eb" stroke="#9ca3af"/>
+  <text x="38" y="205" class="label" font-weight="700">Browser</text>
+  <path d="M140 200 L190 200" class="line" marker-end="url(#a1)"/>
+  <text x="140" y="190" class="label" font-size="11">localhost:8000</text>
+
+  <!-- compose boundary -->
+  <rect x="190" y="70" width="600" height="280" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-dasharray="6,4"/>
+  <text x="205" y="94" class="label" fill="#1d4ed8" font-weight="700">docker-compose.yml — all services on one network</text>
+
+  <!-- webserver -->
+  <rect x="220" y="170" width="150" height="80" rx="8" class="box" fill="#60a5fa"/>
+  <text x="235" y="200" class="title">webserver</text>
+  <text x="235" y="220" class="sub">nginx:alpine</text>
+  <text x="235" y="236" class="sub">ports: 8000:80</text>
+
+  <!-- app -->
+  <rect x="430" y="170" width="150" height="80" rx="8" class="box" fill="#34d399"/>
+  <text x="445" y="200" class="title">app</text>
+  <text x="445" y="220" class="sub">php:8.3-fpm-alpine</text>
+  <text x="445" y="236" class="sub">(built from Dockerfile)</text>
+
+  <!-- db -->
+  <rect x="640" y="170" width="120" height="80" rx="8" class="box" fill="#a78bfa"/>
+  <text x="655" y="200" class="title">db</text>
+  <text x="655" y="220" class="sub">mysql:8</text>
+
+  <path d="M370 200 L430 200" class="line" marker-end="url(#a1)"/>
+  <text x="372" y="190" class="label" font-size="11" fill="#1d4ed8">.php → fastcgi_pass app:9000</text>
+
+  <path d="M580 215 L640 215" class="line" marker-end="url(#a1)"/>
+  <text x="585" y="260" class="label" font-size="11" fill="#1d4ed8">DB_HOST=db</text>
+
+  <!-- shared app-code volume between webserver and app -->
+  <g transform="translate(265,280)">
+    <ellipse cx="35" cy="8" rx="35" ry="10" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <path d="M0 8 L0 32 A35 10 0 0 0 70 32 L70 8" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <ellipse cx="35" cy="32" rx="35" ry="10" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <text x="35" y="24" class="label" text-anchor="middle" font-size="11" fill="#78350f">app-code</text>
+  </g>
+  <path d="M290 250 L290 280" class="vline"/>
+  <path d="M495 250 L400 280" class="vline" marker-end="url(#a2)"/>
+  <text x="200" y="330" class="label" fill="#78350f" font-size="11">Shared volume: nginx serves static files (CSS/JS/images)</text>
+  <text x="200" y="346" class="label" fill="#78350f" font-size="11">directly; .php requests are forwarded to the "app" service instead.</text>
+
+  <!-- db volume -->
+  <g transform="translate(680,280)">
+    <ellipse cx="25" cy="8" rx="25" ry="8" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <path d="M0 8 L0 28 A25 8 0 0 0 50 28 L50 8" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <ellipse cx="25" cy="28" rx="25" ry="8" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>
+    <text x="25" y="22" class="label" text-anchor="middle" font-size="10" fill="#78350f">db-data</text>
+  </g>
+  <path d="M700 250 L700 280" class="vline"/>
+
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d97706"/></marker>
+  </defs>
+</svg>
