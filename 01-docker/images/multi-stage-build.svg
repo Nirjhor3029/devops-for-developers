@@ -1,0 +1,42 @@
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .box { stroke: #1f2937; stroke-width: 1.5; }
+    .title { font-size: 15px; fill: #ffffff; font-weight: 700; }
+    .sub { font-size: 12px; fill: #f3f4f6; }
+    .label { font-size: 12px; fill: #374151; }
+    .size { font-size: 20px; fill: #111827; font-weight: 800; }
+  </style>
+  <rect width="760" height="300" fill="#ffffff"/>
+
+  <!-- stage 1: build -->
+  <rect x="50" y="60" width="260" height="150" rx="10" class="box" fill="#f87171"/>
+  <text x="70" y="90" class="title">Stage 1 — "build"</text>
+  <text x="70" y="115" class="sub">FROM node:20</text>
+  <text x="70" y="133" class="sub">RUN npm install</text>
+  <text x="70" y="151" class="sub">RUN npm run build</text>
+  <text x="70" y="169" class="sub">(compiler, dev deps,</text>
+  <text x="70" y="184" class="sub">source maps — all heavy)</text>
+  <text x="130" y="245" class="size" fill="#b91c1c">~1.2 GB</text>
+
+  <!-- arrow -->
+  <path d="M320 135 L430 135" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arr)"/>
+  <text x="325" y="120" class="label" fill="#2563eb">COPY --from=build</text>
+  <text x="325" y="155" class="label" fill="#2563eb">(only the built output)</text>
+
+  <!-- stage 2: final -->
+  <rect x="450" y="60" width="260" height="150" rx="10" class="box" fill="#34d399"/>
+  <text x="470" y="90" class="title">Stage 2 — final image</text>
+  <text x="470" y="115" class="sub">FROM node:20-alpine</text>
+  <text x="470" y="133" class="sub">COPY --from=build /app/dist .</text>
+  <text x="470" y="151" class="sub">(no compiler, no dev deps,</text>
+  <text x="470" y="169" class="sub">just what's needed to run)</text>
+  <text x="540" y="245" class="size" fill="#047857">~150 MB</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <text x="50" y="275" class="label" fill="#4b5563">Only Stage 2 ships — Stage 1 and everything in it is discarded after the build finishes.</text>
+</svg>
