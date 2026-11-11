@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .runner { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .service { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .pass { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .fail { fill: #fee2e2; stroke: #dc2626; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="340" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">A test job with a real database running alongside it</text>
+
+  <rect x="30" y="45" width="330" height="190" class="runner"/>
+  <text x="42" y="65" class="mono" fill="#1e3a8a">job: test (the runner)</text>
+  <rect x="45" y="80" width="300" height="30" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="53" y="100" class="mono" fill="#111827">checkout + composer install</text>
+  <rect x="45" y="115" width="300" height="30" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="53" y="135" class="mono" fill="#111827">php artisan migrate</text>
+  <rect x="45" y="150" width="300" height="30" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="53" y="170" class="mono" fill="#111827">php artisan test</text>
+  <text x="45" y="200" class="label">talks to DB_HOST=127.0.0.1:3306</text>
+
+  <rect x="400" y="80" width="200" height="90" class="service"/>
+  <text x="410" y="100" class="mono" fill="#92400e">services:</text>
+  <text x="410" y="118" class="mono" fill="#92400e">  mysql:</text>
+  <text x="410" y="136" class="mono" fill="#92400e">    image: mysql:8</text>
+  <text x="410" y="154" class="mono" fill="#92400e">    ports: 3306:3306</text>
+
+  <path d="M345 165 L400 125" class="arrow"/>
+  <text x="330" y="245" class="label">a "service container" runs alongside the job, on the same network — a real database, not a mock</text>
+
+  <text x="30" y="270" class="heading">Result feeds straight into the PR status check from Git &amp; GitHub Chapter 6</text>
+  <rect x="30" y="285" width="150" height="34" class="pass"/>
+  <text x="38" y="306" class="mono" fill="#065f46">✓ test — passed</text>
+  <path d="M185 302 L240 302" class="arrow"/>
+  <rect x="245" y="285" width="200" height="34" class="pass"/>
+  <text x="253" y="306" class="mono" fill="#065f46">merge button enabled</text>
+
+  <rect x="470" y="285" width="150" height="34" class="fail"/>
+  <text x="478" y="306" class="mono" fill="#991b1b">✗ test — failed</text>
+  <path d="M625 302 L680 302" class="arrow"/>
+  <rect x="685" y="285" width="95" height="34" class="fail"/>
+  <text x="693" y="306" class="mono" fill="#991b1b">merge blocked</text>
+</svg>
