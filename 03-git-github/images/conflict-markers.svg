@@ -1,0 +1,40 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 13px; }
+    .mine { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .theirs { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .marker { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .label { font-size: 12px; fill: #6b7280; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+  </style>
+  <rect width="800" height="340" fill="#ffffff"/>
+
+  <text x="30" y="28" class="heading">A file with a conflict — what Git leaves behind for you to resolve</text>
+
+  <rect x="30" y="45" width="500" height="26" class="marker"/>
+  <text x="38" y="62" class="mono" fill="#92400e">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</text>
+  <text x="545" y="62" class="label">← start of YOUR branch's version</text>
+
+  <rect x="30" y="71" width="500" height="26" class="mine"/>
+  <text x="38" y="88" class="mono" fill="#1e3a8a">const timeout = 30;</text>
+
+  <rect x="30" y="97" width="500" height="26" class="marker"/>
+  <text x="38" y="114" class="mono" fill="#92400e">=======</text>
+  <text x="545" y="114" class="label">← the dividing line</text>
+
+  <rect x="30" y="123" width="500" height="26" class="theirs"/>
+  <text x="38" y="140" class="mono" fill="#065f46">const timeout = 60;</text>
+
+  <rect x="30" y="149" width="500" height="26" class="marker"/>
+  <text x="38" y="166" class="mono" fill="#92400e">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/longer-timeout</text>
+  <text x="545" y="166" class="label">← end, names the incoming branch</text>
+
+  <text x="30" y="210" class="heading">To resolve: delete all three marker lines, keep the code you want</text>
+
+  <rect x="30" y="225" width="500" height="26" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="38" y="242" class="mono" fill="#111827">const timeout = 60;</text>
+  <text x="545" y="242" class="label">← final, clean file</text>
+
+  <text x="30" y="290" class="label">Then: git add the file  →  git commit (finishes a merge)  or  git rebase --continue (finishes a rebase)</text>
+  <text x="30" y="312" class="label">Stuck or want a clean slate? git merge --abort  or  git rebase --abort  undoes everything and starts over.</text>
+</svg>
