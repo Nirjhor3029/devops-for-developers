@@ -1,0 +1,65 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .box { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .box2 { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .box3 { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .lost { fill: #fee2e2; stroke: #dc2626; stroke-width: 1; stroke-dasharray: 4,2; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 12px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="420" fill="#ffffff"/>
+
+  <!-- stash -->
+  <text x="30" y="26" class="heading">git stash — shelve messy, uncommitted changes to switch branches clean</text>
+  <rect x="30" y="38" width="160" height="50" class="box"/>
+  <text x="45" y="58" class="mono" fill="#1e3a8a">working dir</text>
+  <text x="45" y="76" class="mono" fill="#1e3a8a">(uncommitted)</text>
+  <path d="M195 63 L275 63" class="arrow"/>
+  <text x="200" y="55" class="label">git stash</text>
+  <rect x="280" y="38" width="160" height="50" class="box3"/>
+  <text x="295" y="58" class="mono" fill="#92400e">stash@{0}</text>
+  <text x="295" y="76" class="mono" fill="#92400e">(shelved)</text>
+  <path d="M440 63 L520 63" class="arrow"/>
+  <text x="445" y="55" class="label">git stash pop</text>
+  <rect x="525" y="38" width="160" height="50" class="box"/>
+  <text x="540" y="58" class="mono" fill="#1e3a8a">working dir</text>
+  <text x="540" y="76" class="mono" fill="#1e3a8a">(restored)</text>
+
+  <!-- cherry-pick -->
+  <text x="30" y="135" class="heading">git cherry-pick — copy ONE commit from another branch, as a new commit here</text>
+  <circle cx="60" cy="175" r="6" class="box"/>
+  <circle cx="130" cy="175" r="6" class="box"/>
+  <circle cx="200" cy="175" r="7" fill="#dc2626"/>
+  <text x="185" y="160" class="label" fill="#991b1b">hotfix commit</text>
+  <text x="30" y="200" class="label">hotfix branch</text>
+  <line x1="30" y1="175" x2="230" y2="175" stroke="#9ca3af" stroke-width="2"/>
+
+  <path d="M200 182 C 300 230, 400 230, 470 250" class="arrow" stroke="#dc2626"/>
+  <text x="280" y="225" class="label" fill="#991b1b">git cherry-pick &lt;hash&gt;</text>
+
+  <line x1="30" y1="250" x2="520" y2="250" stroke="#9ca3af" stroke-width="2"/>
+  <circle cx="60" cy="250" r="6" class="box2"/>
+  <circle cx="200" cy="250" r="6" class="box2"/>
+  <circle cx="480" cy="250" r="7" fill="#dc2626"/>
+  <text x="30" y="275" class="label">main branch</text>
+  <text x="440" y="235" class="label" fill="#991b1b">same change, new hash</text>
+
+  <!-- reflog -->
+  <text x="30" y="330" class="heading">git reflog — the local safety net recording every move of HEAD</text>
+  <rect x="30" y="345" width="130" height="28" class="box2"/>
+  <text x="38" y="364" class="mono" fill="#065f46">HEAD@{0} now</text>
+  <rect x="165" y="345" width="130" height="28" class="box2"/>
+  <text x="173" y="364" class="mono" fill="#065f46">HEAD@{1} commit</text>
+  <rect x="300" y="345" width="160" height="28" class="lost"/>
+  <text x="308" y="364" class="mono" fill="#991b1b">HEAD@{2} reset --hard</text>
+  <rect x="465" y="345" width="150" height="28" class="box2"/>
+  <text x="473" y="364" class="mono" fill="#065f46">HEAD@{3} rebase</text>
+  <text x="30" y="400" class="label">"Lost" commits after a reset/rebase mistake usually still exist — find the hash in reflog, then git reset --hard or cherry-pick it back.</text>
+</svg>
