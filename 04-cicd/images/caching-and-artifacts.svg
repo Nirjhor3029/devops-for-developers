@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .cache { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .job { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .artifact { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="380" fill="#ffffff"/>
+
+  <text x="30" y="26" class="heading">Cache — speeds up THIS run by reusing yesterday's download</text>
+  <rect x="20" y="40" width="160" height="50" class="job"/>
+  <text x="28" y="60" class="mono" fill="#1e3a8a">Run starts,</text>
+  <text x="28" y="76" class="mono" fill="#1e3a8a">fresh runner</text>
+  <path d="M185 65 L230 65" class="arrow"/>
+  <rect x="235" y="40" width="200" height="50" class="cache"/>
+  <text x="243" y="58" class="mono" fill="#92400e">key matches old cache?</text>
+  <text x="243" y="76" class="mono" fill="#92400e">(hash of composer.lock)</text>
+  <path d="M440 55 L500 45" class="arrow"/>
+  <path d="M440 75 L500 95" class="arrow"/>
+  <rect x="505" y="25" width="260" height="34" class="artifact"/>
+  <text x="513" y="46" class="mono" fill="#065f46">HIT → restore vendor/, skip install</text>
+  <rect x="505" y="80" width="260" height="34" class="cache"/>
+  <text x="513" y="101" class="mono" fill="#92400e">MISS → composer install, save cache</text>
+
+  <text x="30" y="160" class="heading">Artifact — carries files from ONE job to another, or to a human</text>
+
+  <rect x="20" y="180" width="160" height="50" class="job"/>
+  <text x="28" y="200" class="mono" fill="#1e3a8a">job: build</text>
+  <text x="28" y="216" class="mono" fill="#1e3a8a">produces dist/</text>
+  <path d="M185 205 L230 205" class="arrow"/>
+
+  <rect x="235" y="180" width="180" height="50" class="artifact"/>
+  <text x="243" y="200" class="mono" fill="#065f46">upload-artifact</text>
+  <text x="243" y="216" class="mono" fill="#065f46">name: dist-build</text>
+  <path d="M420 205 L465 205" class="arrow"/>
+
+  <rect x="470" y="180" width="160" height="50" class="job"/>
+  <text x="478" y="200" class="mono" fill="#1e3a8a">job: deploy</text>
+  <text x="478" y="216" class="mono" fill="#1e3a8a">download-artifact</text>
+  <path d="M635 205 L680 205" class="arrow"/>
+
+  <rect x="685" y="180" width="95" height="50" class="job"/>
+  <text x="693" y="205" class="mono" fill="#1e3a8a">ships it</text>
+
+  <text x="30" y="270" class="label">Cache: optimizes speed across DIFFERENT runs over time — a "miss" just means a slower normal install, nothing breaks.</text>
+  <text x="30" y="290" class="label">Artifact: moves real output files WITHIN one run (between jobs) or makes them downloadable afterward — not a speed trick.</text>
+  <text x="30" y="320" class="label">actions/cache: ~10GB per repo, entries unused for 7 days are evicted. actions/upload-artifact: kept 90 days by default (configurable).</text>
+</svg>
