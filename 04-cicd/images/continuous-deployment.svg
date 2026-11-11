@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .ci { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .build { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .gate { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .deploy { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="340" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">From a merged commit to a running container, with no human typing a deploy command</text>
+
+  <rect x="20" y="45" width="140" height="50" class="ci"/>
+  <text x="28" y="65" class="mono" fill="#065f46">job: test</text>
+  <text x="28" y="81" class="mono" fill="#065f46">(Chapter 6)</text>
+  <path d="M165 70 L210 70" class="arrow"/>
+  <text x="170" y="60" class="label">needs: test</text>
+
+  <rect x="215" y="45" width="180" height="50" class="build"/>
+  <text x="223" y="65" class="mono" fill="#1e3a8a">build-and-push</text>
+  <text x="223" y="81" class="mono" fill="#1e3a8a">docker build + push</text>
+  <path d="M400 70 L445 70" class="arrow"/>
+  <text x="405" y="60" class="label">needs: build</text>
+
+  <rect x="450" y="45" width="150" height="50" class="gate"/>
+  <text x="458" y="65" class="mono" fill="#92400e">environment:</text>
+  <text x="458" y="81" class="mono" fill="#92400e">  production</text>
+  <path d="M605 70 L650 70" class="arrow"/>
+
+  <rect x="655" y="45" width="130" height="50" class="deploy"/>
+  <text x="663" y="65" class="mono" fill="#6d28d9">ssh deploy</text>
+  <text x="663" y="81" class="mono" fill="#6d28d9">restart container</text>
+
+  <text x="450" y="115" class="label">"environment: production" can require a human reviewer to click approve before this job proceeds —</text>
+  <text x="450" y="130" class="label">this is the one deliberate manual gate even in an otherwise fully automatic pipeline.</text>
+
+  <rect x="30" y="170" width="730" height="150" fill="#f9fafb" stroke="#d1d5db"/>
+  <text x="45" y="192" class="heading">What the registry holds — every build tagged, nothing overwritten</text>
+  <rect x="60" y="205" width="150" height="30" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="68" y="225" class="mono" fill="#111827">app:a1b2c3d</text>
+  <rect x="230" y="205" width="150" height="30" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="238" y="225" class="mono" fill="#111827">app:e4f5g6h</text>
+  <rect x="400" y="205" width="150" height="30" class="gate"/>
+  <text x="408" y="225" class="mono" fill="#92400e">app:latest (current)</text>
+  <text x="60" y="255" class="label">Each image is tagged with the commit SHA that built it — "latest" just points at whichever is live right now.</text>
+  <text x="60" y="275" class="label">A bad deploy? Point the server back at the PREVIOUS SHA tag — no rebuild needed, this is the deploy-level equivalent</text>
+  <text x="60" y="292" class="label">of Git &amp; GitHub Chapter 7's reset/revert idea: the old, working image is still sitting right there.</text>
+</svg>
