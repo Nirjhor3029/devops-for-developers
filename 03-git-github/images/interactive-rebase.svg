@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 13px; }
+    .row { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1; }
+    .pick { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .squash { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .reword { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .drop { fill: #fee2e2; stroke: #dc2626; stroke-width: 1; }
+    .result { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 12px; fill: #6b7280; }
+  </style>
+  <rect width="800" height="360" fill="#ffffff"/>
+
+  <text x="30" y="28" class="heading">git rebase -i HEAD~4  →  the editor shows your last 4 commits, oldest first</text>
+
+  <rect x="30" y="45" width="460" height="28" class="pick"/>
+  <text x="38" y="64" class="mono" fill="#1e3a8a">pick a1b2c3d  Add login form</text>
+
+  <rect x="30" y="77" width="460" height="28" class="squash"/>
+  <text x="38" y="96" class="mono" fill="#92400e">squash e4f5g6h  fix typo</text>
+
+  <rect x="30" y="109" width="460" height="28" class="squash"/>
+  <text x="38" y="128" class="mono" fill="#92400e">squash h7i8j9k  fix typo again</text>
+
+  <rect x="30" y="141" width="460" height="28" class="reword"/>
+  <text x="38" y="160" class="mono" fill="#065f46">reword l0m1n2o  add validaton</text>
+
+  <text x="510" y="64" class="label">← kept as-is</text>
+  <text x="510" y="96" class="label">← merged into the commit above</text>
+  <text x="510" y="128" class="label">← merged into the commit above too</text>
+  <text x="510" y="160" class="label">← kept, but you get to fix its message</text>
+
+  <text x="30" y="205" class="heading">After saving — the todo list is replayed top to bottom</text>
+
+  <rect x="30" y="222" width="460" height="30" class="result"/>
+  <text x="38" y="242" class="mono" fill="#065f46">Add login form</text>
+
+  <rect x="30" y="256" width="460" height="30" class="result"/>
+  <text x="38" y="276" class="mono" fill="#065f46">Add input validation</text>
+  <text x="510" y="276" class="label">← typo fixes are gone, folded in silently</text>
+
+  <text x="30" y="320" class="label">squash = keep BOTH commit messages to edit    fixup = silently discard this commit's message</text>
+  <text x="30" y="342" class="label">drop = remove the commit entirely    reorder = just move the line    edit = pause here to amend by hand</text>
+</svg>
