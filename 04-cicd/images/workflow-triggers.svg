@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .src { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .filter { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .run { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="360" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">What can start a workflow, and the filters that narrow it down</text>
+
+  <rect x="20" y="45" width="150" height="34" class="src"/>
+  <text x="28" y="66" class="mono" fill="#1e3a8a">push</text>
+
+  <rect x="20" y="90" width="150" height="34" class="src"/>
+  <text x="28" y="111" class="mono" fill="#1e3a8a">pull_request</text>
+
+  <rect x="20" y="135" width="150" height="34" class="src"/>
+  <text x="28" y="156" class="mono" fill="#1e3a8a">schedule (cron)</text>
+
+  <rect x="20" y="180" width="150" height="34" class="src"/>
+  <text x="28" y="201" class="mono" fill="#1e3a8a">workflow_dispatch</text>
+
+  <rect x="20" y="225" width="150" height="34" class="src"/>
+  <text x="28" y="246" class="mono" fill="#1e3a8a">release</text>
+
+  <path d="M175 97 L230 150" class="arrow"/>
+  <path d="M175 62 L230 150" class="arrow"/>
+  <path d="M175 152 L230 165" class="arrow"/>
+  <path d="M175 197 L230 180" class="arrow"/>
+  <path d="M175 242 L230 195" class="arrow"/>
+
+  <rect x="235" y="110" width="220" height="110" class="filter"/>
+  <text x="245" y="130" class="mono" fill="#92400e">branches: [main]</text>
+  <text x="245" y="155" class="mono" fill="#92400e">paths: ['app/**']</text>
+  <text x="245" y="180" class="mono" fill="#92400e">paths-ignore: ['docs/**']</text>
+  <text x="245" y="205" class="label" fill="#92400e">only runs if these all match</text>
+
+  <path d="M460 165 L520 165" class="arrow"/>
+
+  <rect x="525" y="140" width="220" height="50" class="run"/>
+  <text x="535" y="162" class="mono" fill="#065f46">workflow actually runs</text>
+  <text x="535" y="178" class="mono" fill="#065f46">on a fresh runner</text>
+
+  <text x="30" y="300" class="label">push / pull_request fire from real repository activity. schedule fires on a timer, independent of any commit.</text>
+  <text x="30" y="320" class="label">workflow_dispatch adds a manual "Run workflow" button on GitHub — useful for on-demand jobs like a deploy.</text>
+  <text x="30" y="340" class="label">paths-ignore skips a run entirely when a push only touched files that don't matter for this workflow (e.g. docs).</text>
+</svg>
