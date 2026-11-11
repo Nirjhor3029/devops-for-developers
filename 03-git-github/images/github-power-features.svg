@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .folder { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .file { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .tag { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 12px; fill: #6b7280; }
+  </style>
+  <rect width="800" height="340" fill="#ffffff"/>
+
+  <text x="30" y="26" class="heading">A repository's .github/ folder — GitHub reads these automatically</text>
+
+  <rect x="30" y="42" width="180" height="26" class="folder"/>
+  <text x="38" y="60" class="mono" fill="#1e3a8a">.github/</text>
+
+  <rect x="60" y="74" width="300" height="26" class="file"/>
+  <text x="68" y="92" class="mono" fill="#065f46">PULL_REQUEST_TEMPLATE.md</text>
+  <text x="370" y="92" class="label">← pre-fills every new PR's description box</text>
+
+  <rect x="60" y="104" width="300" height="26" class="file"/>
+  <text x="68" y="122" class="mono" fill="#065f46">ISSUE_TEMPLATE/bug_report.md</text>
+  <text x="370" y="122" class="label">← structured form when filing a bug</text>
+
+  <rect x="60" y="134" width="300" height="26" class="file"/>
+  <text x="68" y="152" class="mono" fill="#065f46">CODEOWNERS</text>
+  <text x="370" y="152" class="label">← auto-requests the right reviewer per path</text>
+
+  <rect x="60" y="164" width="300" height="26" class="file"/>
+  <text x="68" y="182" class="mono" fill="#065f46">workflows/ci.yml</text>
+  <text x="370" y="182" class="label">← GitHub Actions — a later course, in full</text>
+
+  <text x="30" y="235" class="heading">A release ties a tag (a frozen point in history) to notes and files</text>
+  <line x1="30" y1="270" x2="400" y2="270" stroke="#9ca3af" stroke-width="2"/>
+  <circle cx="60" cy="270" r="6" fill="#2563eb"/>
+  <circle cx="200" cy="270" r="6" fill="#2563eb"/>
+  <circle cx="340" cy="270" r="7" fill="#b45309"/>
+  <text x="310" y="255" class="label" fill="#92400e">v1.2.0</text>
+  <rect x="420" y="250" width="200" height="40" class="tag"/>
+  <text x="430" y="275" class="mono" fill="#92400e">GitHub Release</text>
+  <text x="30" y="315" class="label">git tag v1.2.0 &amp;&amp; git push --tags  →  create a Release on GitHub pointing at that tag, with notes + attached files</text>
+</svg>

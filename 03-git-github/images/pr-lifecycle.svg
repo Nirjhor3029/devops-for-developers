@@ -1,0 +1,53 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .step { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .good { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .warn { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">A pull request's life, from push to merge</text>
+
+  <rect x="20" y="50" width="120" height="50" class="step"/>
+  <text x="30" y="72" class="mono" fill="#1e3a8a">git push</text>
+  <text x="30" y="88" class="mono" fill="#1e3a8a">origin branch</text>
+
+  <path d="M145 75 L190 75" class="arrow"/>
+
+  <rect x="195" y="50" width="130" height="50" class="step"/>
+  <text x="203" y="72" class="mono" fill="#1e3a8a">Open PR on</text>
+  <text x="203" y="88" class="mono" fill="#1e3a8a">GitHub</text>
+
+  <path d="M330 75 L375 75" class="arrow"/>
+
+  <rect x="380" y="50" width="130" height="50" class="warn"/>
+  <text x="388" y="72" class="mono" fill="#92400e">CI checks run</text>
+  <text x="388" y="88" class="mono" fill="#92400e">(tests, lint)</text>
+
+  <path d="M515 75 L560 75" class="arrow"/>
+
+  <rect x="565" y="50" width="130" height="50" class="warn"/>
+  <text x="573" y="72" class="mono" fill="#92400e">Reviewer reads</text>
+  <text x="573" y="88" class="mono" fill="#92400e">+ comments</text>
+
+  <path d="M630 100 L630 140" class="arrow"/>
+  <text x="635" y="125" class="label">changes requested → push more commits → back to CI</text>
+  <path d="M560 160 C 450 160, 340 160, 230 150" class="arrow"/>
+
+  <path d="M630 150 L630 190" class="arrow"/>
+  <text x="635" y="175" class="label">approved</text>
+
+  <rect x="565" y="195" width="130" height="50" class="good"/>
+  <text x="573" y="217" class="mono" fill="#065f46">Merge via</text>
+  <text x="573" y="233" class="mono" fill="#065f46">PR button</text>
+
+  <text x="30" y="270" class="label">Merge methods on that button: Merge commit (preserves all commits) · Squash and merge (one clean commit) · Rebase and merge (linear, no merge commit)</text>
+</svg>
