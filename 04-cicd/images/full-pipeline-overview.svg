@@ -1,0 +1,53 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .trig { fill: #f3e8ff; stroke: #7c3aed; stroke-width: 1; }
+    .ci { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .build { fill: #eff6ff; stroke: #2563eb; stroke-width: 1; }
+    .deploy { fill: #fef3c7; stroke: #b45309; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 10px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Every chapter of this course, in one real pipeline</text>
+
+  <rect x="20" y="45" width="130" height="55" class="trig"/>
+  <text x="28" y="65" class="mono" fill="#6d28d9">on: push/PR</text>
+  <text x="28" y="80" class="mono" fill="#6d28d9">branches: [main]</text>
+  <text x="28" y="94" class="label" fill="#6d28d9">Ch 3</text>
+  <path d="M155 72 L190 72" class="arrow"/>
+
+  <rect x="195" y="45" width="150" height="55" class="ci"/>
+  <text x="203" y="65" class="mono" fill="#065f46">job: test</text>
+  <text x="203" y="80" class="mono" fill="#065f46">services: mysql</text>
+  <text x="203" y="94" class="label" fill="#065f46">Ch 2, 4, 5, 6</text>
+  <path d="M350 72 L385 72" class="arrow"/>
+  <text x="352" y="62" class="label">needs</text>
+
+  <rect x="390" y="45" width="170" height="55" class="build"/>
+  <text x="398" y="65" class="mono" fill="#1e3a8a">build-and-push</text>
+  <text x="398" y="80" class="mono" fill="#1e3a8a">tag: sha + latest</text>
+  <text x="398" y="94" class="label" fill="#1e3a8a">Ch 7, Docker Ch 4</text>
+  <path d="M565 72 L600 72" class="arrow"/>
+  <text x="567" y="62" class="label">needs</text>
+
+  <rect x="605" y="45" width="175" height="55" class="deploy"/>
+  <text x="613" y="65" class="mono" fill="#92400e">deploy (environment:</text>
+  <text x="613" y="80" class="mono" fill="#92400e">  production)</text>
+  <text x="613" y="94" class="label" fill="#92400e">Ch 7</text>
+
+  <text x="30" y="140" class="label">A push to main triggers the pipeline (Ch 3) → tests run against a real database, using cached dependencies (Ch 2, 4, 5, 6)</text>
+  <text x="30" y="158" class="label">→ passing tests mean a Docker image gets built and pushed, tagged with the commit SHA (Ch 7, and Docker Chapter 4's Dockerfile)</text>
+  <text x="30" y="176" class="label">→ a production Environment gate (Ch 7) deploys it to the real server over SSH, exactly the server this whole site runs on.</text>
+
+  <rect x="30" y="200" width="740" height="80" fill="#f9fafb" stroke="#d1d5db"/>
+  <text x="45" y="222" class="heading">If anything fails at any arrow above</text>
+  <text x="45" y="244" class="label">the pipeline stops right there — a broken change never reaches the step after it, and definitely never reaches production.</text>
+  <text x="45" y="262" class="label">This single property — a failure anywhere stops everything downstream — is the one idea every chapter in this course built toward.</text>
+</svg>
