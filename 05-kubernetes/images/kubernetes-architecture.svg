@@ -1,0 +1,69 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .cp { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .node { fill: #f9fafb; stroke: #374151; stroke-width: 1.5; }
+    .comp { fill: #ffffff; stroke: #2563eb; stroke-width: 1; }
+    .kub { fill: #ffffff; stroke: #6b7280; stroke-width: 1; }
+    .pod { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="360" fill="#ffffff"/>
+
+  <text x="30" y="26" class="heading">A Kubernetes cluster: one control plane (the brain) + worker nodes (the muscle)</text>
+
+  <!-- control plane -->
+  <rect x="20" y="42" width="760" height="100" class="cp"/>
+  <text x="32" y="62" class="mono" fill="#1e3a8a">CONTROL PLANE  (decides what should run, and where)</text>
+  <rect x="40" y="76" width="160" height="50" class="comp"/>
+  <text x="52" y="97" class="mono" fill="#1e3a8a">kube-apiserver</text>
+  <text x="52" y="113" class="label">front door: kubectl talks here</text>
+  <rect x="215" y="76" width="140" height="50" class="comp"/>
+  <text x="227" y="97" class="mono" fill="#1e3a8a">etcd</text>
+  <text x="227" y="113" class="label">the cluster's database</text>
+  <rect x="370" y="76" width="160" height="50" class="comp"/>
+  <text x="382" y="97" class="mono" fill="#1e3a8a">kube-scheduler</text>
+  <text x="382" y="113" class="label">picks a node for each Pod</text>
+  <rect x="545" y="76" width="220" height="50" class="comp"/>
+  <text x="557" y="97" class="mono" fill="#1e3a8a">controller-manager</text>
+  <text x="557" y="113" class="label">fixes drift from desired state</text>
+
+  <!-- arrows down -->
+  <path d="M200 142 L200 172" class="arrow"/>
+  <path d="M600 142 L600 172" class="arrow"/>
+
+  <!-- node 1 -->
+  <rect x="20" y="175" width="370" height="165" class="node"/>
+  <text x="32" y="195" class="mono" fill="#111827">WORKER NODE 1  (a server)</text>
+  <rect x="40" y="206" width="160" height="34" class="kub"/>
+  <text x="50" y="227" class="mono" fill="#374151">kubelet (node agent)</text>
+  <rect x="210" y="206" width="160" height="34" class="kub"/>
+  <text x="220" y="227" class="mono" fill="#374151">container runtime</text>
+  <rect x="40" y="252" width="150" height="70" class="pod"/>
+  <text x="52" y="272" class="mono" fill="#065f46">Pod: web</text>
+  <text x="52" y="290" class="label">your container(s)</text>
+  <rect x="210" y="252" width="150" height="70" class="pod"/>
+  <text x="222" y="272" class="mono" fill="#065f46">Pod: web</text>
+  <text x="222" y="290" class="label">a 2nd copy</text>
+
+  <!-- node 2 -->
+  <rect x="410" y="175" width="370" height="165" class="node"/>
+  <text x="422" y="195" class="mono" fill="#111827">WORKER NODE 2  (another server)</text>
+  <rect x="430" y="206" width="160" height="34" class="kub"/>
+  <text x="440" y="227" class="mono" fill="#374151">kubelet (node agent)</text>
+  <rect x="600" y="206" width="160" height="34" class="kub"/>
+  <text x="610" y="227" class="mono" fill="#374151">container runtime</text>
+  <rect x="430" y="252" width="150" height="70" class="pod"/>
+  <text x="442" y="272" class="mono" fill="#065f46">Pod: db</text>
+  <text x="442" y="290" class="label">your container(s)</text>
+  <rect x="600" y="252" width="150" height="70" class="pod"/>
+  <text x="612" y="272" class="mono" fill="#065f46">Pod: cache</text>
+  <text x="612" y="290" class="label">your container(s)</text>
+</svg>
