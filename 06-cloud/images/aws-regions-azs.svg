@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .acct { fill: none; stroke: #9ca3af; stroke-width: 1.5; stroke-dasharray: 6 4; }
+    .region { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .az { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .srv { fill: #ffffff; stroke: #059669; stroke-width: 1.2; }
+  </style>
+  <rect width="800" height="320" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">One AWS account, many Regions; each Region has several Availability Zones</text>
+  <rect x="15" y="40" width="770" height="250" class="acct"/>
+  <text x="25" y="58" class="label">your AWS account</text>
+
+  <rect x="30" y="70" width="360" height="205" class="region"/>
+  <text x="42" y="92" class="mono" fill="#1e3a8a">Region: ap-southeast-1 (Singapore)</text>
+  <rect x="45" y="108" width="150" height="150" class="az"/>
+  <text x="57" y="128" class="mono" fill="#065f46">AZ  ...-1a</text>
+  <rect x="57" y="142" width="126" height="30" class="srv"/><text x="66" y="161" class="label">web server</text>
+  <rect x="57" y="180" width="126" height="30" class="srv"/><text x="66" y="199" class="label">database (primary)</text>
+  <rect x="225" y="108" width="150" height="150" class="az"/>
+  <text x="237" y="128" class="mono" fill="#065f46">AZ  ...-1b</text>
+  <rect x="237" y="142" width="126" height="30" class="srv"/><text x="246" y="161" class="label">web server</text>
+  <rect x="237" y="180" width="126" height="30" class="srv"/><text x="246" y="199" class="label">database (standby)</text>
+
+  <rect x="410" y="70" width="360" height="205" class="region"/>
+  <text x="422" y="92" class="mono" fill="#1e3a8a">Region: eu-west-1 (Ireland)</text>
+  <rect x="425" y="108" width="150" height="150" class="az"/>
+  <text x="437" y="128" class="mono" fill="#065f46">AZ  ...-1a</text>
+  <text x="437" y="152" class="label">nothing here:</text>
+  <text x="437" y="168" class="label">a different Region</text>
+  <text x="437" y="184" class="label">is a separate world</text>
+  <rect x="605" y="108" width="150" height="150" class="az"/>
+  <text x="617" y="128" class="mono" fill="#065f46">AZ  ...-1b</text>
+
+  <text x="30" y="308" class="label">Two AZs: if one data center fails, the other keeps serving. Switch the console's Region selector and resources in other Regions disappear from view.</text>
+</svg>
