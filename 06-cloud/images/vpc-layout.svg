@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .user { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+    .vpc { fill: #f9fafb; stroke: #6b7280; stroke-width: 1.5; stroke-dasharray: 6 4; }
+    .pub { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .priv { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .box { fill: #ffffff; stroke: #374151; stroke-width: 1.2; }
+    .igw { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .no { stroke: #dc2626; stroke-width: 1.5; fill: none; stroke-dasharray: 5 3; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="380" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">A VPC: web tier public, database private</text>
+
+  <rect x="10" y="150" width="90" height="70" class="user"/>
+  <text x="20" y="176" class="mono" fill="#713f12">Internet</text>
+  <text x="20" y="194" class="label">visitors</text>
+
+  <rect x="120" y="150" width="70" height="70" class="igw"/>
+  <text x="126" y="176" class="label" fill="#9a3412">Internet</text>
+  <text x="126" y="192" class="label" fill="#9a3412">gateway</text>
+
+  <rect x="215" y="45" width="570" height="300" class="vpc"/>
+  <text x="225" y="63" class="mono" fill="#374151">VPC  10.0.0.0/16</text>
+
+  <rect x="235" y="80" width="260" height="245" class="pub"/>
+  <text x="247" y="100" class="mono" fill="#065f46">Public subnet  10.0.1.0/24</text>
+  <text x="247" y="116" class="label">route → internet gateway</text>
+  <rect x="255" y="135" width="220" height="80" class="box"/>
+  <text x="267" y="158" class="mono" fill="#9a3412">EC2 web server</text>
+  <text x="267" y="176" class="label">web-sg: 80/443 from anyone</text>
+  <text x="267" y="192" class="label">22 only from my IP</text>
+  <rect x="255" y="235" width="220" height="70" class="box"/>
+  <text x="267" y="258" class="mono" fill="#374151">NAT gateway (optional)</text>
+  <text x="267" y="276" class="label">private servers go out,</text>
+  <text x="267" y="290" class="label">nobody comes in (costs hourly)</text>
+
+  <rect x="525" y="80" width="245" height="245" class="priv"/>
+  <text x="537" y="100" class="mono" fill="#1e3a8a">Private subnet  10.0.2.0/24</text>
+  <text x="537" y="116" class="label">no route in from the internet</text>
+  <rect x="545" y="135" width="205" height="90" class="box"/>
+  <text x="557" y="158" class="mono" fill="#1e3a8a">RDS database</text>
+  <text x="557" y="176" class="label">db-sg: 3306 only from</text>
+  <text x="557" y="192" class="label">web-sg (the web servers)</text>
+  <text x="545" y="255" class="label">Hidden from the internet.</text>
+  <text x="545" y="271" class="label">Only the web tier can connect.</text>
+
+  <path d="M100 185 L118 185" class="arrow"/>
+  <path d="M190 185 L253 175" class="arrow"/>
+  <path d="M475 175 L543 175" class="arrow"/>
+  <text x="225" y="368" class="label" fill="#b91c1c">There is no direct path from the internet to the database: the only way in is through the web tier.</text>
+</svg>
