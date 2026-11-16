@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .net { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .fw { fill: #fefce8; stroke: #ca8a04; stroke-width: 2; }
+    .srv { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .ok { stroke: #059669; stroke-width: 1.8; fill: none; marker-end: url(#ok); }
+    .no { stroke: #dc2626; stroke-width: 1.8; fill: none; }
+  </style>
+  <defs>
+    <marker id="ok" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">UFW: only three doors are open</text>
+
+  <rect x="20" y="60" width="170" height="200" class="net"/>
+  <text x="32" y="84" class="mono" fill="#7f1d1d">Internet</text>
+  <text x="32" y="106" class="label">you, visitors, and</text>
+  <text x="32" y="122" class="label">bots scanning for</text>
+  <text x="32" y="138" class="label">open ports</text>
+
+  <rect x="320" y="50" width="30" height="220" class="fw"/>
+  <text x="335" y="290" class="label" text-anchor="middle">firewall (UFW)</text>
+
+  <rect x="480" y="60" width="300" height="200" class="srv"/>
+  <text x="492" y="84" class="mono" fill="#065f46">Your VPS</text>
+  <text x="492" y="110" class="mono" fill="#065f46">22  SSH      (you)</text>
+  <text x="492" y="134" class="mono" fill="#065f46">80  HTTP     (web)</text>
+  <text x="492" y="158" class="mono" fill="#065f46">443 HTTPS    (web)</text>
+  <text x="492" y="190" class="label">3306 MySQL, 6379 Redis, ... stay closed</text>
+  <text x="492" y="206" class="label">to the world (apps reach them locally)</text>
+
+  <path d="M190 105 L478 105" class="ok"/>
+  <path d="M190 130 L478 130" class="ok"/>
+  <path d="M190 155 L478 155" class="ok"/>
+  <path d="M190 195 L318 195" class="no"/>
+  <path d="M190 225 L318 225" class="no"/>
+  <path d="M306 183 L330 207 M330 183 L306 207" class="no"/>
+  <path d="M306 213 L330 237 M330 213 L306 237" class="no"/>
+  <text x="200" y="188" class="label">3306 ✗</text>
+  <text x="200" y="218" class="label">any other port ✗</text>
+</svg>
