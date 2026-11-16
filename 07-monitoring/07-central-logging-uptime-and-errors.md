@@ -360,4 +360,4 @@ In `.env` or a secrets store, never in Git. Run `php artisan sentry:test` to con
 
 ---
 
-**Next:** Chapter 8 — Real project: monitoring a Laravel app *(coming soon)*
+**Next:** [Chapter 8 — Real Project: Monitoring a Laravel App](08-real-project-monitoring-a-laravel-app.md)

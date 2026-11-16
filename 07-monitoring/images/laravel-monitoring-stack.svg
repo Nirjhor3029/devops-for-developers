@@ -1,0 +1,65 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .code { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .app { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .prom { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .am { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .gr { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .ok { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">The whole course on one server: what watches what</text>
+
+  <rect x="15" y="50" width="230" height="150" rx="8" class="app"/>
+  <text x="130" y="76" text-anchor="middle" class="t" fill="#5b21b6">Your Laravel server</text>
+  <text x="28" y="102" class="label">/metrics   app numbers (Ch. 8)</text>
+  <text x="28" y="122" class="label">/health    DB + cache check</text>
+  <text x="28" y="142" class="label">node_exporter   CPU, RAM, disk</text>
+  <text x="28" y="162" class="label">laravel.log   structured logs</text>
+  <text x="28" y="182" class="label">Sentry SDK   exceptions</text>
+
+  <rect x="320" y="50" width="200" height="82" rx="8" class="prom"/>
+  <text x="420" y="76" text-anchor="middle" class="t" fill="#9a3412">Prometheus</text>
+  <text x="420" y="98" text-anchor="middle" class="label">scrapes numbers every 15 s</text>
+  <text x="420" y="116" text-anchor="middle" class="label">evaluates alert rules</text>
+  <line x1="320" y1="90" x2="247" y2="90" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="255" y="82" class="note">pull</text>
+
+  <rect x="320" y="152" width="200" height="48" rx="8" class="prom"/>
+  <text x="420" y="172" text-anchor="middle" class="t" fill="#9a3412">Blackbox exporter</text>
+  <text x="420" y="190" text-anchor="middle" class="label">visits the site from outside</text>
+  <line x1="420" y1="152" x2="420" y2="134" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="600" y="50" width="185" height="48" rx="8" class="am"/>
+  <text x="692" y="72" text-anchor="middle" class="t" fill="#991b1b">Alertmanager</text>
+  <text x="692" y="89" text-anchor="middle" class="label">chat / email</text>
+  <line x1="522" y1="74" x2="598" y2="74" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="600" y="118" width="185" height="48" rx="8" class="gr"/>
+  <text x="692" y="140" text-anchor="middle" class="t" fill="#1e3a8a">Grafana</text>
+  <text x="692" y="157" text-anchor="middle" class="label">dashboard + log search</text>
+  <line x1="600" y1="142" x2="522" y2="108" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="320" y="250" width="200" height="60" rx="8" class="ok"/>
+  <text x="420" y="274" text-anchor="middle" class="t" fill="#065f46">Loki</text>
+  <text x="420" y="293" text-anchor="middle" class="label">stores log lines (Alloy sends)</text>
+  <line x1="200" y1="202" x2="320" y2="270" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="226" y="244" class="note">logs via Alloy</text>
+  <line x1="600" y1="160" x2="522" y2="262" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="600" y="250" width="185" height="60" rx="8" class="ok"/>
+  <text x="692" y="274" text-anchor="middle" class="t" fill="#065f46">Sentry / GlitchTip</text>
+  <text x="692" y="293" text-anchor="middle" class="label">exceptions, grouped</text>
+  <line x1="247" y1="190" x2="598" y2="284" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="440" y="334" class="note">exceptions go straight from the app</text>
+
+  <text x="15" y="364" class="note">Reading guide: numbers (Prometheus) tell you THAT something is wrong; logs tell you WHAT happened;</text>
+  <text x="15" y="382" class="note">Sentry tells you WHICH exception; the outside check tells you whether visitors are affected.</text>
+</svg>
