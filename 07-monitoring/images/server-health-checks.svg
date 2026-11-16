@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .cpu { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .mem { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .dsk { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+    .net { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 1.5; }
+    .log { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+  </style>
+  <rect width="800" height="340" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Five places to look when a server feels slow</text>
+
+  <rect x="15" y="50" width="146" height="230" class="cpu"/>
+  <text x="27" y="76" class="t" fill="#1e3a8a">CPU</text>
+  <text x="27" y="98" class="mono" fill="#1e3a8a">uptime</text>
+  <text x="27" y="116" class="mono" fill="#1e3a8a">top / htop</text>
+  <text x="27" y="148" class="label">load vs nproc</text>
+  <text x="27" y="164" class="label">id  = idle</text>
+  <text x="27" y="180" class="label">wa  = waiting disk</text>
+  <text x="27" y="196" class="label">st  = stolen (VPS)</text>
+  <text x="27" y="228" class="label">Sort: P = CPU</text>
+
+  <rect x="171" y="50" width="146" height="230" class="mem"/>
+  <text x="183" y="76" class="t" fill="#065f46">Memory</text>
+  <text x="183" y="98" class="mono" fill="#065f46">free -h</text>
+  <text x="183" y="116" class="mono" fill="#065f46">ps --sort=-%mem</text>
+  <text x="183" y="148" class="label">trust "available",</text>
+  <text x="183" y="164" class="label">not "free"</text>
+  <text x="183" y="188" class="label">swap heavy = trouble</text>
+  <text x="183" y="212" class="label">OOM killer:</text>
+  <text x="183" y="228" class="mono" fill="#065f46">journalctl -k</text>
+
+  <rect x="327" y="50" width="146" height="230" class="dsk"/>
+  <text x="339" y="76" class="t" fill="#9a3412">Disk</text>
+  <text x="339" y="98" class="mono" fill="#9a3412">df -h   df -i</text>
+  <text x="339" y="116" class="mono" fill="#9a3412">du -h | sort -h</text>
+  <text x="339" y="148" class="label">Use% above 80%?</text>
+  <text x="339" y="164" class="label">inodes full?</text>
+  <text x="339" y="188" class="label">logs, backups,</text>
+  <text x="339" y="204" class="label">docker, journal</text>
+  <text x="339" y="228" class="mono" fill="#9a3412">iostat -x</text>
+
+  <rect x="483" y="50" width="146" height="230" class="net"/>
+  <text x="495" y="76" class="t" fill="#4c1d95">Network</text>
+  <text x="495" y="98" class="mono" fill="#4c1d95">ss -tlnp</text>
+  <text x="495" y="116" class="mono" fill="#4c1d95">ss -s</text>
+  <text x="495" y="148" class="label">what is listening,</text>
+  <text x="495" y="164" class="label">and on which address</text>
+  <text x="495" y="188" class="label">DB on 0.0.0.0?</text>
+  <text x="495" y="212" class="label">curl -w timings:</text>
+  <text x="495" y="228" class="mono" fill="#4c1d95">ttfb, total</text>
+
+  <rect x="639" y="50" width="146" height="230" class="log"/>
+  <text x="651" y="76" class="t" fill="#7f1d1d">Logs</text>
+  <text x="651" y="98" class="mono" fill="#7f1d1d">journalctl -u X</text>
+  <text x="651" y="116" class="mono" fill="#7f1d1d">tail -f /var/log/..</text>
+  <text x="651" y="148" class="label">metrics say THAT,</text>
+  <text x="651" y="164" class="label">logs say WHY</text>
+  <text x="651" y="188" class="label">auth.log: logins</text>
+  <text x="651" y="204" class="label">nginx/error.log</text>
+  <text x="651" y="228" class="label">use sudo to see all</text>
+
+  <text x="30" y="312" class="label">60-second routine: uptime, free -h, df -h, top, ss -tlnp, then the error logs. These commands only read (the CPU-load exercise aside).</text>
+</svg>
