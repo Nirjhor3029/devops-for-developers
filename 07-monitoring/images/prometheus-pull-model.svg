@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 13px; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .target { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .prom { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .other { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="380" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Prometheus pulls (scrapes) every target's /metrics page</text>
+
+  <text x="15" y="52" class="note">TARGETS (they only show numbers)</text>
+  <rect x="15" y="62" width="245" height="56" rx="6" class="target"/>
+  <text x="27" y="82" class="t" fill="#065f46">node_exporter  :9100</text>
+  <text x="27" y="102" class="label" fill="#1f2937">server CPU, memory, disk, network</text>
+  <rect x="15" y="132" width="245" height="56" rx="6" class="target"/>
+  <text x="27" y="152" class="t" fill="#065f46">Your Laravel app  /metrics</text>
+  <text x="27" y="172" class="label" fill="#1f2937">requests, errors, queue length</text>
+  <rect x="15" y="202" width="245" height="56" rx="6" class="target"/>
+  <text x="27" y="222" class="t" fill="#065f46">Caddy  127.0.0.1:2019</text>
+  <text x="27" y="242" class="label" fill="#1f2937">built-in metrics (real sample)</text>
+
+  <rect x="340" y="92" width="190" height="136" rx="8" class="prom"/>
+  <text x="435" y="120" text-anchor="middle" class="t" fill="#9a3412">Prometheus  :9090</text>
+  <text x="435" y="144" text-anchor="middle" class="label" fill="#1f2937">scrapes every 15 s</text>
+  <text x="435" y="164" text-anchor="middle" class="label" fill="#1f2937">stores time series</text>
+  <text x="435" y="184" text-anchor="middle" class="label" fill="#1f2937">(default: 15 days)</text>
+  <text x="435" y="208" text-anchor="middle" class="code" fill="#9a3412">up = 1 / 0 per target</text>
+
+  <line x1="340" y1="112" x2="262" y2="92" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="340" y1="160" x2="262" y2="160" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="340" y1="208" x2="262" y2="228" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="272" y="150" class="note">GET /metrics</text>
+
+  <text x="600" y="52" class="note">WHAT USES THE DATA</text>
+  <rect x="600" y="62" width="185" height="56" rx="6" class="other"/>
+  <text x="612" y="82" class="t" fill="#1e3a8a">Grafana (Ch. 5)</text>
+  <text x="612" y="102" class="label" fill="#1f2937">draws dashboards</text>
+  <rect x="600" y="202" width="185" height="56" rx="6" class="other"/>
+  <text x="612" y="222" class="t" fill="#1e3a8a">Alertmanager (Ch. 6)</text>
+  <text x="612" y="242" class="label" fill="#1f2937">sends notifications</text>
+  <line x1="600" y1="100" x2="532" y2="128" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="548" y="102" class="note">PromQL</text>
+  <line x1="532" y1="192" x2="598" y2="224" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="538" y="232" class="note">alerts</text>
+
+  <line x1="15" y1="282" x2="785" y2="282" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="15" y="304" class="heading">Anatomy of one sample</text>
+  <text x="30" y="332" class="mono" fill="#111827">http_requests_total{method="GET", code="200"} 1027</text>
+  <line x1="30" y1="340" x2="178" y2="340" stroke="#2563eb" stroke-width="2"/>
+  <line x1="178" y1="340" x2="381" y2="340" stroke="#059669" stroke-width="2"/>
+  <line x1="389" y1="340" x2="420" y2="340" stroke="#ea580c" stroke-width="2"/>
+  <text x="104" y="358" text-anchor="middle" class="label" fill="#1e3a8a">name</text>
+  <text x="280" y="358" text-anchor="middle" class="label" fill="#065f46">labels (split into series)</text>
+  <text x="405" y="358" text-anchor="middle" class="label" fill="#9a3412">value</text>
+  <text x="470" y="332" class="note">A counter: only goes up. Graph it with rate(), never raw.</text>
+</svg>
