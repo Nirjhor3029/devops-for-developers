@@ -165,7 +165,7 @@ A request is the amount reserved and used by the scheduler to place the Pod. A l
 - Official: [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - Official: [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 - Official: [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-- Official: [Set up Ingress on minikube](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/)
+- minikube: [Accessing apps (including `minikube tunnel`)](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
 
 ---
 

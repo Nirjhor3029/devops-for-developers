@@ -275,7 +275,7 @@ kubectl apply -f ingress.yaml
 minikube ip                      # e.g. 192.168.49.2
 ```
 
-Add a line to your computer's hosts file so the name resolves: `192.168.49.2  laravel.local`, then open `http://laravel.local`. (On some setups, such as Docker driver on macOS or Windows, `minikube tunnel` is needed; the minikube Ingress tutorial explains this.)
+Add a line to your computer's hosts file so the name resolves: `192.168.49.2  laravel.local`, then open `http://laravel.local`. (On some setups, such as Docker driver on macOS or Windows, `minikube tunnel` is needed; minikube's "Accessing apps" documentation explains this.)
 
 ## 8. Day-2 operations
 
