@@ -400,4 +400,4 @@ Write a `promtool test rules` unit test with fake input series and the alerts yo
 
 ---
 
-**Next:** Chapter 7 — Central logging, uptime checks, and error tracking *(coming soon)*
+**Next:** [Chapter 7 — Central Logging, Uptime Checks, and Error Tracking](07-central-logging-uptime-and-errors.md)
