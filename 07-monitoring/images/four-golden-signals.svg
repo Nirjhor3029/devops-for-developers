@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .c1 { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .c2 { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .c3 { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .c4 { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+  </style>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">The four golden signals</text>
+
+  <rect x="20" y="50" width="180" height="200" class="c1"/>
+  <text x="32" y="76" class="t" fill="#1e3a8a">1. Latency</text>
+  <text x="32" y="98" class="label">How long requests take</text>
+  <text x="32" y="130" class="mono" fill="#1e3a8a">p50 = 120 ms</text>
+  <text x="32" y="148" class="mono" fill="#1e3a8a">p95 = 400 ms</text>
+  <text x="32" y="166" class="mono" fill="#1e3a8a">p99 = 2.1 s</text>
+  <text x="32" y="198" class="label">Use percentiles, not</text>
+  <text x="32" y="214" class="label">only the average.</text>
+
+  <rect x="220" y="50" width="180" height="200" class="c2"/>
+  <text x="232" y="76" class="t" fill="#065f46">2. Traffic</text>
+  <text x="232" y="98" class="label">How much demand</text>
+  <text x="232" y="130" class="mono" fill="#065f46">120 req/s</text>
+  <text x="232" y="148" class="mono" fill="#065f46">35 orders/min</text>
+  <text x="232" y="198" class="label">A sudden drop is a</text>
+  <text x="232" y="214" class="label">warning sign too.</text>
+
+  <rect x="420" y="50" width="180" height="200" class="c3"/>
+  <text x="432" y="76" class="t" fill="#7f1d1d">3. Errors</text>
+  <text x="432" y="98" class="label">How many requests fail</text>
+  <text x="432" y="130" class="mono" fill="#7f1d1d">5xx rate = 0.4%</text>
+  <text x="432" y="148" class="mono" fill="#7f1d1d">failed jobs = 3</text>
+  <text x="432" y="198" class="label">Count the quiet</text>
+  <text x="432" y="214" class="label">failures too.</text>
+
+  <rect x="620" y="50" width="170" height="200" class="c4"/>
+  <text x="632" y="76" class="t" fill="#713f12">4. Saturation</text>
+  <text x="632" y="98" class="label">How "full" it is</text>
+  <text x="632" y="130" class="mono" fill="#713f12">CPU 72%</text>
+  <text x="632" y="148" class="mono" fill="#713f12">disk 91%</text>
+  <text x="632" y="166" class="mono" fill="#713f12">DB conns 48/50</text>
+  <text x="632" y="198" class="label">Warns you before</text>
+  <text x="632" y="214" class="label">it breaks.</text>
+
+  <text x="30" y="280" class="label">Source idea: Google SRE book, "Monitoring Distributed Systems". Measure these four first for almost any service.</text>
+</svg>
