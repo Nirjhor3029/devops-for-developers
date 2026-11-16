@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .col { font-size: 13px; fill: #111827; font-weight: 700; }
+    .you { fill: #fef3c7; stroke: #d97706; stroke-width: 1.2; }
+    .prov { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.2; }
+    .t { font-size: 11px; fill: #1f2937; }
+    .label { font-size: 11px; fill: #6b7280; }
+  </style>
+  <rect width="800" height="340" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Who manages what?</text>
+
+  <text x="110" y="56" class="col" text-anchor="middle">IaaS</text>
+  <text x="110" y="70" class="label" text-anchor="middle">VPS, AWS EC2</text>
+  <text x="400" y="56" class="col" text-anchor="middle">PaaS</text>
+  <text x="400" y="70" class="label" text-anchor="middle">run my code for me</text>
+  <text x="690" y="56" class="col" text-anchor="middle">SaaS</text>
+  <text x="690" y="70" class="label" text-anchor="middle">Gmail, GitHub</text>
+
+  <!-- IaaS: you manage app, data, runtime, OS -->
+  <rect x="30" y="85" width="160" height="34" class="you"/><text x="110" y="107" class="t" text-anchor="middle">Your app</text>
+  <rect x="30" y="121" width="160" height="34" class="you"/><text x="110" y="143" class="t" text-anchor="middle">Data</text>
+  <rect x="30" y="157" width="160" height="34" class="you"/><text x="110" y="179" class="t" text-anchor="middle">Runtime / web server</text>
+  <rect x="30" y="193" width="160" height="34" class="you"/><text x="110" y="215" class="t" text-anchor="middle">Operating system</text>
+  <rect x="30" y="229" width="160" height="34" class="prov"/><text x="110" y="251" class="t" text-anchor="middle">Virtualization</text>
+  <rect x="30" y="265" width="160" height="34" class="prov"/><text x="110" y="287" class="t" text-anchor="middle">Servers, storage, network</text>
+
+  <!-- PaaS: you manage app, data -->
+  <rect x="320" y="85" width="160" height="34" class="you"/><text x="400" y="107" class="t" text-anchor="middle">Your app</text>
+  <rect x="320" y="121" width="160" height="34" class="you"/><text x="400" y="143" class="t" text-anchor="middle">Data</text>
+  <rect x="320" y="157" width="160" height="34" class="prov"/><text x="400" y="179" class="t" text-anchor="middle">Runtime / web server</text>
+  <rect x="320" y="193" width="160" height="34" class="prov"/><text x="400" y="215" class="t" text-anchor="middle">Operating system</text>
+  <rect x="320" y="229" width="160" height="34" class="prov"/><text x="400" y="251" class="t" text-anchor="middle">Virtualization</text>
+  <rect x="320" y="265" width="160" height="34" class="prov"/><text x="400" y="287" class="t" text-anchor="middle">Servers, storage, network</text>
+
+  <!-- SaaS: provider manages all -->
+  <rect x="610" y="85" width="160" height="34" class="prov"/><text x="690" y="107" class="t" text-anchor="middle">The app</text>
+  <rect x="610" y="121" width="160" height="34" class="prov"/><text x="690" y="143" class="t" text-anchor="middle">Data storage</text>
+  <rect x="610" y="157" width="160" height="34" class="prov"/><text x="690" y="179" class="t" text-anchor="middle">Runtime / web server</text>
+  <rect x="610" y="193" width="160" height="34" class="prov"/><text x="690" y="215" class="t" text-anchor="middle">Operating system</text>
+  <rect x="610" y="229" width="160" height="34" class="prov"/><text x="690" y="251" class="t" text-anchor="middle">Virtualization</text>
+  <rect x="610" y="265" width="160" height="34" class="prov"/><text x="690" y="287" class="t" text-anchor="middle">Servers, storage, network</text>
+
+  <rect x="230" y="318" width="12" height="12" class="you"/><text x="248" y="328" class="label">you manage</text>
+  <rect x="340" y="318" width="12" height="12" class="prov"/><text x="358" y="328" class="label">provider manages</text>
+</svg>
