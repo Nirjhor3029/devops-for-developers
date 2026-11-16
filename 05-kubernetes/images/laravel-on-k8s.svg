@@ -1,0 +1,72 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .user { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+    .ing { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .svc { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 1.5; }
+    .pod { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .cfg { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .disk { fill: #f3f4f6; stroke: #4b5563; stroke-width: 1.5; }
+    .ns { fill: none; stroke: #9ca3af; stroke-width: 1.5; stroke-dasharray: 6 4; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="360" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Laravel + MySQL on Kubernetes (namespace: laravel)</text>
+  <rect x="150" y="40" width="640" height="300" class="ns"/>
+  <text x="160" y="58" class="label">namespace: laravel</text>
+
+  <rect x="15" y="150" width="110" height="60" class="user"/>
+  <text x="27" y="176" class="mono" fill="#713f12">Browser</text>
+  <text x="27" y="194" class="label">laravel.local</text>
+
+  <rect x="170" y="140" width="100" height="80" class="ing"/>
+  <text x="182" y="165" class="mono" fill="#1e3a8a">Ingress</text>
+  <text x="182" y="185" class="label">host → app</text>
+
+  <rect x="305" y="150" width="90" height="60" class="svc"/>
+  <text x="317" y="175" class="mono" fill="#4c1d95">Service</text>
+  <text x="317" y="193" class="label">app</text>
+
+  <rect x="430" y="75" width="150" height="38" class="pod"/>
+  <text x="442" y="99" class="mono" fill="#065f46">Laravel Pod 1</text>
+  <rect x="430" y="125" width="150" height="38" class="pod"/>
+  <text x="442" y="149" class="mono" fill="#065f46">Laravel Pod 2</text>
+  <rect x="430" y="175" width="150" height="38" class="pod"/>
+  <text x="442" y="199" class="mono" fill="#065f46">Laravel Pod 3</text>
+  <text x="430" y="232" class="label">Deployment · probes · limits</text>
+
+  <rect x="620" y="75" width="150" height="60" class="cfg"/>
+  <text x="632" y="97" class="mono" fill="#7f1d1d">ConfigMap</text>
+  <text x="632" y="115" class="mono" fill="#7f1d1d">Secret</text>
+  <text x="632" y="130" class="label">env for the app</text>
+
+  <rect x="330" y="265" width="100" height="50" class="svc"/>
+  <text x="342" y="288" class="mono" fill="#4c1d95">Service</text>
+  <text x="342" y="304" class="label">mysql (headless)</text>
+  <rect x="460" y="260" width="140" height="60" class="pod"/>
+  <text x="472" y="284" class="mono" fill="#065f46">mysql-0</text>
+  <text x="472" y="302" class="label">StatefulSet</text>
+  <rect x="640" y="265" width="120" height="50" class="disk"/>
+  <text x="652" y="288" class="mono" fill="#374151">PVC → disk</text>
+  <text x="652" y="304" class="label">data survives</text>
+
+  <rect x="170" y="265" width="120" height="50" class="pod"/>
+  <text x="182" y="288" class="mono" fill="#065f46">Job: migrate</text>
+  <text x="182" y="304" class="label">runs once</text>
+
+  <path d="M125 180 L168 180" class="arrow"/>
+  <path d="M270 180 L303 180" class="arrow"/>
+  <path d="M395 170 L428 140" class="arrow"/>
+  <path d="M470 213 L400 263" class="arrow"/>
+  <path d="M430 290 L458 290" class="arrow"/>
+  <path d="M600 290 L638 290" class="arrow"/>
+  <path d="M290 290 L328 290" class="arrow"/>
+  <text x="30" y="350" class="label">App Pods reach the database with DB_HOST=mysql (Service name). Image tag is versioned so rollbacks work.</text>
+</svg>
