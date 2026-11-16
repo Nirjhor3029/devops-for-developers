@@ -257,4 +257,4 @@ A dashboard built only by clicking lives inside Grafana and is lost if the serve
 
 ---
 
-**Next:** Chapter 6 — Alerting *(coming soon)*
+**Next:** [Chapter 6 — Alerting That Helps Instead of Annoys](06-alerting.md)

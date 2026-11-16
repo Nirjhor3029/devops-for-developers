@@ -320,4 +320,4 @@ An instant vector is the latest value of each series (`node_load1`). A range vec
 
 ---
 
-**Next:** Chapter 5 — Grafana dashboards *(coming soon)*
+**Next:** [Chapter 5 — Grafana Dashboards](05-grafana-dashboards.md)
