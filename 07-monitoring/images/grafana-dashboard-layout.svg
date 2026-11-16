@@ -1,0 +1,65 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; }
+    .big { font-size: 24px; font-weight: 700; }
+    .t { font-size: 12px; font-weight: 700; fill: #374151; }
+    .note { font-size: 12px; fill: #1f2937; }
+    .num { font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .panel { fill: #ffffff; stroke: #d1d5db; stroke-width: 1.5; }
+  </style>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">A good dashboard: answers first, trends next, details last</text>
+
+  <rect x="15" y="40" width="590" height="350" rx="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+  <rect x="15" y="40" width="590" height="30" rx="8" fill="#e5e7eb"/>
+  <text x="27" y="60" class="t">Server: web-1  (drop-down variable)</text>
+  <text x="470" y="60" class="t">Last 6 hours</text>
+
+  <rect x="27" y="82" width="130" height="70" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="37" y="102" class="label" fill="#374151">Is it up?</text>
+  <text x="37" y="134" class="big" fill="#065f46">UP</text>
+  <rect x="168" y="82" width="130" height="70" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="178" y="102" class="label" fill="#374151">CPU used</text>
+  <text x="178" y="134" class="big" fill="#065f46">23%</text>
+  <rect x="309" y="82" width="130" height="70" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="319" y="102" class="label" fill="#374151">Memory used</text>
+  <text x="319" y="134" class="big" fill="#92400e">78%</text>
+  <rect x="450" y="82" width="130" height="70" rx="5" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+  <text x="460" y="102" class="label" fill="#374151">Disk used (/)</text>
+  <text x="460" y="134" class="big" fill="#065f46">41%</text>
+
+  <rect x="27" y="164" width="275" height="110" rx="5" class="panel"/>
+  <text x="37" y="182" class="t">CPU used (%)</text>
+  <polyline points="37,258 70,250 103,254 136,240 169,244 202,226 235,232 268,222 292,228" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <line x1="202" y1="188" x2="202" y2="266" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="206" y="198" class="label" fill="#dc2626">deploy</text>
+
+  <rect x="312" y="164" width="275" height="110" rx="5" class="panel"/>
+  <text x="322" y="182" class="t">Load per core (1.0 = full)</text>
+  <polyline points="322,256 355,254 388,250 421,252 454,246 487,240 520,236 553,232 577,230" fill="none" stroke="#059669" stroke-width="2"/>
+  <line x1="322" y1="204" x2="577" y2="204" stroke="#d97706" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="508" y="200" class="label" fill="#92400e">1.0</text>
+
+  <rect x="27" y="286" width="560" height="92" rx="5" class="panel"/>
+  <text x="37" y="304" class="t">Targets</text>
+  <text x="37" y="324" class="label" fill="#374151">instance</text><text x="230" y="324" class="label" fill="#374151">job</text><text x="400" y="324" class="label" fill="#374151">up</text>
+  <line x1="37" y1="330" x2="577" y2="330" stroke="#e5e7eb"/>
+  <text x="37" y="346" class="label" fill="#1f2937">web-1:9100</text><text x="230" y="346" class="label" fill="#1f2937">node</text><text x="400" y="346" class="label" fill="#065f46">1</text>
+  <text x="37" y="364" class="label" fill="#1f2937">127.0.0.1:8080</text><text x="230" y="364" class="label" fill="#1f2937">myshop</text><text x="400" y="364" class="label" fill="#065f46">1</text>
+
+  <circle cx="632" cy="117" r="12" fill="#2563eb"/><text x="632" y="122" text-anchor="middle" class="num">1</text>
+  <text x="652" y="108" class="t">Answers first</text>
+  <text x="652" y="124" class="note">Is it OK? Readable in</text>
+  <text x="652" y="140" class="note">5 seconds. Colour = status.</text>
+
+  <circle cx="632" cy="212" r="12" fill="#2563eb"/><text x="632" y="217" text-anchor="middle" class="num">2</text>
+  <text x="652" y="203" class="t">Trends</text>
+  <text x="652" y="219" class="note">Is it getting worse?</text>
+  <text x="652" y="235" class="note">A red line marks a deploy.</text>
+
+  <circle cx="632" cy="330" r="12" fill="#2563eb"/><text x="632" y="335" text-anchor="middle" class="num">3</text>
+  <text x="652" y="321" class="t">Details</text>
+  <text x="652" y="337" class="note">For when you dig in.</text>
+  <text x="652" y="353" class="note">6 to 12 panels in total.</text>
+</svg>
