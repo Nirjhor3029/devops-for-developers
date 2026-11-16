@@ -74,11 +74,24 @@ Pick whichever you prefer — the content is identical either way.
 | 7 | [Continuous deployment: shipping automatically](04-cicd/07-continuous-deployment.md) |
 | 8 | [Real project: a full pipeline for a Dockerized Laravel app](04-cicd/08-real-project-laravel-pipeline.md) |
 
+### ✅ [Kubernetes](05-kubernetes)
+*Run, heal and scale containers across many servers.*
+
+| # | Chapter |
+|---|---|
+| 1 | [What is Kubernetes, and why?](05-kubernetes/01-what-is-kubernetes.md) |
+| 2 | [Local cluster, `kubectl`, and your first Pod](05-kubernetes/02-local-cluster-and-kubectl.md) |
+| 3 | [Pods, ReplicaSets, and Deployments](05-kubernetes/03-pods-replicasets-deployments.md) |
+| 4 | [Services and networking](05-kubernetes/04-services-and-networking.md) |
+| 5 | [ConfigMaps and Secrets](05-kubernetes/05-configmaps-and-secrets.md) |
+| 6 | [Volumes, PersistentVolumes, and StatefulSets](05-kubernetes/06-volumes-and-statefulsets.md) |
+| 7 | [Ingress, health probes, and resource limits](05-kubernetes/07-ingress-probes-and-limits.md) |
+| 8 | [Real project: Laravel on Kubernetes](05-kubernetes/08-real-project-laravel-on-kubernetes.md) |
+
 ### 🚧 Coming soon
 
 | Course | About |
 |---|---|
-| Kubernetes | Managing many containers at scale |
 | Cloud (AWS / VPS Basics) | Provisioning servers, domains, and deployment |
 | Monitoring & Logging | Knowing what is happening in production |
 | Infra as Code (Terraform/Ansible) | Writing server setup as code |
