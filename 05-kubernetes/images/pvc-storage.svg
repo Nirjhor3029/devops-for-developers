@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .pod { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .pvc { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+    .pv { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .disk { fill: #f3f4f6; stroke: #4b5563; stroke-width: 1.5; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Data that survives a Pod</text>
+
+  <rect x="20" y="90" width="150" height="100" class="pod"/>
+  <text x="32" y="114" class="mono" fill="#065f46">Pod: db-0</text>
+  <text x="32" y="136" class="label">mounts /var/lib/mysql</text>
+  <text x="32" y="152" class="label">can be deleted and</text>
+  <text x="32" y="168" class="label">recreated any time</text>
+
+  <rect x="225" y="95" width="150" height="90" class="pvc"/>
+  <text x="237" y="119" class="mono" fill="#713f12">PVC: data-claim</text>
+  <text x="237" y="141" class="label">"I need 1Gi,</text>
+  <text x="237" y="157" class="label"> ReadWriteOnce"</text>
+
+  <rect x="430" y="95" width="150" height="90" class="pv"/>
+  <text x="442" y="119" class="mono" fill="#1e3a8a">PersistentVolume</text>
+  <text x="442" y="141" class="label">made by a StorageClass</text>
+  <text x="442" y="157" class="label">bound to the claim</text>
+
+  <rect x="635" y="105" width="130" height="70" class="disk"/>
+  <text x="647" y="130" class="mono" fill="#374151">Real disk</text>
+  <text x="647" y="150" class="label">cloud disk / NFS</text>
+
+  <path d="M170 140 L223 140" class="arrow"/>
+  <path d="M375 140 L428 140" class="arrow"/>
+  <path d="M580 140 L633 140" class="arrow"/>
+  <text x="30" y="250" class="label">The Pod is disposable; the claim and the disk are not. A new db-0 mounts the same claim and finds its data.</text>
+  <text x="30" y="270" class="label">StatefulSet: volumeClaimTemplates gives db-0, db-1, db-2 one separate claim each.</text>
+</svg>
