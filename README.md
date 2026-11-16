@@ -88,11 +88,24 @@ Pick whichever you prefer — the content is identical either way.
 | 7 | [Ingress, health probes, and resource limits](05-kubernetes/07-ingress-probes-and-limits.md) |
 | 8 | [Real project: Laravel on Kubernetes](05-kubernetes/08-real-project-laravel-on-kubernetes.md) |
 
+### ✅ [Cloud (AWS / VPS Basics)](06-cloud)
+*Put your app on a real server, with a domain and HTTPS.*
+
+| # | Chapter |
+|---|---|
+| 1 | [What is the cloud? VPS vs AWS vs shared hosting](06-cloud/01-what-is-the-cloud.md) |
+| 2 | [Your first VPS: SSH keys, a safe start, and a firewall](06-cloud/02-your-first-vps.md) |
+| 3 | [Domains and DNS](06-cloud/03-domains-and-dns.md) |
+| 4 | [A web server with HTTPS](06-cloud/04-web-server-and-https.md) |
+| 5 | [AWS core concepts: accounts, regions, and IAM](06-cloud/05-aws-core-concepts.md) |
+| 6 | [AWS EC2, S3, and RDS](06-cloud/06-ec2-s3-and-rds.md) |
+| 7 | [Networking, security, backups, and costs](06-cloud/07-networking-security-and-costs.md) |
+| 8 | [Real project: a Laravel app in production](06-cloud/08-real-project-laravel-in-production.md) |
+
 ### 🚧 Coming soon
 
 | Course | About |
 |---|---|
-| Cloud (AWS / VPS Basics) | Provisioning servers, domains, and deployment |
 | Monitoring & Logging | Knowing what is happening in production |
 | Infra as Code (Terraform/Ansible) | Writing server setup as code |
 
