@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .user { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+    .ing { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .svc { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 1.5; }
+    .pod { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">One entry point, many sites</text>
+
+  <rect x="20" y="105" width="130" height="80" class="user"/>
+  <text x="32" y="130" class="mono" fill="#713f12">Internet</text>
+  <text x="32" y="150" class="label">shop.example.com</text>
+  <text x="32" y="166" class="label">blog.example.com</text>
+
+  <rect x="220" y="85" width="190" height="120" class="ing"/>
+  <text x="232" y="110" class="mono" fill="#1e3a8a">Ingress controller</text>
+  <text x="232" y="132" class="label">reads Ingress rules:</text>
+  <text x="232" y="150" class="label">host shop → Service shop</text>
+  <text x="232" y="166" class="label">host blog → Service blog</text>
+  <text x="232" y="190" class="label">one IP, TLS (HTTPS) here</text>
+
+  <rect x="480" y="55" width="130" height="50" class="svc"/>
+  <text x="492" y="85" class="mono" fill="#4c1d95">Service: shop</text>
+  <rect x="480" y="185" width="130" height="50" class="svc"/>
+  <text x="492" y="215" class="mono" fill="#4c1d95">Service: blog</text>
+
+  <rect x="670" y="55" width="110" height="50" class="pod"/>
+  <text x="682" y="85" class="mono" fill="#065f46">shop Pods</text>
+  <rect x="670" y="185" width="110" height="50" class="pod"/>
+  <text x="682" y="215" class="mono" fill="#065f46">blog Pods</text>
+
+  <path d="M150 145 L218 145" class="arrow"/>
+  <path d="M410 120 L478 85" class="arrow"/>
+  <path d="M410 170 L478 210" class="arrow"/>
+  <path d="M610 80 L668 80" class="arrow"/>
+  <path d="M610 210 L668 210" class="arrow"/>
+  <text x="30" y="275" class="label">No controller installed = the Ingress rules do nothing. Readiness probes decide which Pods receive this traffic.</text>
+</svg>
