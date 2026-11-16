@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 13px; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .box { fill: #ffffff; stroke: #2563eb; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="800" height="380" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Log levels: quiet to alarming</text>
+  <text x="420" y="26" class="heading">The life of one log line</text>
+  <rect x="15" y="52" width="360" height="28" rx="4" fill="#f3f4f6" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="27" y="71" class="mono" font-weight="700" fill="#374151">debug</text>
+  <text x="125" y="71" class="label" fill="#374151">details for developers</text>
+  <rect x="15" y="86" width="360" height="28" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="27" y="105" class="mono" font-weight="700" fill="#1e3a8a">info</text>
+  <text x="125" y="105" class="label" fill="#1e3a8a">normal events</text>
+  <rect x="15" y="120" width="360" height="28" rx="4" fill="#ecfeff" stroke="#0891b2" stroke-width="1.5"/>
+  <text x="27" y="139" class="mono" font-weight="700" fill="#164e63">notice</text>
+  <text x="125" y="139" class="label" fill="#164e63">normal but unusual</text>
+  <rect x="15" y="154" width="360" height="28" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+  <text x="27" y="173" class="mono" font-weight="700" fill="#78350f">warning</text>
+  <text x="125" y="173" class="label" fill="#78350f">odd, but the app coped</text>
+  <rect x="15" y="188" width="360" height="28" rx="4" fill="#fff1f2" stroke="#e11d48" stroke-width="1.5"/>
+  <text x="27" y="207" class="mono" font-weight="700" fill="#881337">error</text>
+  <text x="125" y="207" class="label" fill="#881337">a request or job failed</text>
+  <rect x="15" y="222" width="360" height="28" rx="4" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="27" y="241" class="mono" font-weight="700" fill="#7f1d1d">critical</text>
+  <text x="125" y="241" class="label" fill="#7f1d1d">a major part is broken</text>
+  <rect x="15" y="256" width="360" height="28" rx="4" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="27" y="275" class="mono" font-weight="700" fill="#7f1d1d">alert</text>
+  <text x="125" y="275" class="label" fill="#7f1d1d">act immediately</text>
+  <rect x="15" y="290" width="360" height="28" rx="4" fill="#fecaca" stroke="#991b1b" stroke-width="1.5"/>
+  <text x="27" y="309" class="mono" font-weight="700" fill="#450a0a">emergency</text>
+  <text x="125" y="309" class="label" fill="#450a0a">the system is unusable</text>
+  <line x1="10" y1="151" x2="380" y2="151" stroke="#111827" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="15" y="336" class="note">Dashed line = LOG_LEVEL=warning.</text>
+  <text x="15" y="352" class="note">Lines above it are dropped, lines below it are kept.</text>
+  <text x="15" y="368" class="note">Production: info or warning. debug only while investigating.</text>
+
+  <rect x="420" y="46" width="365" height="56" rx="6" class="box"/>
+  <text x="432" y="66" class="t" fill="#1e3a8a">1. Your app writes it</text>
+  <text x="432" y="88" class="code" fill="#1f2937">Log::error('Payment failed', ['order_id' =&gt; 1042]);</text>
+
+  <line x1="602" y1="102" x2="602" y2="130" stroke="#2563eb" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="420" y="132" width="365" height="56" rx="6" class="box"/>
+  <text x="432" y="152" class="t" fill="#1e3a8a">2. It lands in a file (or stderr)</text>
+  <text x="432" y="174" class="code" fill="#1f2937">storage/logs/laravel-2026-11-16.log</text>
+
+  <line x1="602" y1="188" x2="602" y2="216" stroke="#2563eb" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="420" y="218" width="365" height="56" rx="6" class="box"/>
+  <text x="432" y="238" class="t" fill="#1e3a8a">3. Rotation keeps the disk safe</text>
+  <text x="432" y="260" class="label" fill="#1f2937">daily channel or logrotate: compress, keep 14, delete old</text>
+
+  <line x1="602" y1="274" x2="602" y2="302" stroke="#2563eb" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="420" y="304" width="365" height="56" rx="6" class="box"/>
+  <text x="432" y="324" class="t" fill="#1e3a8a">4. You read it</text>
+  <text x="432" y="346" class="label" fill="#1f2937">tail, grep, jq now; Loki or Elasticsearch later (Ch. 7)</text>
+</svg>
