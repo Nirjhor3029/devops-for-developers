@@ -1,0 +1,37 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .step { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .sec { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .ok { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .guard { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">The app role: one version in, a running Laravel site out</text>
+
+  <rect x="15" y="44" width="170" height="52" rx="6" class="step"/><text x="100" y="66" text-anchor="middle" class="t" fill="#1e3a8a">1. git (tag)</text><text x="100" y="84" text-anchor="middle" class="note">app_version: v1.0.0</text>
+  <rect x="205" y="44" width="170" height="52" rx="6" class="sec"/><text x="290" y="66" text-anchor="middle" class="t" fill="#991b1b">2. .env</text><text x="290" y="84" text-anchor="middle" class="note">from Vault, no_log, 0640</text>
+  <rect x="395" y="44" width="170" height="52" rx="6" class="guard"/><text x="480" y="66" text-anchor="middle" class="t" fill="#9a3412">3. composer install</text><text x="480" y="84" text-anchor="middle" class="note">when: code changed</text>
+  <rect x="585" y="44" width="200" height="52" rx="6" class="step"/><text x="685" y="66" text-anchor="middle" class="t" fill="#1e3a8a">4. writable folders</text><text x="685" y="84" text-anchor="middle" class="note">storage, bootstrap/cache</text>
+
+  <rect x="15" y="118" width="170" height="52" rx="6" class="guard"/><text x="100" y="140" text-anchor="middle" class="t" fill="#9a3412">5. migrate --force</text><text x="100" y="158" text-anchor="middle" class="note">review migrations first</text>
+  <rect x="205" y="118" width="170" height="52" rx="6" class="guard"/><text x="290" y="140" text-anchor="middle" class="t" fill="#9a3412">6. optimize</text><text x="290" y="158" text-anchor="middle" class="note">when: code changed</text>
+  <rect x="395" y="118" width="170" height="52" rx="6" class="step"/><text x="480" y="140" text-anchor="middle" class="t" fill="#1e3a8a">7. cron: scheduler</text><text x="480" y="158" text-anchor="middle" class="note">schedule:run every minute</text>
+  <rect x="585" y="118" width="200" height="52" rx="6" class="ok"/><text x="685" y="140" text-anchor="middle" class="t" fill="#065f46">8. health: /up</text><text x="685" y="158" text-anchor="middle" class="note">curl --fail (shallow check)</text>
+
+  <text x="15" y="212" class="heading">Deploy a new version, or roll back</text>
+  <text x="15" y="234" class="code">ansible-playbook site.yml --ask-vault-pass --tags app -e app_version=v1.1.0</text>
+  <text x="15" y="254" class="code">ansible-playbook site.yml --ask-vault-pass --tags app -e app_version=v1.0.0   # back</text>
+  <text x="15" y="276" class="note">A rollback restores the code. It does NOT undo a database migration: review migrations, keep backups.</text>
+
+  <text x="15" y="312" class="heading">Second run must show changed=0</text>
+  <text x="15" y="334" class="label">composer and optimize are skipped (no new code); git, migrate, cron, health report ok.</text>
+  <text x="15" y="356" class="note">Practise on a throwaway server with a practice repo and fake secrets. Run order: Terraform, then Ansible.</text>
+</svg>
