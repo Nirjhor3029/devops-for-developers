@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .tf { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .an { fill: #ecfdf5; stroke: #059669; stroke-width: 2; }
+    .hand { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .srv { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .bad { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Terraform makes the server exist, hands over its address, Ansible makes it useful</text>
+
+  <rect x="15" y="50" width="170" height="104" rx="8" class="tf"/>
+  <text x="100" y="74" text-anchor="middle" class="t" fill="#5b21b6">1. Terraform</text>
+  <text x="100" y="96" text-anchor="middle" class="label">SSH key, Droplet,</text>
+  <text x="100" y="112" text-anchor="middle" class="label">firewall</text>
+  <text x="100" y="134" text-anchor="middle" class="note">plan, review, apply</text>
+
+  <rect x="225" y="50" width="170" height="104" rx="8" class="hand"/>
+  <text x="310" y="74" text-anchor="middle" class="t" fill="#9a3412">2. Hand-off</text>
+  <text x="310" y="96" text-anchor="middle" class="code">output "droplet_ip"</text>
+  <text x="310" y="114" text-anchor="middle" class="label">inventory.ini</text>
+  <text x="310" y="134" text-anchor="middle" class="note">templatefile + local_file</text>
+
+  <rect x="435" y="50" width="170" height="104" rx="8" class="an"/>
+  <text x="520" y="74" text-anchor="middle" class="t" fill="#065f46">3. Ansible</text>
+  <text x="520" y="96" text-anchor="middle" class="label">packages, files,</text>
+  <text x="520" y="112" text-anchor="middle" class="label">services</text>
+  <text x="520" y="134" text-anchor="middle" class="note">--check --diff, apply, again</text>
+
+  <rect x="645" y="50" width="140" height="104" rx="8" class="srv"/>
+  <text x="715" y="74" text-anchor="middle" class="t" fill="#1e3a8a">The web server</text>
+  <text x="715" y="98" text-anchor="middle" class="label">built from code,</text>
+  <text x="715" y="114" text-anchor="middle" class="label">identical every time</text>
+  <text x="715" y="134" text-anchor="middle" class="note">second run: changed=0</text>
+
+  <line x1="187" y1="102" x2="223" y2="102" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="397" y1="102" x2="433" y2="102" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="607" y1="102" x2="643" y2="102" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="15" y="190" class="heading">Who owns what</text>
+  <text x="15" y="212" class="label">Terraform: what EXISTS in the cloud account (server, firewall, key). Talks to the provider API with a token.</text>
+  <text x="15" y="232" class="label">Ansible: what is INSIDE the server (packages, files, services). Talks over SSH with your key.</text>
+  <text x="15" y="252" class="label">Rebuild from nothing: always Terraform first, then Ansible.</text>
+
+  <rect x="15" y="272" width="770" height="62" rx="8" class="bad"/>
+  <text x="30" y="294" class="t" fill="#991b1b">Do not glue them with a provisioner</text>
+  <text x="30" y="314" class="note">Terraform's docs: provisioners are a last resort. A plan cannot model them, they need direct access and credentials,</text>
+  <text x="30" y="328" class="note">and a failure can leave a half-configured server. Run Ansible as its own, reviewable step.</text>
+
+  <text x="15" y="360" class="note">Nothing here was run for this course: reading and planning are free; a real apply creates a billed server until you destroy it.</text>
+  <text x="15" y="380" class="note">Never commit: state, plan files, .tfvars with secrets, the generated inventory.ini, the vault password file.</text>
+</svg>
