@@ -346,4 +346,4 @@ Run `logrotate -d <config>` (debug/dry-run). Add `-f` to see what would happen i
 
 ---
 
-**Next:** Chapter 4 — Metrics and Prometheus *(coming soon)*
+**Next:** [Chapter 4 — Metrics and Prometheus](04-metrics-and-prometheus.md)

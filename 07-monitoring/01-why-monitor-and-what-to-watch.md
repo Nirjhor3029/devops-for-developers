@@ -177,4 +177,4 @@ Mainly on symptoms (errors, latency, downtime), because they mean users are affe
 
 ---
 
-**Next:** Chapter 2 — Linux server health: CPU, memory, disk, and the logs *(coming soon)*
+**Next:** [Chapter 2 — Linux server health: CPU, memory, disk, and the logs](02-linux-server-health.md)

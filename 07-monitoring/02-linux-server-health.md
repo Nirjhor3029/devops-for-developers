@@ -329,4 +329,4 @@ It listens on every network interface. Unless the firewall blocks port 3306, the
 
 ---
 
-**Next:** Chapter 3 — Application logs: levels, structure, and rotation *(coming soon)*
+**Next:** [Chapter 3 — Application logs: levels, structure, and rotation](03-application-logs.md)
