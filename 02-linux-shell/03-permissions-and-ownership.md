@@ -5,7 +5,7 @@
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/linux-shell/03-permissions-and-ownership?lang=bn)
 
-If you did the Docker course's final chapter, you already hit this exact topic: Laravel's `storage/` folder needing the right ownership before PHP-FPM could write to it. This chapter explains *why* that works the way it does — once you understand it here, "permission denied" stops being scary and starts being a two-second fix.
+You will meet this exact topic again in the Docker course's final chapter: Laravel's `storage/` folder needing the right ownership before PHP-FPM can write to it. This chapter explains *why* that works the way it does — once you understand it here, "permission denied" stops being scary and starts being a two-second fix.
 
 ## 1. Why Linux cares who you are
 
@@ -75,7 +75,7 @@ sudo chgrp www-data notes.txt      # change the group to "www-data"
 sudo chown dev:www-data notes.txt  # change both at once (owner:group)
 ```
 
-This is the exact pattern from the Docker course's Laravel chapter: a web server process runs as its own user (often `www-data`), and for it to be allowed to write into your `storage/` folder, that folder's **group** needs to be `www-data`, with group-write permission (`chmod 775`). That combination — `chown ... :www-data` plus `chmod 775` — is one of the single most common real-world fixes you'll ever type on a server.
+This is the exact pattern you will use in the Docker course's Laravel chapter: a web server process runs as its own user (often `www-data`), and for it to be allowed to write into your `storage/` folder, that folder's **group** needs to be `www-data`, with group-write permission (`chmod 775`). That combination — `chown ... :www-data` plus `chmod 775` — is one of the single most common real-world fixes you'll ever type on a server.
 
 ## 5. Try it yourself
 

@@ -22,7 +22,7 @@ Then let your user run `docker` without typing `sudo` every time:
 sudo usermod -aG docker $USER
 ```
 
-**Log out and log back in** (or reboot) for the group change to take effect.
+**Log out and log back in** (or reboot) for the group change to take effect. (What `sudo` and groups really are, and why you must log out, is explained in [Linux & Shell Basics, Chapter 4](https://learn.bazardev.com/linux-shell/04-users-groups-and-sudo).)
 
 ### macOS / Windows
 

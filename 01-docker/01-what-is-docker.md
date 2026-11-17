@@ -5,6 +5,8 @@
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/docker/01-what-is-docker?lang=bn)
 
+> 🧭 **Before you start:** this course assumes you are comfortable in a terminal (moving between folders, running commands, using `sudo`). If you are not, take [Linux & Shell Basics](https://learn.bazardev.com/linux-shell) first, and [Git & GitHub](https://learn.bazardev.com/git-github) for the version-control habits the rest of the path uses.
+
 Nothing to install for this chapter — it's pure concept. But get this right, because every later chapter builds on it.
 
 ## 1. The problem Docker solves

@@ -41,7 +41,7 @@ tail notes.txt           # last 10 lines
 tail -f /var/log/app.log # keep watching a file as new lines get added, live
 ```
 
-That last one, `tail -f`, is worth remembering on its own — it's exactly how you watch a log file in real time while something is happening, the same idea as `docker logs -f` from the Docker course.
+That last one, `tail -f`, is worth remembering on its own — it's exactly how you watch a log file in real time while something is happening. (You will meet the same idea again as `docker logs -f` in the Docker course.)
 
 ## 3. Copying and moving
 
@@ -145,7 +145,7 @@ Run `pwd` to confirm exactly which folder you're currently in, and `ls` on the e
 <details>
 <summary><strong>Q4. What does `tail -f /var/log/app.log` do, and where have you seen this idea before?</strong></summary>
 
-It keeps the file open and prints new lines as they're added, live, instead of showing a fixed snapshot. It's the same idea as `docker logs -f` from the Docker course — watching output happen in real time instead of checking it after the fact.
+It keeps the file open and prints new lines as they're added, live, instead of showing a fixed snapshot. It's the same idea as `docker logs -f`, which you will meet in the Docker course — watching output happen in real time instead of checking it after the fact.
 </details>
 
 ## 9. Free resources

@@ -67,7 +67,7 @@ You have seen most of these already. Treat them as a list to check on every proj
 
 - [ ] **MFA** on the root user and on every human IAM user; no root access keys (Chapter 5).
 - [ ] **Least privilege** IAM policies; **roles** instead of access keys on servers.
-- [ ] **No secrets in Git** or in images (Docker and Kubernetes courses).
+- [ ] **No secrets in Git** or in images (Docker course).
 - [ ] **SSH** only from your IP, with keys, no password login (Chapter 2).
 - [ ] **Databases private**, reachable only from the app's security group.
 - [ ] **S3 buckets private** unless a public site is intended.

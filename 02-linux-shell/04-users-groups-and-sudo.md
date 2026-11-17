@@ -5,7 +5,7 @@
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/linux-shell/04-users-groups-and-sudo?lang=bn)
 
-Chapter 3 showed you *what* owners and groups control. This chapter shows you where users and groups actually come from, and exactly what `sudo` is doing every time you type it — including a detail that explains a "fix" from the Docker course you may not have fully understood at the time.
+Chapter 3 showed you *what* owners and groups control. This chapter shows you where users and groups actually come from, and exactly what `sudo` is doing every time you type it — including a detail that explains a "fix" you will be told to apply in the Docker course (log out and back in).
 
 ## 1. Who am I, really?
 
@@ -53,7 +53,7 @@ sudo usermod -aG docker dev
 ```
 Adds the existing user `dev` to the `docker` group, **without removing them from any group they're already in** (`-a` = append — forgetting it is a classic mistake that wipes someone's other group memberships).
 
-If that command looks familiar, it should — it's the exact line from the Docker course's Chapter 2, and it's exactly the technique this chapter is now explaining properly.
+You will see this exact line again in the Docker course's Chapter 2 (to let your user run `docker` without `sudo`). This chapter explains the technique properly.
 
 ```bash
 sudo passwd newperson
@@ -62,7 +62,7 @@ Sets or changes that user's password.
 
 ### Why you had to log out and back in
 
-Remember Chapter 2 of the Docker course saying "log out and log back in" after that `usermod` command? Here's why: **your current session already loaded your group list when you logged in.** Adding yourself to a new group updates `/etc/group` immediately, but your *already-running* terminal session doesn't automatically re-read it. Logging out and back in (or starting a fresh session) is what makes the shell pick up the new group membership. This trips up almost everyone the first time.
+In Chapter 2 of the Docker course you will be told to "log out and log back in" after that `usermod` command. Here's why: **your current session already loaded your group list when you logged in.** Adding yourself to a new group updates `/etc/group` immediately, but your *already-running* terminal session doesn't automatically re-read it. Logging out and back in (or starting a fresh session) is what makes the shell pick up the new group membership. This trips up almost everyone the first time.
 
 ## 4. `sudo` vs `su` — the difference that actually matters
 

@@ -60,7 +60,7 @@ By default an instance gets a **public IP that changes when you stop and start i
 
 Good uses: user uploads, images, **backups**, logs, static websites, files for other services.
 
-**Why not keep uploads on the server's disk?** If your app runs on several servers (or you replace a server), each has its own disk, and files uploaded to one are missing from the others. S3 is shared storage, and your servers become disposable. (This is the file-upload problem from the Kubernetes final project.)
+**Why not keep uploads on the server's disk?** If your app runs on several servers (or you replace a server), each has its own disk, and files uploaded to one are missing from the others. S3 is shared storage, and your servers become disposable. (You will meet the same file-upload problem again in the Kubernetes final project.)
 
 ### Using S3 from the CLI
 
