@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .ctl { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .inv { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .srv { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+    .grp { fill: none; stroke: #9ca3af; stroke-width: 1.2; stroke-dasharray: 5 4; }
+    .ok { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">How Ansible reaches your servers: nothing to install on them</text>
+
+  <rect x="15" y="60" width="230" height="170" rx="8" class="ctl"/>
+  <text x="130" y="86" text-anchor="middle" class="t" fill="#5b21b6">Control node</text>
+  <text x="130" y="106" text-anchor="middle" class="note">your laptop or workspace server</text>
+  <text x="30" y="136" class="label">Ansible installed here</text>
+  <text x="30" y="156" class="label">$ ansible web -m ping</text>
+  <text x="30" y="176" class="label">  -i inventory.ini</text>
+  <rect x="30" y="190" width="200" height="28" rx="5" class="inv"/>
+  <text x="130" y="209" text-anchor="middle" class="label">inventory.ini (the list)</text>
+
+  <rect x="330" y="50" width="230" height="110" rx="8" class="grp"/>
+  <text x="345" y="68" class="note">group: web</text>
+  <rect x="345" y="78" width="200" height="34" rx="6" class="srv"/>
+  <text x="445" y="100" text-anchor="middle" class="label">web1  (managed node)</text>
+  <rect x="345" y="120" width="200" height="34" rx="6" class="srv"/>
+  <text x="445" y="142" text-anchor="middle" class="label">web2  (managed node)</text>
+
+  <rect x="330" y="180" width="230" height="70" rx="8" class="grp"/>
+  <text x="345" y="198" class="note">group: db</text>
+  <rect x="345" y="206" width="200" height="34" rx="6" class="srv"/>
+  <text x="445" y="228" text-anchor="middle" class="label">db1  (managed node)</text>
+
+  <line x1="247" y1="120" x2="328" y2="110" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="247" y1="190" x2="328" y2="220" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="262" y="160" class="note">SSH</text>
+
+  <rect x="610" y="78" width="175" height="76" rx="8" class="ok"/>
+  <text x="697" y="100" text-anchor="middle" class="t" fill="#065f46">On each node</text>
+  <text x="697" y="120" text-anchor="middle" class="label">Python runs the module</text>
+  <text x="697" y="138" text-anchor="middle" class="label">result comes back</text>
+  <line x1="562" y1="116" x2="608" y2="116" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="15" y="290" class="heading">The five words</text>
+  <text x="15" y="312" class="label">Control node = where you run Ansible.  Managed node = a server it manages (no Ansible needed).</text>
+  <text x="15" y="332" class="label">Inventory = the list of machines.  Module = one small job (ping, apt, copy, service).</text>
+  <text x="15" y="352" class="label">Ad-hoc command = one module, once, not saved.  Use a playbook (Chapter 3) for repeated work.</text>
+</svg>
