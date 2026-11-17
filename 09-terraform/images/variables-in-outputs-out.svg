@@ -1,0 +1,58 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .in { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .mid { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .out { fill: #ecfdf5; stroke: #059669; stroke-width: 2; }
+    .loc { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+    .rank { fill: #f9fafb; stroke: #9ca3af; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Variables go in, resources do the work, outputs come out</text>
+
+  <rect x="15" y="44" width="200" height="110" rx="8" class="in"/>
+  <text x="115" y="68" text-anchor="middle" class="t" fill="#1e3a8a">Input variables</text>
+  <text x="115" y="90" text-anchor="middle" class="code">var.environment</text>
+  <text x="115" y="108" text-anchor="middle" class="code">var.external_port</text>
+  <text x="115" y="130" text-anchor="middle" class="note">type + description + validation</text>
+
+  <rect x="290" y="44" width="220" height="110" rx="8" class="mid"/>
+  <text x="400" y="68" text-anchor="middle" class="t" fill="#5b21b6">Resources</text>
+  <text x="400" y="90" text-anchor="middle" class="code">docker_container.nginx</text>
+  <rect x="310" y="100" width="180" height="40" rx="6" class="loc"/>
+  <text x="400" y="116" text-anchor="middle" class="t" fill="#9a3412">locals</text>
+  <text x="400" y="132" text-anchor="middle" class="code">local.container_name</text>
+
+  <rect x="585" y="44" width="200" height="110" rx="8" class="out"/>
+  <text x="685" y="68" text-anchor="middle" class="t" fill="#065f46">Outputs</text>
+  <text x="685" y="90" text-anchor="middle" class="code">output "url"</text>
+  <text x="685" y="108" text-anchor="middle" class="code">terraform output url</text>
+  <text x="685" y="130" text-anchor="middle" class="note">shown after apply</text>
+
+  <line x1="217" y1="99" x2="288" y2="99" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="512" y1="99" x2="583" y2="99" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="15" y="188" class="heading">Which value wins? (highest first)</text>
+  <rect x="15" y="198" width="360" height="26" rx="4" class="rank"/><text x="25" y="216" class="label">1  -var and -var-file on the command line</text>
+  <rect x="15" y="226" width="360" height="26" rx="4" class="rank"/><text x="25" y="244" class="label">2  *.auto.tfvars (alphabetical order)</text>
+  <rect x="15" y="254" width="360" height="26" rx="4" class="rank"/><text x="25" y="272" class="label">3  terraform.tfvars.json</text>
+  <rect x="15" y="282" width="360" height="26" rx="4" class="rank"/><text x="25" y="300" class="label">4  terraform.tfvars</text>
+  <rect x="15" y="310" width="360" height="26" rx="4" class="rank"/><text x="25" y="328" class="label">5  environment variables (TF_VAR_name)</text>
+  <rect x="15" y="338" width="360" height="26" rx="4" class="rank"/><text x="25" y="356" class="label">6  the default in the variable block</text>
+
+  <text x="410" y="188" class="heading">Useful expressions</text>
+  <text x="410" y="212" class="code">"${var.environment}-nginx"</text>
+  <text x="410" y="232" class="code">var.environment == "prod" ? 80 : 8000</text>
+  <text x="410" y="252" class="code">[for s in var.list : upper(s)]</text>
+  <text x="410" y="272" class="code">contains(["dev", "prod"], var.environment)</text>
+  <text x="410" y="304" class="note">Test any expression first with:  terraform console</text>
+  <text x="410" y="330" class="note">sensitive = true hides a value on screen,</text>
+  <text x="410" y="346" class="note">but it is STILL stored in the state file.</text>
+</svg>
