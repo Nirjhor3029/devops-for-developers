@@ -1,0 +1,58 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .web { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .php { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .db { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .role { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .sec { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">One server, three roles: serve, run, store</text>
+
+  <rect x="15" y="50" width="130" height="64" rx="8" class="role"/>
+  <text x="80" y="76" text-anchor="middle" class="t" fill="#065f46">Browser</text>
+  <text x="80" y="96" text-anchor="middle" class="note">ports 80 / 443</text>
+
+  <rect x="195" y="44" width="170" height="76" rx="8" class="web"/>
+  <text x="280" y="68" text-anchor="middle" class="t" fill="#1e3a8a">Caddy</text>
+  <text x="280" y="88" text-anchor="middle" class="code">root * .../public</text>
+  <text x="280" y="106" text-anchor="middle" class="code">php_fastcgi unix//run/php/..sock</text>
+
+  <rect x="415" y="44" width="170" height="76" rx="8" class="php"/>
+  <text x="500" y="68" text-anchor="middle" class="t" fill="#5b21b6">PHP-FPM 8.3</text>
+  <text x="500" y="88" text-anchor="middle" class="label">runs Laravel</text>
+  <text x="500" y="106" text-anchor="middle" class="note">needs Laravel's extensions</text>
+
+  <rect x="635" y="44" width="150" height="76" rx="8" class="db"/>
+  <text x="710" y="68" text-anchor="middle" class="t" fill="#9a3412">MySQL</text>
+  <text x="710" y="88" text-anchor="middle" class="label">one database,</text>
+  <text x="710" y="106" text-anchor="middle" class="label">one user</text>
+
+  <line x1="147" y1="82" x2="193" y2="82" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="367" y1="82" x2="413" y2="82" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="587" y1="82" x2="633" y2="82" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="15" y="156" class="heading">Each box is a role (Chapter 4)</text>
+  <rect x="195" y="168" width="170" height="52" rx="6" class="role"/><text x="280" y="190" text-anchor="middle" class="code">roles/caddy</text><text x="280" y="208" text-anchor="middle" class="note">apt, Caddyfile.j2, handler</text>
+  <rect x="415" y="168" width="170" height="52" rx="6" class="role"/><text x="500" y="190" text-anchor="middle" class="code">roles/php</text><text x="500" y="208" text-anchor="middle" class="note">apt, php -m check</text>
+  <rect x="635" y="168" width="150" height="52" rx="6" class="role"/><text x="710" y="190" text-anchor="middle" class="code">roles/mysql</text><text x="710" y="208" text-anchor="middle" class="note">ansible.mysql modules</text>
+
+  <text x="15" y="256" class="heading">Order, secrets, checks</text>
+  <text x="15" y="278" class="label">site.yml: roles: [php, mysql, caddy]   (PHP before Caddy: Caddy talks to PHP-FPM's socket)</text>
+  <rect x="15" y="292" width="375" height="50" rx="6" class="sec"/>
+  <text x="25" y="312" class="t" fill="#991b1b">Secrets</text>
+  <text x="25" y="330" class="note">vault_db_password in an encrypted secrets.yml; no_log: true on the task</text>
+  <rect x="410" y="292" width="375" height="50" rx="6" class="role"/>
+  <text x="420" y="312" class="t" fill="#065f46">Checks</text>
+  <text x="420" y="330" class="note">--check --diff first; second real run must show changed=0</text>
+
+  <text x="15" y="372" class="note">Ubuntu 24.04 packages: caddy, php8.3-fpm (8.3 meets Laravel 13), mysql-server, python3-pymysql. MySQL stays closed to the network.</text>
+</svg>
