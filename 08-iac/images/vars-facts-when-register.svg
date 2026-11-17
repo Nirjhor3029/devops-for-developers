@@ -1,0 +1,62 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .var { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .fact { fill: #ecfdf5; stroke: #059669; stroke-width: 2; }
+    .reg { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .when { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .run { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .skip { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">A playbook that looks before it acts</text>
+
+  <rect x="15" y="44" width="215" height="92" rx="8" class="var"/>
+  <text x="122" y="68" text-anchor="middle" class="t" fill="#1e3a8a">Variables (you)</text>
+  <text x="122" y="88" text-anchor="middle" class="code">group_vars/web.yml</text>
+  <text x="122" y="104" text-anchor="middle" class="code">host_vars/web1.yml</text>
+  <text x="122" y="122" text-anchor="middle" class="note">play vars, -e (strongest)</text>
+
+  <rect x="15" y="148" width="215" height="92" rx="8" class="fact"/>
+  <text x="122" y="172" text-anchor="middle" class="t" fill="#065f46">Facts (Ansible finds)</text>
+  <text x="122" y="192" text-anchor="middle" class="code">ansible_facts['os_family']</text>
+  <text x="122" y="208" text-anchor="middle" class="code">ansible_facts['distribution']</text>
+  <text x="122" y="226" text-anchor="middle" class="note">gathered at the start of each play</text>
+
+  <rect x="15" y="252" width="215" height="92" rx="8" class="reg"/>
+  <text x="122" y="276" text-anchor="middle" class="t" fill="#9a3412">Registered results</text>
+  <text x="122" y="296" text-anchor="middle" class="code">register: git_version</text>
+  <text x="122" y="312" text-anchor="middle" class="code">git_version.rc / .stdout</text>
+  <text x="122" y="330" text-anchor="middle" class="note">from an earlier task</text>
+
+  <line x1="232" y1="90" x2="318" y2="170" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="232" y1="194" x2="318" y2="194" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="232" y1="298" x2="318" y2="218" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="320" y="150" width="190" height="88" rx="8" class="when"/>
+  <text x="415" y="174" text-anchor="middle" class="t" fill="#5b21b6">when: condition</text>
+  <text x="415" y="194" text-anchor="middle" class="code">os_family == "Debian"</text>
+  <text x="415" y="212" text-anchor="middle" class="note">no {{ }} inside when</text>
+  <text x="415" y="228" text-anchor="middle" class="note">a list of conditions = and</text>
+
+  <rect x="580" y="120" width="205" height="62" rx="8" class="run"/>
+  <text x="682" y="144" text-anchor="middle" class="t" fill="#065f46">true: the task runs</text>
+  <text x="682" y="164" text-anchor="middle" class="note">ok / changed in the recap</text>
+  <rect x="580" y="206" width="205" height="62" rx="8" class="skip"/>
+  <text x="682" y="230" text-anchor="middle" class="t" fill="#4b5563">false: skipped</text>
+  <text x="682" y="250" text-anchor="middle" class="note">skipped in the recap</text>
+  <line x1="512" y1="185" x2="578" y2="152" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="512" y1="205" x2="578" y2="234" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="320" y="290" class="heading">Keep reads honest</text>
+  <text x="320" y="312" class="code">command: git --version</text>
+  <text x="320" y="328" class="code">changed_when: false      # a read changes nothing</text>
+  <text x="320" y="352" class="note">Prefer failed_when to ignore_errors: hiding failures hides problems.</text>
+</svg>
