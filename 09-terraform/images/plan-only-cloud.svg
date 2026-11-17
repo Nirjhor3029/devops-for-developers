@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .tf { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .tok { fill: #fef2f2; stroke: #dc2626; stroke-width: 2; }
+    .api { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .ok { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .bad { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Plan only: a read-only token lets Terraform look, not create</text>
+
+  <rect x="15" y="44" width="200" height="110" rx="8" class="tf"/>
+  <text x="115" y="68" text-anchor="middle" class="t" fill="#5b21b6">Terraform</text>
+  <text x="115" y="90" text-anchor="middle" class="code">terraform plan</text>
+  <text x="115" y="108" text-anchor="middle" class="label">reads, compares,</text>
+  <text x="115" y="124" text-anchor="middle" class="label">shows what WOULD change</text>
+
+  <rect x="260" y="44" width="170" height="110" rx="8" class="tok"/>
+  <text x="345" y="68" text-anchor="middle" class="t" fill="#991b1b">API token</text>
+  <text x="345" y="90" text-anchor="middle" class="code">DIGITALOCEAN_TOKEN</text>
+  <text x="345" y="108" text-anchor="middle" class="label">Read Only, short expiry</text>
+  <text x="345" y="126" text-anchor="middle" class="note">from the environment, never in code</text>
+
+  <rect x="475" y="44" width="150" height="110" rx="8" class="api"/>
+  <text x="550" y="68" text-anchor="middle" class="t" fill="#1e3a8a">DigitalOcean API</text>
+  <text x="550" y="92" text-anchor="middle" class="label">read: allowed</text>
+  <text x="550" y="112" text-anchor="middle" class="label">create: 403</text>
+  <text x="550" y="130" text-anchor="middle" class="note">(no write scope)</text>
+
+  <rect x="660" y="44" width="125" height="110" rx="8" class="ok"/>
+  <text x="722" y="68" text-anchor="middle" class="t" fill="#065f46">Result</text>
+  <text x="722" y="92" text-anchor="middle" class="label">a plan to read,</text>
+  <text x="722" y="110" text-anchor="middle" class="label">nothing created,</text>
+  <text x="722" y="128" text-anchor="middle" class="label">nothing billed</text>
+
+  <line x1="217" y1="99" x2="258" y2="99" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="432" y1="99" x2="473" y2="99" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="627" y1="99" x2="658" y2="99" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="15" y="190" class="heading">Three resources in the plan</text>
+  <rect x="15" y="200" width="245" height="56" rx="6" class="bad"/>
+  <text x="25" y="220" class="code">digitalocean_ssh_key.deploy</text>
+  <text x="25" y="238" class="note">your PUBLIC key (not secret)</text>
+  <rect x="277" y="200" width="245" height="56" rx="6" class="bad"/>
+  <text x="287" y="220" class="code">digitalocean_droplet.web</text>
+  <text x="287" y="238" class="note">the server: image, size, region</text>
+  <rect x="539" y="200" width="245" height="56" rx="6" class="bad"/>
+  <text x="549" y="220" class="code">digitalocean_firewall.web</text>
+  <text x="549" y="238" class="note">SSH only from YOUR address</text>
+
+  <text x="15" y="288" class="heading">Safe order</text>
+  <text x="15" y="310" class="code">init  ->  fmt  ->  validate (no token)  ->  set read-only token  ->  plan  ->  STOP</text>
+  <text x="15" y="338" class="note">Billing starts at create and stops only at destroy. A powered-off Droplet is still billed.</text>
+  <text x="15" y="358" class="note">A token's scope cannot be edited later: make a new one. Delete tokens you no longer use.</text>
+  <text x="15" y="378" class="note">Names (image, region, size) change: look them up in DigitalOcean's current documentation.</text>
+</svg>
