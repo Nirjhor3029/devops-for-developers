@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .cnt { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .fe { fill: #ecfdf5; stroke: #059669; stroke-width: 2; }
+    .bad { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .good { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .box { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">count names instances by position; for_each names them by key</text>
+
+  <rect x="15" y="44" width="375" height="190" rx="8" class="cnt"/>
+  <text x="202" y="68" text-anchor="middle" class="t" fill="#9a3412">count  (by number)</text>
+  <text x="30" y="92" class="note">names = ["alpha", "beta", "gamma"]</text>
+  <rect x="30" y="100" width="100" height="30" rx="5" class="box"/><text x="80" y="120" text-anchor="middle" class="code">app[0] alpha</text>
+  <rect x="140" y="100" width="100" height="30" rx="5" class="box"/><text x="190" y="120" text-anchor="middle" class="code">app[1] beta</text>
+  <rect x="250" y="100" width="110" height="30" rx="5" class="box"/><text x="305" y="120" text-anchor="middle" class="code">app[2] gamma</text>
+  <text x="30" y="156" class="label">remove "beta" from the MIDDLE of the list:</text>
+  <rect x="30" y="166" width="100" height="30" rx="5" class="box"/><text x="80" y="186" text-anchor="middle" class="code">app[0] alpha</text>
+  <rect x="140" y="166" width="110" height="30" rx="5" class="bad"/><text x="195" y="186" text-anchor="middle" class="code">app[1] gamma?</text>
+  <rect x="260" y="166" width="100" height="30" rx="5" class="bad"/><text x="310" y="186" text-anchor="middle" class="code">app[2] gone</text>
+  <text x="30" y="218" class="note">positions shift: app[1] changes, app[2] is destroyed</text>
+
+  <rect x="410" y="44" width="375" height="190" rx="8" class="fe"/>
+  <text x="597" y="68" text-anchor="middle" class="t" fill="#065f46">for_each  (by key)</text>
+  <text x="425" y="92" class="note">sites = { dev = 8000, staging = 8080 }</text>
+  <rect x="425" y="100" width="160" height="30" rx="5" class="box"/><text x="505" y="120" text-anchor="middle" class="code">web["dev"]</text>
+  <rect x="600" y="100" width="170" height="30" rx="5" class="box"/><text x="685" y="120" text-anchor="middle" class="code">web["staging"]</text>
+  <text x="425" y="156" class="label">remove the "staging" key:</text>
+  <rect x="425" y="166" width="160" height="30" rx="5" class="good"/><text x="505" y="186" text-anchor="middle" class="code">web["dev"] untouched</text>
+  <rect x="600" y="166" width="170" height="30" rx="5" class="bad"/><text x="685" y="186" text-anchor="middle" class="code">web["staging"] gone</text>
+  <text x="425" y="218" class="note">stable keys: only the removed instance changes</text>
+
+  <text x="15" y="268" class="heading">lifecycle: how Terraform treats one resource</text>
+  <text x="15" y="290" class="code">create_before_destroy = true      build the new one, then remove the old</text>
+  <text x="15" y="308" class="code">prevent_destroy = true            reject plans that destroy it (not a backup!)</text>
+  <text x="15" y="326" class="code">ignore_changes = [attribute]      do not plan updates for it (hides drift)</text>
+  <text x="15" y="344" class="code">replace_triggered_by = [ref]      replace it when another resource changes</text>
+  <text x="15" y="362" class="code">precondition / postcondition      checks with your own error message</text>
+  <text x="15" y="386" class="note">Rule: count for N identical copies and on/off (0 or 1); for_each whenever instances have names.</text>
+</svg>
