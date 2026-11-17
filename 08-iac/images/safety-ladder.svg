@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .r1 { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .r2 { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 1.5; }
+    .r3 { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .r4 { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+  </style>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">The safety ladder: climb one rung at a time, stop if anything looks wrong</text>
+
+  <rect x="15" y="44" width="360" height="40" rx="6" class="r1"/><text x="28" y="62" class="t" fill="#1e3a8a">1  ansible-lint</text><text x="28" y="77" class="note">bad practice, e.g. no-changed-when</text>
+  <rect x="15" y="90" width="360" height="40" rx="6" class="r1"/><text x="28" y="108" class="t" fill="#1e3a8a">2  --syntax-check</text><text x="28" y="123" class="note">YAML and structure errors</text>
+  <rect x="15" y="136" width="360" height="40" rx="6" class="r2"/><text x="28" y="154" class="t" fill="#5b21b6">3  --limit / --tags</text><text x="28" y="169" class="note">only the hosts and tasks you meant (--list-hosts, --list-tasks)</text>
+  <rect x="15" y="182" width="360" height="40" rx="6" class="r2"/><text x="28" y="200" class="t" fill="#5b21b6">4  --check --diff</text><text x="28" y="215" class="note">preview: a guide, not a guarantee</text>
+  <rect x="15" y="228" width="360" height="40" rx="6" class="r3"/><text x="28" y="246" class="t" fill="#065f46">5  one host first</text><text x="28" y="261" class="note">--limit web1: a real run on a single server</text>
+  <rect x="15" y="274" width="360" height="40" rx="6" class="r3"/><text x="28" y="292" class="t" fill="#065f46">6  roll out in batches</text><text x="28" y="307" class="note">serial: [1, 5, "20%"]  + max_fail_percentage</text>
+  <rect x="15" y="320" width="360" height="40" rx="6" class="r4"/><text x="28" y="338" class="t" fill="#9a3412">7  run it twice</text><text x="28" y="353" class="note">the second run must show changed=0</text>
+
+  <text x="410" y="52" class="heading">Patterns for --limit</text>
+  <text x="410" y="74" class="code">web1                one host</text>
+  <text x="410" y="92" class="code">web                 one group</text>
+  <text x="410" y="110" class="code">'web:!web3'         web, except web3</text>
+  <text x="410" y="128" class="code">'web:&amp;staging'      web AND staging</text>
+  <text x="410" y="146" class="code">@failed_hosts.txt   hosts listed in a file</text>
+
+  <text x="410" y="184" class="heading">Tags</text>
+  <text x="410" y="206" class="code">--tags caddy        only these</text>
+  <text x="410" y="224" class="code">--skip-tags pkgs    all except these</text>
+  <text x="410" y="242" class="code">always / never      special tags</text>
+  <text x="410" y="260" class="note">finish tagged runs with an untagged one</text>
+
+  <text x="410" y="298" class="heading">In CI</text>
+  <text x="410" y="320" class="label">lint on every pull request; check on a test server;</text>
+  <text x="410" y="338" class="label">apply only after merge, with approval.</text>
+  <text x="410" y="356" class="note">Pin the lint action; keep deploy keys away from PRs.</text>
+</svg>
