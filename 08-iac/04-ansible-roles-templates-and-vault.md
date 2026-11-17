@@ -1,6 +1,6 @@
 # Chapter 4 — Ansible Roles, Templates, and Vault for Secrets
 
-> **Course:** Infrastructure as Code (Terraform & Ansible) · **Chapter:** 4 of 8
+> **Course:** Infrastructure as Code & Ansible · **Chapter:** 4 of 8
 > Read on the website: [learn.bazardev.com/iac/04-ansible-roles-templates-and-vault](https://learn.bazardev.com/iac/04-ansible-roles-templates-and-vault)
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/iac/04-ansible-roles-templates-and-vault?lang=bn)
@@ -398,4 +398,4 @@ It keeps a task's sensitive values out of Ansible's output and logs. It does not
 
 ---
 
-**Next:** [Chapter 5 — Terraform Basics: Providers, Resources, Plan and Apply](05-terraform-basics.md)
+**Next:** [Chapter 5 — Ansible Variables, Facts, Conditions, and register](05-ansible-variables-facts-and-conditions.md)

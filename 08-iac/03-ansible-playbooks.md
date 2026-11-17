@@ -1,6 +1,6 @@
 # Chapter 3 — Ansible Playbooks: Modules, Handlers, and Idempotency
 
-> **Course:** Infrastructure as Code (Terraform & Ansible) · **Chapter:** 3 of 8
+> **Course:** Infrastructure as Code & Ansible · **Chapter:** 3 of 8
 > Read on the website: [learn.bazardev.com/iac/03-ansible-playbooks](https://learn.bazardev.com/iac/03-ansible-playbooks)
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/iac/03-ansible-playbooks?lang=bn)

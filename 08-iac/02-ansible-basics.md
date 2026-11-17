@@ -1,6 +1,6 @@
 # Chapter 2 — Ansible Basics: Inventory and Ad-hoc Commands
 
-> **Course:** Infrastructure as Code (Terraform & Ansible) · **Chapter:** 2 of 8
+> **Course:** Infrastructure as Code & Ansible · **Chapter:** 2 of 8
 > Read on the website: [learn.bazardev.com/iac/02-ansible-basics](https://learn.bazardev.com/iac/02-ansible-basics)
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/iac/02-ansible-basics?lang=bn)

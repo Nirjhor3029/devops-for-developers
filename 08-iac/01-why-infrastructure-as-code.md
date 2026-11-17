@@ -1,6 +1,6 @@
 # Chapter 1 — Why Infrastructure as Code? Terraform and Ansible in One Picture
 
-> **Course:** Infrastructure as Code (Terraform & Ansible) · **Chapter:** 1 of 8
+> **Course:** Infrastructure as Code & Ansible · **Chapter:** 1 of 8
 > Read on the website: [learn.bazardev.com/iac/01-why-infrastructure-as-code](https://learn.bazardev.com/iac/01-why-infrastructure-as-code)
 >
 > 🇧🇩 **Prefer Bangla?** [Read this chapter in Bangla →](https://learn.bazardev.com/iac/01-why-infrastructure-as-code?lang=bn)
@@ -63,7 +63,7 @@ This is what makes IaC safe. You do not need to remember "did I already run this
 
 ## 6. Two tools, two jobs
 
-This course teaches two tools. They are **not rivals**. They do different jobs, and real projects often use both.
+You will meet two tools. This course teaches **Ansible** properly; **Terraform** has its own course on this site. They are **not rivals**. They do different jobs, and real projects often use both.
 
 | | **Terraform** (and OpenTofu) | **Ansible** |
 |---|---|---|
@@ -109,13 +109,13 @@ resource "aws_instance" "web" {
 
 Read the Ansible part aloud: "On the hosts called `web`, as an administrator, make sure the package `git` is **present**." The word `present` is the declarative idea in one word: you do not say "install"; you say what must be true. If Git is already there, nothing happens.
 
-Chapters 2-4 teach Ansible properly, and Chapters 5-6 teach Terraform properly.
+Chapters 2-4 teach Ansible properly. Terraform is taught in its own course, which is coming soon.
 
 ## 8. What IaC does *not* fix
 
 - **It is not magic.** The code can be wrong. A bad rule applied to ten servers breaks ten servers faster. This is why *review* and a *plan/dry-run step* matter, and you will use both.
 - **It needs discipline.** If people still change servers by hand, the code and reality drift apart. The rule is: **change the code, not the server.**
-- **Secrets need care.** Never put passwords or keys in the code you commit. Chapter 4 covers Ansible Vault, and Chapter 6 covers keeping secrets out of Terraform code and state.
+- **Secrets need care.** Never put passwords or keys in the code you commit. Chapter 4 covers Ansible Vault, and the Terraform course covers keeping secrets out of Terraform code and state.
 - **It is another thing to learn.** For one small server that never changes, a written checklist can be enough. IaC pays off as soon as you need a **second** copy, or a **repeatable** rebuild.
 
 ## 9. Your roadmap
@@ -125,10 +125,12 @@ Chapters 2-4 teach Ansible properly, and Chapters 5-6 teach Terraform properly.
 | 2 | Ansible basics: inventory and ad-hoc commands |
 | 3 | Ansible playbooks, modules, handlers, idempotency |
 | 4 | Ansible roles, templates, and Vault for secrets |
-| 5 | Terraform basics: providers, resources, `plan` and `apply` |
-| 6 | Terraform state, variables, outputs, modules |
-| 7 | Using Terraform and Ansible together |
-| 8 | Real project: a Laravel server, built from code |
+| 5 | Ansible variables, facts, conditions, and `register` |
+| 6 | Ansible roles for a Laravel stack: PHP, Caddy, MySQL |
+| 7 | Running Ansible safely: tags, limits, lint, and CI |
+| 8 | Real project: a Laravel server, built with Ansible |
+
+Terraform has its own course, **Terraform**, which is coming soon. It covers providers, `plan` and `apply`, state, modules, and, in its last chapter, building a server with Terraform and configuring it with Ansible.
 
 ## 10. Self-check
 
