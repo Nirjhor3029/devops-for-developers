@@ -1,0 +1,58 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .cfg { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .st { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .rw { fill: #ecfdf5; stroke: #059669; stroke-width: 2; }
+    .cmd { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Terraform compares three things, then proposes the difference</text>
+
+  <rect x="15" y="44" width="230" height="96" rx="8" class="cfg"/>
+  <text x="130" y="68" text-anchor="middle" class="t" fill="#1e3a8a">Configuration</text>
+  <text x="130" y="88" text-anchor="middle" class="code">main.tf</text>
+  <text x="130" y="108" text-anchor="middle" class="label">what you WANT</text>
+
+  <rect x="285" y="44" width="230" height="96" rx="8" class="st"/>
+  <text x="400" y="68" text-anchor="middle" class="t" fill="#5b21b6">State</text>
+  <text x="400" y="88" text-anchor="middle" class="code">terraform.tfstate</text>
+  <text x="400" y="108" text-anchor="middle" class="label">what Terraform BELIEVES it manages</text>
+  <text x="400" y="126" text-anchor="middle" class="note">never edit by hand, never in Git</text>
+
+  <rect x="555" y="44" width="230" height="96" rx="8" class="rw"/>
+  <text x="670" y="68" text-anchor="middle" class="t" fill="#065f46">The real world</text>
+  <text x="670" y="88" text-anchor="middle" class="code">Docker / cloud / DNS</text>
+  <text x="670" y="108" text-anchor="middle" class="label">what ACTUALLY exists</text>
+
+  <line x1="247" y1="92" x2="283" y2="92" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="553" y1="92" x2="517" y2="92" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="400" y="164" text-anchor="middle" class="label">plan = refresh state from the real world, compare with configuration, propose the difference</text>
+
+  <text x="15" y="204" class="heading">What can disagree, and what you do</text>
+  <rect x="15" y="214" width="375" height="64" rx="6" class="cmd"/>
+  <text x="25" y="234" class="t" fill="#9a3412">The real world changed (drift)</text>
+  <text x="25" y="252" class="code">apply                 put the world back</text>
+  <text x="25" y="268" class="code">apply -refresh-only   accept it, update records</text>
+  <rect x="410" y="214" width="375" height="64" rx="6" class="cmd"/>
+  <text x="420" y="234" class="t" fill="#9a3412">You renamed a resource in the code</text>
+  <text x="420" y="252" class="code">state mv OLD NEW      keep the real object</text>
+  <text x="420" y="268" class="note">without it: destroy the old, create the new</text>
+  <rect x="15" y="288" width="375" height="64" rx="6" class="cmd"/>
+  <text x="25" y="308" class="t" fill="#9a3412">A real object is degraded</text>
+  <text x="25" y="326" class="code">apply -replace=ADDRESS   destroy + recreate</text>
+  <text x="25" y="342" class="note">preview first with plan -replace=ADDRESS</text>
+  <rect x="410" y="288" width="375" height="64" rx="6" class="cmd"/>
+  <text x="420" y="308" class="t" fill="#9a3412">Stop managing, keep the object</text>
+  <text x="420" y="326" class="code">state rm -dry-run ADDRESS  then  state rm</text>
+  <text x="420" y="342" class="note">next plan will want to create a new one</text>
+
+  <text x="15" y="382" class="note">Commands that change state write a backup file first. Backups hold the same secrets as state: treat them the same.</text>
+</svg>
