@@ -1,0 +1,61 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .role { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .tpl { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .sec { fill: #fef2f2; stroke: #dc2626; stroke-width: 2; }
+    .out { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .git { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">Roles hold the work, templates fill in values, Vault keeps secrets out of plain sight</text>
+
+  <rect x="15" y="44" width="250" height="196" rx="8" class="role"/>
+  <text x="30" y="68" class="t" fill="#5b21b6">roles/web/</text>
+  <text x="30" y="92" class="code">tasks/main.yml</text>
+  <text x="30" y="110" class="code">handlers/main.yml</text>
+  <text x="30" y="128" class="code">defaults/main.yml</text>
+  <text x="30" y="146" class="code">templates/Caddyfile.j2</text>
+  <text x="30" y="170" class="note">site.yml says only:  roles: [web]</text>
+  <text x="30" y="188" class="note">defaults = lowest precedence,</text>
+  <text x="30" y="204" class="note">easy to override with vars or -e</text>
+
+  <rect x="320" y="44" width="200" height="86" rx="8" class="tpl"/>
+  <text x="420" y="68" text-anchor="middle" class="t" fill="#1e3a8a">Template (Jinja2)</text>
+  <text x="420" y="90" text-anchor="middle" class="code">{{ site_domain }} {</text>
+  <text x="420" y="108" text-anchor="middle" class="note">filled in on the control node</text>
+  <line x1="267" y1="110" x2="318" y2="90" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="320" y="160" width="200" height="80" rx="8" class="sec"/>
+  <text x="420" y="184" text-anchor="middle" class="t" fill="#991b1b">secrets.yml</text>
+  <text x="420" y="204" text-anchor="middle" class="code">$ANSIBLE_VAULT;...</text>
+  <text x="420" y="224" text-anchor="middle" class="note">encrypted, safe to commit</text>
+  <line x1="420" y1="160" x2="420" y2="132" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="585" y="44" width="200" height="86" rx="8" class="out"/>
+  <text x="685" y="68" text-anchor="middle" class="t" fill="#065f46">On the server</text>
+  <text x="685" y="90" text-anchor="middle" class="label">/etc/caddy/Caddyfile</text>
+  <text x="685" y="108" text-anchor="middle" class="label">/var/www/myapp/.env  (0640)</text>
+  <line x1="522" y1="88" x2="583" y2="88" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="528" y="80" class="note">SSH</text>
+
+  <rect x="585" y="160" width="200" height="80" rx="8" class="git"/>
+  <text x="685" y="184" text-anchor="middle" class="t" fill="#9a3412">NEVER in Git</text>
+  <text x="685" y="204" text-anchor="middle" class="code">.vault_pass</text>
+  <text x="685" y="224" text-anchor="middle" class="note">list it in .gitignore first</text>
+  <line x1="585" y1="200" x2="522" y2="200" stroke="#374151" stroke-width="1.5" marker-end="url(#a)" stroke-dasharray="4 3"/>
+  <text x="530" y="192" class="note">unlocks</text>
+
+  <text x="15" y="274" class="heading">At run time</text>
+  <text x="15" y="296" class="code">ansible-playbook --ask-vault-pass app.yml</text>
+  <text x="15" y="316" class="code">ansible-playbook --vault-password-file .vault_pass app.yml</text>
+  <text x="15" y="344" class="note">Mark tasks that handle secrets with  no_log: true.  Note: no_log does NOT hide debug output.</text>
+  <text x="15" y="364" class="note">All secrets in this course are fake placeholders.</text>
+</svg>
