@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .t { font-size: 13px; font-weight: 700; }
+    .label { font-size: 12px; fill: #1f2937; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #1f2937; }
+    .note { font-size: 11px; fill: #6b7280; }
+    .root { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .mod { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; }
+    .inst { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .res { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="15" y="26" class="heading">One module, called twice: same code, different inputs, separate state addresses</text>
+
+  <rect x="15" y="44" width="250" height="210" rx="8" class="root"/>
+  <text x="140" y="68" text-anchor="middle" class="t" fill="#1e3a8a">Root module (main.tf)</text>
+  <text x="28" y="94" class="code">module "web_dev" {</text>
+  <text x="28" y="110" class="code">  source = "./modules/web_server"</text>
+  <text x="28" y="126" class="code">  name = "dev-web"</text>
+  <text x="28" y="142" class="code">  external_port = 8000</text>
+  <text x="28" y="158" class="code">}</text>
+  <text x="28" y="182" class="code">module "web_staging" {</text>
+  <text x="28" y="198" class="code">  source = "./modules/web_server"</text>
+  <text x="28" y="214" class="code">  name = "staging-web"</text>
+  <text x="28" y="230" class="code">  external_port = 8080</text>
+  <text x="28" y="246" class="code">}</text>
+
+  <rect x="320" y="44" width="230" height="210" rx="8" class="mod"/>
+  <text x="435" y="68" text-anchor="middle" class="t" fill="#5b21b6">modules/web_server</text>
+  <text x="435" y="92" text-anchor="middle" class="label">inputs: variables.tf</text>
+  <text x="435" y="108" text-anchor="middle" class="code">name, external_port</text>
+  <rect x="340" y="120" width="190" height="62" rx="6" class="res"/>
+  <text x="435" y="140" text-anchor="middle" class="label">main.tf: resources</text>
+  <text x="435" y="158" text-anchor="middle" class="code">docker_image.nginx</text>
+  <text x="435" y="174" text-anchor="middle" class="code">docker_container.web</text>
+  <text x="435" y="204" text-anchor="middle" class="label">outputs: outputs.tf</text>
+  <text x="435" y="220" text-anchor="middle" class="code">container_name, url</text>
+  <text x="435" y="240" text-anchor="middle" class="note">no provider block, but required_providers</text>
+
+  <line x1="267" y1="120" x2="318" y2="120" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="267" y1="206" x2="318" y2="170" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <rect x="595" y="44" width="190" height="100" rx="8" class="inst"/>
+  <text x="690" y="68" text-anchor="middle" class="t" fill="#065f46">Instance: web_dev</text>
+  <text x="690" y="90" text-anchor="middle" class="code">module.web_dev.</text>
+  <text x="690" y="106" text-anchor="middle" class="code">docker_container.web</text>
+  <text x="690" y="128" text-anchor="middle" class="note">port 8000</text>
+
+  <rect x="595" y="154" width="190" height="100" rx="8" class="inst"/>
+  <text x="690" y="178" text-anchor="middle" class="t" fill="#065f46">Instance: web_staging</text>
+  <text x="690" y="200" text-anchor="middle" class="code">module.web_staging.</text>
+  <text x="690" y="216" text-anchor="middle" class="code">docker_container.web</text>
+  <text x="690" y="238" text-anchor="middle" class="note">port 8080</text>
+
+  <line x1="552" y1="100" x2="593" y2="94" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="552" y1="170" x2="593" y2="196" stroke="#374151" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <text x="15" y="292" class="heading">Read results back</text>
+  <text x="15" y="314" class="code">output "dev_url" { value = module.web_dev.url }</text>
+  <text x="15" y="338" class="heading">Rename or move without destroying</text>
+  <text x="15" y="360" class="code">moved { from = docker_container.nginx   to = module.web_dev.docker_container.web }</text>
+  <text x="15" y="382" class="note">Write a module for a new concept ("a web server"), not as a thin wrapper around one resource.</text>
+</svg>
