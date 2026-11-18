@@ -197,4 +197,4 @@ It only pins a client to a backend by IP — load stops being evenly spread, and
 
 ---
 
-**Next:** Chapter 7 — Debugging the network like a pro: ss, tcpdump, traceroute, and openssl *(coming soon)*
+**Next:** [Chapter 7 — Debugging the network like a pro: ss, tcpdump, traceroute, and openssl](07-debugging-the-network-like-a-pro.md)

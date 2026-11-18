@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .step { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .num { font-size: 13px; fill: #ffffff; font-weight: 700; }
+    .dot { fill: #2563eb; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="800" height="320" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">The debugging ladder: check in order, don't skip ahead</text>
+
+  <rect x="30" y="60" width="170" height="80" class="step"/>
+  <circle cx="50" cy="80" r="12" class="dot"/><text x="45" y="85" class="num">1</text>
+  <text x="68" y="85" class="mono" fill="#1e3a8a">Reachable?</text>
+  <text x="44" y="105" class="label">traceroute / mtr</text>
+  <text x="44" y="121" class="label">is the path even open</text>
+
+  <rect x="230" y="60" width="170" height="80" class="step"/>
+  <circle cx="250" cy="80" r="12" class="dot"/><text x="245" y="85" class="num">2</text>
+  <text x="268" y="85" class="mono" fill="#1e3a8a">Listening?</text>
+  <text x="244" y="105" class="label">ss -tln / ss -ti</text>
+  <text x="244" y="121" class="label">is a socket there, healthy</text>
+
+  <rect x="430" y="60" width="170" height="80" class="step"/>
+  <circle cx="450" cy="80" r="12" class="dot"/><text x="445" y="85" class="num">3</text>
+  <text x="468" y="85" class="mono" fill="#1e3a8a">On the wire?</text>
+  <text x="444" y="105" class="label">tcpdump</text>
+  <text x="444" y="121" class="label">what's actually sent</text>
+
+  <rect x="630" y="60" width="150" height="80" class="step"/>
+  <circle cx="650" cy="80" r="12" class="dot"/><text x="645" y="85" class="num">4</text>
+  <text x="664" y="85" class="mono" fill="#1e3a8a">App layer?</text>
+  <text x="644" y="105" class="label">openssl / curl</text>
+  <text x="644" y="121" class="label">TLS, HTTP correct</text>
+
+  <path d="M202 100 L228 100" class="arrow"/>
+  <path d="M402 100 L428 100" class="arrow"/>
+  <path d="M602 100 L628 100" class="arrow"/>
+
+  <text x="30" y="180" class="label">A fault at step 1 (path blocked) looks, from the outside, exactly like a TLS problem at step 4 — until you check in order.</text>
+  <text x="30" y="200" class="label">Each step rules out an entire category of cause before you spend time on the next one.</text>
+  <text x="30" y="240" class="label">Chapter 1 already used ss -tln and the TCP handshake; Chapters 3-4 already used openssl for SNI and TLS.</text>
+  <text x="30" y="258" class="label">This chapter adds the two ends: traceroute/mtr before step 2, and tcpdump showing the handshake and TLS bytes directly.</text>
+</svg>
