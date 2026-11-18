@@ -175,3 +175,4 @@ No. The redirect itself is one unencrypted request each time a browser hasn't ye
 ---
 
 **Next:** [Chapter 5 — Reverse proxy patterns: path routing, websockets, caching, and rate limiting](05-reverse-proxy-patterns.md)
+
