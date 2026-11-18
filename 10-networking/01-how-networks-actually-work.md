@@ -182,4 +182,4 @@ For example, 3306 (MySQL) or 6379 (Redis) — any accepted answer naming a port 
 
 ---
 
-**Next:** Chapter 2 — DNS beyond the basics: CAA, SRV, DNSSEC, and debugging past `dig` *(coming soon)*
+**Next:** [Chapter 2 — DNS beyond the basics: CAA, SRV, DNSSEC, and debugging past `dig`](02-dns-beyond-the-basics.md)

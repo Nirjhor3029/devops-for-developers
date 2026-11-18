@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .box { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .you { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .sec { stroke: #059669; stroke-width: 2.5; fill: none; marker-end: url(#arrowg); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+    <marker id="arrowg" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">DNSSEC: a chain of DS records, down from a trust anchor everyone already trusts</text>
+
+  <rect x="20" y="60" width="160" height="80" class="box"/>
+  <text x="32" y="84" class="mono" fill="#1e3a8a">Root zone (.)</text>
+  <text x="32" y="102" class="label">the trust anchor —</text>
+  <text x="32" y="116" class="label">built into resolvers</text>
+
+  <rect x="320" y="60" width="160" height="80" class="box"/>
+  <text x="332" y="84" class="mono" fill="#1e3a8a">.com (TLD)</text>
+  <text x="332" y="102" class="label">holds a DS record</text>
+  <text x="332" y="116" class="label">for cloudflare.com</text>
+
+  <rect x="620" y="60" width="160" height="80" class="box"/>
+  <text x="632" y="84" class="mono" fill="#1e3a8a">cloudflare.com</text>
+  <text x="632" y="102" class="label">DNSKEY signs records</text>
+  <text x="632" y="116" class="label">with RRSIG</text>
+
+  <path d="M182 100 L318 100" class="sec"/>
+  <path d="M482 100 L618 100" class="sec"/>
+  <text x="195" y="90" class="label">DS (hash of .com's key)</text>
+  <text x="495" y="90" class="label">DS (hash of this zone's key)</text>
+
+  <rect x="320" y="190" width="160" height="70" class="you"/>
+  <text x="332" y="212" class="mono" fill="#065f46">Resolver</text>
+  <text x="332" y="230" class="label">checks RRSIG against</text>
+  <text x="332" y="244" class="label">DNSKEY, DNSKEY against DS</text>
+
+  <path d="M400 140 L400 188" class="arrow"/>
+  <text x="408" y="168" class="label">A/RRSIG for cloudflare.com</text>
+
+  <text x="30" y="285" class="label">Each parent zone's DS record is a hash of the child's signing key. The resolver follows this chain down from the root; if every hash and signature matches, the answer is "Secure", not just "whoever answered said so".</text>
+</svg>
