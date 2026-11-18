@@ -197,4 +197,4 @@ Nginx sees the load balancer's IP as the "client" for every request, so all real
 
 ---
 
-**Next:** Chapter 6 — Load balancing: L4 vs L7, algorithms, and health checks *(coming soon)*
+**Next:** [Chapter 6 — Load balancing: L4 vs L7, algorithms, and health checks](06-load-balancing.md)
