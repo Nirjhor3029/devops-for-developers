@@ -211,4 +211,4 @@ To shrink the damage if DNS or the registrar account is ever compromised: even w
 
 ---
 
-**Next:** Chapter 3 — Virtual hosts and SNI: one server, many sites *(coming soon)*
+**Next:** [Chapter 3 — Virtual hosts and SNI: one server, many sites](03-virtual-hosts-and-sni.md)
