@@ -107,21 +107,22 @@ Commits end with the two attribution lines the harness gives. Never commit `.env
 ## 7. Status today
 
 - **Core path: complete.** All 9 courses, 72 chapters, quizzes, exams, Bangla: live.
+- **A1 Networking & Web Servers: complete.** All 8 chapters, quizzes, a 32-question exam, Bangla: live. Built chapter by chapter (see §8 for what's left of the Advanced part). Unlike the core path's IaC/monitoring tools, this course's tools (`ss`, `dig`, `openssl`, `curl`, `tcpdump`, `mtr`, Caddy) **are** installed on the writing server, so most examples are real, executed captures, not just described — including a live load-balancing + health-check demo (Ch6) and a full load-balanced multi-domain Laravel capstone with an actually-reproduced cross-server session bug and its fix (Ch8).
 - **Nothing is `coming_soon`** in `config/course.php` right now.
-- The tools themselves were **not executed** for the courses (Terraform, Ansible, Prometheus and others are not installed on the writing server, by the owner's choice: "just teach, install nothing"). Chapters say so openly. The owner has not yet reviewed every chapter's content in detail.
+- The core-path tools themselves were **not executed** for those courses (Terraform, Ansible, Prometheus and others are not installed on the writing server, by the owner's choice: "just teach, install nothing"). Chapters say so openly. The owner has not yet reviewed every chapter's content in detail.
 
 ## 8. Planned next: the Advanced part
 
-The owner asked for a separate **Advanced** part, built course by course. The site will show two sections: **Core path (1–9)** and **Advanced (own numbering)**, via a `section` key per course in `config/course.php` (`core` / `advanced`) and a grouped home page. Each new course starts `coming_soon` with no chapters, then is written chapter by chapter, same quality bar. **Not started yet** (waiting on the harness guard, see section 10).
+The owner asked for a separate **Advanced** part, built course by course. The site shows two sections: **Core path (1–9)** and **Advanced (own numbering)**, via a `section` key per course in `config/course.php` (`core` / `advanced`) and a grouped home page. Each new course starts `coming_soon` with no chapters, then is written chapter by chapter, same quality bar.
 
 Agreed four, in dependency order:
 
-| Adv. | Course | Needs first |
-|---|---|---|
-| A1 | **Networking & Web Servers** (DNS, TLS, Caddy/Nginx, reverse proxy, load balancer basics) | Linux, Cloud |
-| A2 | **Linux Server Security & Secrets** (SSH hardening, firewall, fail2ban, secrets management, least privilege) | Linux, Cloud, Networking |
-| A3 | **Database Backup & Recovery** (MySQL backup, restore tests, replication intro, RPO/RTO) | Linux, Cloud |
-| A4 | **Laravel Production Deploy** (zero-downtime, queue workers, scheduler, rollback) | CI/CD, Cloud, IaC, Networking, Backup |
+| Adv. | Course | Needs first | Status |
+|---|---|---|---|
+| A1 | **Networking & Web Servers** (DNS, TLS, Caddy/Nginx, reverse proxy, load balancer basics) | Linux, Cloud | **Done** |
+| A2 | **Linux Server Security & Secrets** (SSH hardening, firewall, fail2ban, secrets management, least privilege) | Linux, Cloud, Networking | Not started |
+| A3 | **Database Backup & Recovery** (MySQL backup, restore tests, replication intro, RPO/RTO) | Linux, Cloud | Not started |
+| A4 | **Laravel Production Deploy** (zero-downtime, queue workers, scheduler, rollback) | CI/CD, Cloud, IaC, Networking, Backup | Not started |
 
 **Proposed, awaiting the owner's final OK:** a fifth, **A5 Scaling & High Availability**, placed last, for what the current curriculum only touches by name: load balancer setup and health checks, the same code on many servers, stateless apps, shared state (sessions, cache, queue via Redis), shared storage for uploads, database replication and failover, rolling and blue-green deploys across servers, autoscaling ideas, and a real project with a 3-node Laravel cluster behind a load balancer. (Today these appear only inside Kubernetes, Ansible `serial`, Terraform `count`/`for_each` and the Cloud overview; horizontal scaling and shared sessions appear nowhere.)
 
