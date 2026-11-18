@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .you { fill: #fefce8; stroke: #ca8a04; stroke-width: 1.5; }
+    .web { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .site { fill: #ecfdf5; stroke: #059669; stroke-width: 1.3; }
+    .siteb { fill: #fdf4ff; stroke: #a21caf; stroke-width: 1.3; }
+    .shared { fill: #fff7ed; stroke: #c2410c; stroke-width: 1.5; stroke-dasharray: 4 3; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .dash { stroke: #c2410c; stroke-width: 1.3; fill: none; marker-end: url(#arrowo); stroke-dasharray: 3 3; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/>
+    </marker>
+    <marker id="arrowo" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#c2410c"/>
+    </marker>
+  </defs>
+  <rect width="800" height="340" fill="#ffffff"/>
+  <text x="30" y="24" class="heading">Two domains, one Caddy: SNI routing + load balancing + health checks, together</text>
+
+  <rect x="20" y="130" width="140" height="60" class="you"/>
+  <text x="32" y="155" class="mono" fill="#713f12">Browser</text>
+  <text x="32" y="173" class="label">app-a.test or app-b.test</text>
+
+  <rect x="260" y="50" width="200" height="240" class="web"/>
+  <text x="272" y="74" class="mono" fill="#1e3a8a">Caddy, one IP:443</text>
+  <text x="272" y="90" class="label">SNI picks the site block</text>
+
+  <rect x="276" y="104" width="168" height="90" class="site"/>
+  <text x="284" y="122" class="mono" fill="#065f46">app-a.test</text>
+  <text x="284" y="138" class="label">lb_policy round_robin</text>
+  <text x="284" y="154" class="label">health_uri /session.php</text>
+  <text x="284" y="178" class="label">own cert (SNI)</text>
+
+  <rect x="276" y="204" width="168" height="66" class="siteb"/>
+  <text x="284" y="222" class="mono" fill="#86198f">app-b.test</text>
+  <text x="284" y="238" class="label">single backend</text>
+  <text x="284" y="254" class="label">own, different cert</text>
+
+  <rect x="590" y="70" width="180" height="42" class="site"/>
+  <text x="600" y="95" class="mono" fill="#065f46">backend-1 :19081</text>
+
+  <rect x="590" y="130" width="180" height="42" class="site"/>
+  <text x="600" y="155" class="mono" fill="#065f46">backend-2 :19082</text>
+
+  <rect x="590" y="204" width="180" height="42" class="siteb"/>
+  <text x="600" y="229" class="mono" fill="#86198f">backend-3 :19090</text>
+
+  <rect x="560" y="280" width="210" height="36" class="shared"/>
+  <text x="572" y="302" class="mono" fill="#9a3412">shared session store</text>
+
+  <path d="M160 160 L258 160" class="arrow"/>
+  <path d="M444 125 L588 90" class="arrow"/>
+  <path d="M444 150 L588 150" class="arrow"/>
+  <path d="M444 235 L588 225" class="arrow"/>
+  <path d="M680 112 L665 280" class="dash"/>
+  <path d="M680 172 L665 280" class="dash"/>
+
+  <text x="30" y="316" class="label">Dashed lines: both app-a backends must read/write the SAME session store — not their own local disk — or the session breaks every time round-robin switches backends.</text>
+</svg>

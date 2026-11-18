@@ -175,4 +175,4 @@ If the network path itself is broken at some hop before even reaching the server
 
 ---
 
-**Next:** Chapter 8 — Real project: a load-balanced, multi-domain Laravel setup with TLS *(coming soon)*
+**Next:** [Chapter 8 — Real project: a load-balanced, multi-domain Laravel setup with TLS](08-real-project-load-balanced-laravel.md)
