@@ -180,4 +180,4 @@ The TLS handshake failed with an `internal_error` alert — with no hostname to 
 
 ---
 
-**Next:** Chapter 4 — TLS deep dive: the handshake, certificate chains, and HSTS *(coming soon)*
+**Next:** [Chapter 4 — TLS deep dive: the handshake, certificate chains, and HSTS](04-tls-deep-dive.md)
