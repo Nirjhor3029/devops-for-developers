@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .axis { stroke: #9ca3af; stroke-width: 1.5; }
+    .fail { fill: #dc2626; }
+    .bar-window { fill: #fef3c7; stroke: #d97706; stroke-width: 1.2; }
+    .bar-ban { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.2; }
+    .bar-ok { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.2; }
+    .tick { font-size: 10px; fill: #6b7280; }
+  </style>
+  <rect width="800" height="300" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">A failed-login timeline: findtime, maxretry, bantime</text>
+
+  <line x1="60" y1="90" x2="760" y2="90" class="axis"/>
+
+  <!-- findtime window -->
+  <rect x="80" y="60" width="260" height="30" class="bar-window"/>
+  <text x="90" y="56" class="label" fill="#92400e">findtime = 10m</text>
+
+  <!-- 5 failed attempts as dots along the window -->
+  <circle cx="100" cy="75" r="5" class="fail"/><text x="93" y="105" class="tick">1</text>
+  <circle cx="150" cy="75" r="5" class="fail"/><text x="143" y="105" class="tick">2</text>
+  <circle cx="210" cy="75" r="5" class="fail"/><text x="203" y="105" class="tick">3</text>
+  <circle cx="270" cy="75" r="5" class="fail"/><text x="263" y="105" class="tick">4</text>
+  <circle cx="330" cy="75" r="5" class="fail"/><text x="318" y="105" class="tick">5th → maxretry hit</text>
+
+  <!-- ban window -->
+  <rect x="340" y="60" width="200" height="30" class="bar-ban"/>
+  <text x="350" y="56" class="label" fill="#991b1b">bantime = 1h — all traffic from this IP dropped</text>
+
+  <!-- unban -->
+  <rect x="540" y="60" width="200" height="30" class="bar-ok"/>
+  <text x="550" y="56" class="label" fill="#166534">unbanned — can connect again</text>
+
+  <line x1="80" y1="130" x2="80" y2="140" class="axis"/>
+  <line x1="340" y1="130" x2="340" y2="140" class="axis"/>
+  <line x1="540" y1="130" x2="540" y2="140" class="axis"/>
+  <line x1="740" y1="130" x2="740" y2="140" class="axis"/>
+  <text x="60" y="155" class="tick">t=0</text>
+  <text x="300" y="155" class="tick">5th failure</text>
+  <text x="520" y="155" class="tick">+1h</text>
+
+  <text x="30" y="200" class="label">If this same IP gets banned again later by any jail, the <tspan font-weight="700" fill="#374151">recidive</tspan> jail (watching fail2ban's own ban log,</text>
+  <text x="30" y="218" class="label">not a service log) bans it again for its own, much longer bantime - its shipped default is one full week.</text>
+
+  <text x="30" y="260" class="label">fail2ban-regex tests the filter's pattern against real log lines with none of this - no ban, no firewall change, purely read-only.</text>
+</svg>
