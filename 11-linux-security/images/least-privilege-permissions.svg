@@ -1,0 +1,62 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .sub { font-size: 12px; fill: #374151; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .deploy { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .web { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .shared { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
+    .other { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .arrowbad { stroke: #dc2626; stroke-width: 1.5; fill: none; marker-end: url(#arrowr); stroke-dasharray: 4,3; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/></marker>
+    <marker id="arrowr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="800" height="460" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Scoping storage/ by group, not by chmod 777</text>
+
+  <rect x="30" y="50" width="160" height="56" class="deploy"/>
+  <text x="44" y="74" class="mono" fill="#1e3a8a">deploy user</text>
+  <text x="44" y="92" class="label">owns the code, deploys it</text>
+
+  <rect x="610" y="50" width="160" height="56" class="web"/>
+  <text x="624" y="74" class="mono" fill="#14532d">www-data</text>
+  <text x="624" y="92" class="label">serves requests, writes logs</text>
+
+  <rect x="260" y="50" width="280" height="56" class="shared"/>
+  <text x="274" y="70" class="mono" fill="#78350f">storage/, bootstrap/cache/</text>
+  <text x="274" y="88" class="label" fill="#78350f">owner: deploy  group: www-data  mode: 775 + setgid</text>
+
+  <path d="M190 78 L260 78" class="arrow"/>
+  <path d="M610 78 L540 78" class="arrow"/>
+  <text x="195" y="70" class="label">owner rwx</text>
+  <text x="485" y="70" class="label">group rwx</text>
+
+  <rect x="30" y="130" width="740" height="56" class="other"/>
+  <text x="44" y="150" class="label" fill="#991b1b">"other" (everyone else on the box) gets only r-x on these two directories - not part of either group,</text>
+  <text x="44" y="168" class="label" fill="#991b1b">can read and traverse but never write. chmod 777 would give this row rwx too - exactly what least privilege avoids.</text>
+
+  <line x1="30" y1="210" x2="770" y2="210" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="234" class="sub">What "w" actually means on a directory, not a file</text>
+
+  <rect x="30" y="250" width="220" height="70" class="deploy"/>
+  <text x="44" y="272" class="mono" fill="#1e3a8a">laravel.log</text>
+  <text x="44" y="290" class="label">mode 000 - no one can</text>
+  <text x="44" y="306" class="label">read or write THIS file</text>
+
+  <rect x="320" y="250" width="220" height="70" class="shared"/>
+  <text x="334" y="272" class="mono" fill="#78350f">storage/logs/</text>
+  <text x="334" y="290" class="label">mode 775, group www-data</text>
+  <text x="334" y="306" class="label">write = create/delete/rename</text>
+
+  <path d="M250 285 L320 285" class="arrow"/>
+  <text x="252" y="277" class="label">www-data can still</text>
+  <text x="252" y="327" class="label" fill="#374151">delete or replace laravel.log - that permission lives on the directory, not the file.</text>
+
+  <rect x="30" y="380" width="740" height="60" class="shared"/>
+  <text x="44" y="400" class="label" fill="#78350f">This is also exactly why /tmp needs the sticky bit (Section 5): without it, anyone with write</text>
+  <text x="44" y="418" class="label" fill="#78350f">access to a shared, world-writable directory could delete or rename files they don't own at all.</text>
+</svg>
