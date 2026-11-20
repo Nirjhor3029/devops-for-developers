@@ -1,0 +1,58 @@
+<svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .full { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.5; }
+    .inc { fill: #e0e7ff; stroke: #4f46e5; stroke-width: 1.5; }
+    .shared { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
+    .data { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .arrow { stroke: #9ca3af; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="800" height="460" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Full backup (81M) vs. incremental backup (260K), actually run</text>
+
+  <text x="30" y="55" class="label" font-weight="700">Full backup, --databases=backup_demo</text>
+  <rect x="30" y="64" width="200" height="40" class="shared"/>
+  <text x="130" y="88" class="mono" text-anchor="middle" fill="#92400e">80M: ibdata1 + mysql.ibd + undo</text>
+  <rect x="235" y="64" width="90" height="40" class="data"/>
+  <text x="280" y="88" class="mono" text-anchor="middle" fill="#14532d">244K: backup_demo</text>
+  <text x="330" y="90" class="label">(customers.ibd + orders.ibd)</text>
+
+  <text x="30" y="130" class="label" font-weight="700">Incremental backup (after 1 new row inserted), --incremental-basedir=full</text>
+  <rect x="30" y="139" width="40" height="30" class="shared"/>
+  <rect x="75" y="139" width="40" height="30" class="inc"/>
+  <text x="95" y="160" class="mono" text-anchor="middle" fill="#312e81" font-size="9">260K</text>
+  <text x="130" y="160" class="label">only the changed InnoDB pages (.delta files), not full table copies</text>
+
+  <line x1="20" y1="195" x2="780" y2="195" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="219" class="heading" style="font-size:13px">Why --databases filtering doesn't make the backup small</text>
+  <text x="30" y="241" class="label">A physical backup always includes the shared system tablespace (ibdata1), the mysql schema, and undo logs -</text>
+  <text x="30" y="259" class="label">these exist once per MySQL instance, not per database, so --databases only filters which schema's OWN .ibd files</text>
+  <text x="30" y="277" class="label">get copied. 244K of actual demo data still produced an 81M backup here - about a 330x overhead on a tiny database.</text>
+
+  <line x1="20" y1="300" x2="780" y2="300" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="324" class="heading" style="font-size:13px">Merging full + incremental (three real --prepare steps)</text>
+
+  <rect x="30" y="340" width="220" height="40" class="full"/>
+  <text x="140" y="364" class="mono" text-anchor="middle" fill="#1e3a8a">1. prepare full --apply-log-only</text>
+
+  <path d="M250,360 L285,360" class="arrow"/>
+
+  <rect x="285" y="340" width="260" height="40" class="inc"/>
+  <text x="415" y="364" class="mono" text-anchor="middle" fill="#312e81">2. prepare full --incremental-dir=inc1</text>
+
+  <path d="M545,360 L580,360" class="arrow"/>
+
+  <rect x="580" y="340" width="190" height="40" class="data"/>
+  <text x="675" y="364" class="mono" text-anchor="middle" fill="#14532d">3. prepare full (final)</text>
+
+  <text x="30" y="405" class="label">Every step ran against the backup COPY only, via a temporary embedded InnoDB instance that starts and shuts</text>
+  <text x="30" y="423" class="label">itself down - the live learn.bazardev.com / backup_demo MySQL server was never stopped, locked, or touched by this.</text>
+  <text x="30" y="445" class="label" fill="#991b1b">Actually restoring (--copy-back) requires stopping the real mysqld first - not performed on this shared server.</text>
+</svg>
