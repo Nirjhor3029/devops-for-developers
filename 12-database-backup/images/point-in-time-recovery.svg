@@ -1,0 +1,60 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .good { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.5; }
+    .bad { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .base { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .arrow { stroke: #9ca3af; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Point-in-time recovery, actually run against backup_demo</text>
+
+  <line x1="30" y1="90" x2="770" y2="90" stroke="#9ca3af" stroke-width="2"/>
+  <circle cx="100" cy="90" r="5" fill="#16a34a"/>
+  <text x="100" y="70" class="mono" text-anchor="middle" fill="#14532d">pos 24636</text>
+  <text x="100" y="112" class="label" text-anchor="middle">base backup</text>
+
+  <circle cx="400" cy="90" r="5" fill="#2563eb"/>
+  <text x="400" y="70" class="mono" text-anchor="middle" fill="#1e3a8a">pos 25678</text>
+  <text x="400" y="112" class="label" text-anchor="middle">PITR target</text>
+
+  <circle cx="620" cy="90" r="5" fill="#dc2626"/>
+  <text x="620" y="70" class="mono" text-anchor="middle" fill="#991b1b">pos 26084</text>
+  <text x="620" y="112" class="label" text-anchor="middle">DELETE disaster</text>
+
+  <rect x="100" y="130" width="300" height="40" class="good"/>
+  <text x="250" y="155" class="mono" text-anchor="middle" fill="#1e3a8a">2 INSERT + 1 UPDATE (wanted)</text>
+
+  <rect x="400" y="130" width="220" height="40" class="bad"/>
+  <text x="510" y="155" class="mono" text-anchor="middle" fill="#991b1b">DELETE FROM orders WHERE 1=1</text>
+
+  <line x1="30" y1="195" x2="770" y2="195" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="219" class="heading" style="font-size:13px">Restore recipe: base backup + binlog events, stopped exactly before the disaster</text>
+
+  <rect x="30" y="235" width="180" height="44" class="base"/>
+  <text x="120" y="261" class="mono" text-anchor="middle" fill="#14532d">1. Restore base backup</text>
+
+  <path d="M210,257 L245,257" class="arrow"/>
+
+  <rect x="245" y="235" width="320" height="44" class="good"/>
+  <text x="405" y="256" class="mono" text-anchor="middle" fill="#1e3a8a">2. mysqlbinlog --start-position=24636</text>
+  <text x="405" y="271" class="mono" text-anchor="middle" fill="#1e3a8a">--stop-position=25678</text>
+
+  <path d="M565,257 L600,257" class="arrow"/>
+
+  <rect x="600" y="235" width="170" height="44" class="base"/>
+  <text x="685" y="261" class="mono" text-anchor="middle" fill="#14532d">3. Apply the events</text>
+
+  <line x1="30" y1="300" x2="770" y2="300" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="324" class="heading" style="font-size:13px">A real wall, not staged: applying row-event BINLOG statements needs SUPER/REPLICATION_APPLIER</text>
+  <text x="30" y="346" class="label">The scoped backup_demo account intentionally has none of those - the same reasoning as Chapter 4's instance-wide,</text>
+  <text x="30" y="364" class="label">data-blind XtraBackup account. A real PITR replay is deliberately an administrative-session action, not something</text>
+  <text x="30" y="382" class="label">a backup automation account should ever be trusted to run unattended.</text>
+</svg>
