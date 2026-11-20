@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .rpo { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
+    .rto { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; }
+    .ok { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .full { fill: #dbeafe; stroke: #2563eb; }
+    .inc { fill: #e0e7ff; stroke: #4f46e5; }
+    .diff { fill: #fae8ff; stroke: #a21caf; }
+  </style>
+  <rect width="800" height="520" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">RPO and RTO on a timeline</text>
+
+  <line x1="30" y1="90" x2="770" y2="90" stroke="#9ca3af" stroke-width="2"/>
+  <circle cx="150" cy="90" r="5" fill="#16a34a"/>
+  <text x="150" y="70" class="label" text-anchor="middle">Last backup</text>
+  <circle cx="420" cy="90" r="5" fill="#dc2626"/>
+  <text x="420" y="70" class="label" text-anchor="middle" fill="#dc2626">Disaster strikes</text>
+  <circle cx="620" cy="90" r="5" fill="#111827"/>
+  <text x="620" y="70" class="label" text-anchor="middle">Data restored</text>
+  <circle cx="740" cy="90" r="5" fill="#16a34a"/>
+  <text x="755" y="94" class="label">App back online</text>
+
+  <rect x="150" y="105" width="270" height="36" class="rpo"/>
+  <text x="285" y="128" class="mono" text-anchor="middle" fill="#92400e">RPO - data lost (unbacked-up writes)</text>
+
+  <rect x="420" y="105" width="200" height="36" class="rto"/>
+  <text x="520" y="128" class="mono" text-anchor="middle" fill="#991b1b">RTO - downtime while restoring</text>
+
+  <line x1="30" y1="170" x2="770" y2="170" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="194" class="heading" style="font-size:13px">Backup frequency sets RPO; tool + process sets RTO</text>
+  <text x="30" y="214" class="label">A nightly-only mysqldump gives an RPO of up to 24h, whether anyone wrote that number down or not.</text>
+  <text x="30" y="232" class="label">A 40GB dump that takes 3 hours to restore gives an RTO of 3 hours - regardless of the target on paper.</text>
+
+  <line x1="30" y1="260" x2="770" y2="260" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="284" class="heading" style="font-size:13px">Full vs. incremental vs. differential (storage/time vs. restore-chain risk)</text>
+
+  <text x="30" y="312" class="label" font-weight="700">Full every time</text>
+  <rect x="30" y="320" width="60" height="26" class="full"/><text x="60" y="337" class="mono" text-anchor="middle" fill="#1e3a8a">Mon</text>
+  <rect x="100" y="320" width="60" height="26" class="full"/><text x="130" y="337" class="mono" text-anchor="middle" fill="#1e3a8a">Tue</text>
+  <rect x="170" y="320" width="60" height="26" class="full"/><text x="200" y="337" class="mono" text-anchor="middle" fill="#1e3a8a">Wed</text>
+  <text x="250" y="337" class="label">largest storage, simplest restore (1 file)</text>
+
+  <text x="30" y="372" class="label" font-weight="700">Full + incremental (chain since last backup of any kind)</text>
+  <rect x="30" y="380" width="60" height="26" class="full"/><text x="60" y="397" class="mono" text-anchor="middle" fill="#1e3a8a">Full</text>
+  <rect x="100" y="380" width="60" height="26" class="inc"/><text x="130" y="397" class="mono" text-anchor="middle" fill="#312e81">Inc</text>
+  <rect x="170" y="380" width="60" height="26" class="inc"/><text x="200" y="397" class="mono" text-anchor="middle" fill="#312e81">Inc</text>
+  <text x="250" y="397" class="label">smallest storage, longest/riskiest restore chain</text>
+
+  <text x="30" y="432" class="label" font-weight="700">Full + differential (always vs. last full)</text>
+  <rect x="30" y="440" width="60" height="26" class="full"/><text x="60" y="457" class="mono" text-anchor="middle" fill="#1e3a8a">Full</text>
+  <rect x="100" y="440" width="60" height="26" class="diff"/><text x="130" y="457" class="mono" text-anchor="middle" fill="#701a75">Diff</text>
+  <rect x="170" y="440" width="60" height="26" class="diff"/><text x="200" y="457" class="mono" text-anchor="middle" fill="#701a75">Diff</text>
+  <text x="250" y="457" class="label">middle ground: restore needs only full + 1 differential</text>
+</svg>
