@@ -1,0 +1,62 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .step { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .old { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .keep { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.5; }
+    .arrow { stroke: #9ca3af; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="800" height="420" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">cron runs backup_demo_backup.sh nightly: dump, verify, rotate</text>
+
+  <rect x="20" y="50" width="170" height="50" class="step"/>
+  <text x="105" y="72" class="mono" text-anchor="middle" fill="#14532d">mysqldump</text>
+  <text x="105" y="88" class="label" text-anchor="middle">--single-transaction --no-tablespaces</text>
+
+  <path d="M190,75 L220,75" class="arrow"/>
+
+  <rect x="220" y="50" width="150" height="50" class="step"/>
+  <text x="295" y="72" class="mono" text-anchor="middle" fill="#14532d">gzip</text>
+  <text x="295" y="88" class="label" text-anchor="middle">timestamped .sql.gz</text>
+
+  <path d="M370,75 L400,75" class="arrow"/>
+
+  <rect x="400" y="50" width="190" height="50" class="step"/>
+  <text x="495" y="72" class="mono" text-anchor="middle" fill="#14532d">zcat | tail -1 | grep</text>
+  <text x="495" y="88" class="label" text-anchor="middle">"Dump completed on" check</text>
+
+  <path d="M590,75 L620,75" class="arrow"/>
+
+  <rect x="620" y="50" width="160" height="50" class="step"/>
+  <text x="700" y="72" class="mono" text-anchor="middle" fill="#14532d">find -mtime +7</text>
+  <text x="700" y="88" class="label" text-anchor="middle">-delete (retention)</text>
+
+  <line x1="20" y1="130" x2="780" y2="130" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="154" class="heading" style="font-size:13px">Retention, actually tested with aged files (touch -d "N days ago")</text>
+
+  <rect x="30" y="170" width="90" height="36" class="old"/><text x="75" y="192" class="mono" text-anchor="middle" fill="#991b1b">10d ago</text>
+  <rect x="130" y="170" width="90" height="36" class="old"/><text x="175" y="192" class="mono" text-anchor="middle" fill="#991b1b">8d ago</text>
+  <rect x="230" y="170" width="90" height="36" class="keep"/><text x="275" y="192" class="mono" text-anchor="middle" fill="#1e3a8a">5d ago</text>
+  <rect x="330" y="170" width="90" height="36" class="keep"/><text x="375" y="192" class="mono" text-anchor="middle" fill="#1e3a8a">2d ago</text>
+  <rect x="430" y="170" width="90" height="36" class="keep"/><text x="475" y="192" class="mono" text-anchor="middle" fill="#1e3a8a">today</text>
+  <text x="30" y="222" class="label" fill="#991b1b">RETENTION_DAYS=7: the 10d and 8d files were actually deleted by -mtime +7 -delete</text>
+  <text x="30" y="238" class="label" fill="#1e3a8a">5d, 2d, and today's backup survived - verified by re-listing the directory afterward</text>
+
+  <line x1="20" y1="265" x2="780" y2="265" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="289" class="heading" style="font-size:13px">Two retention styles - pick one, not both informally</text>
+  <text x="30" y="311" class="label" font-weight="700">Time-based:</text>
+  <text x="130" y="311" class="mono" fill="#374151">find $DIR -name '*.sql.gz' -mtime +7 -delete</text>
+  <text x="30" y="331" class="label" font-weight="700">Count-based:</text>
+  <text x="130" y="331" class="mono" fill="#374151">ls -t *.sql.gz | tail -n +6 | xargs -r rm</text>
+
+  <line x1="20" y1="355" x2="780" y2="355" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="379" class="label" fill="#374151">Closing Chapter 2's loop: mysqldump's default tablespace-dump attempt needs PROCESS privilege and</text>
+  <text x="30" y="397" class="label" fill="#374151">fails for a scoped backup user every single night - --no-tablespaces removes that noisy stderr entirely.</text>
+</svg>
