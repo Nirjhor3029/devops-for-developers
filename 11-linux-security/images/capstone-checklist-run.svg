@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .pass { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .fail { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .skip { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 1.5; }
+  </style>
+  <rect width="800" height="440" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Chapter 7's checklist, actually run against learn.bazardev.com</text>
+
+  <rect x="30" y="50" width="740" height="40" class="skip"/>
+  <text x="44" y="74" class="label">Ch 1-4: SSH, firewall, fail2ban, MFA - NOT re-verified this run (needs sudo / lockout risk on this shared box)</text>
+
+  <rect x="30" y="100" width="360" height="56" class="pass"/>
+  <text x="44" y="122" class="mono" fill="#14532d">Ch 5: Secrets - PASS</text>
+  <text x="44" y="140" class="label">APP_DEBUG=false, .env gitignored, never committed</text>
+
+  <rect x="410" y="100" width="360" height="56" class="pass"/>
+  <text x="424" y="122" class="mono" fill="#14532d">Ch 6: storage/ perms - PASS</text>
+  <text x="424" y="140" class="label">775, dev:www-data, correct group pattern</text>
+
+  <rect x="30" y="170" width="360" height="70" class="fail"/>
+  <text x="44" y="192" class="mono" fill="#991b1b">Ch 6: .env perms - FINDING</text>
+  <text x="44" y="210" class="label" fill="#991b1b">rw-rw-r-x - readable by "other"</text>
+  <text x="44" y="226" class="label" fill="#991b1b">fix given (chmod 600), not applied here</text>
+
+  <rect x="410" y="170" width="360" height="70" class="pass"/>
+  <text x="424" y="192" class="mono" fill="#14532d">Ch 7: auditing - PASS</text>
+  <text x="424" y="210" class="label">unattended-upgrades active, patched today</text>
+  <text x="424" y="226" class="label">ss -tulpn reviewed (MySQL finding noted)</text>
+
+  <line x1="30" y1="270" x2="770" y2="270" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="294" class="heading" style="font-size:13px">Why this matters: a recommendation is not the same as a verified fact</text>
+
+  <rect x="30" y="314" width="740" height="100" class="skip"/>
+  <text x="44" y="338" class="label" fill="#374151">Chapter 5 recommended chmod 600 for .env - correct advice, written down, never enforced.</text>
+  <text x="44" y="358" class="label" fill="#374151">Nobody decided to make it world-readable; umask (Ch 6) just did its default thing and nobody re-checked.</text>
+  <text x="44" y="378" class="label" fill="#374151">This is exactly why Chapter 7's audit is a recurring practice, not a one-time setup step -</text>
+  <text x="44" y="396" class="label" fill="#374151">the only way to know a setting still holds is to actually check it again, which is what just happened here.</text>
+</svg>
