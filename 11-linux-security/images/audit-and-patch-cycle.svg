@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    .mono { font-family: 'Courier New', monospace; font-size: 11px; }
+    .heading { font-size: 14px; fill: #111827; font-weight: 700; }
+    .label { font-size: 11px; fill: #6b7280; }
+    .step { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; }
+    .audit { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
+    .patch { fill: #f0fdf4; stroke: #16a34a; stroke-width: 1.5; }
+    .finding { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; }
+    .arrow { stroke: #374151; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#374151"/></marker>
+  </defs>
+  <rect width="800" height="420" fill="#ffffff"/>
+  <text x="30" y="26" class="heading">Harden -&gt; audit -&gt; patch -&gt; repeat</text>
+
+  <rect x="30" y="50" width="160" height="60" class="step"/>
+  <text x="44" y="74" class="mono" fill="#1e3a8a">Harden (Ch 1-6)</text>
+  <text x="44" y="92" class="label">SSH, firewall, fail2ban,</text>
+  <text x="44" y="104" class="label">MFA, secrets, least priv.</text>
+
+  <rect x="320" y="50" width="160" height="60" class="audit"/>
+  <text x="334" y="74" class="mono" fill="#78350f">Audit</text>
+  <text x="334" y="92" class="label">lynis audit system</text>
+  <text x="334" y="104" class="label">ss -tulpn, checklist</text>
+
+  <rect x="610" y="50" width="160" height="60" class="patch"/>
+  <text x="624" y="74" class="mono" fill="#14532d">Patch</text>
+  <text x="624" y="92" class="label">unattended-upgrades</text>
+  <text x="624" y="104" class="label">security repos only</text>
+
+  <path d="M190 80 L320 80" class="arrow"/>
+  <path d="M480 80 L610 80" class="arrow"/>
+  <path d="M690 110 L690 180 L110 180 L110 110" class="arrow" fill="none"/>
+  <text x="200" y="150" class="label">repeats on a schedule (cron), not once</text>
+
+  <line x1="30" y1="220" x2="770" y2="220" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="244" class="heading" style="font-size:13px">A real finding from this course's own writing server</text>
+
+  <rect x="30" y="264" width="340" height="70" class="finding"/>
+  <text x="44" y="286" class="mono" fill="#991b1b">tcp LISTEN 172.16.0.99:3306</text>
+  <text x="44" y="304" class="mono" fill="#991b1b">tcp LISTEN 127.0.0.1:3306</text>
+  <text x="44" y="322" class="label" fill="#991b1b">MySQL reachable from more than loopback</text>
+
+  <rect x="430" y="264" width="340" height="70" class="step"/>
+  <text x="444" y="286" class="label">Two separate layers, both checked:</text>
+  <text x="444" y="304" class="label">1. Is it bound to a reachable address? (ss)</text>
+  <text x="444" y="322" class="label">2. Does the firewall allow it anyway? (Ch 2)</text>
+
+  <path d="M370 299 L430 299" class="arrow"/>
+
+  <rect x="30" y="360" width="740" height="40" class="step"/>
+  <text x="44" y="384" class="label" fill="#1e3a8a">Binding and firewalling are independent - checking only one can miss what the other would catch.</text>
+</svg>
